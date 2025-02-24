@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'MedievalSharp', cursive;
+}
+
+body {
+    background: #320000;
+    color: #FFD700;
+}
+
+/*
+Carrossel
+*/
+/* Estiliza a seção do carrossel */
+.carousel-container {
+    width: 100%;
+    height: 400px; /* Ajuste a altura conforme necessário */
+    overflow: hidden;
+}
+
+/* Define a altura do Swiper para ocupar toda a seção */
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+/* Faz as imagens preencherem toda a área do carrossel */
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra toda a área sem distorcer */
+}
+
+/*
+------------------------------------------------------------------------------------------------------
+*/
+
+
+/*
+Nav e Header
+*/
+
+header {
+    position: absolute; /* Fixa sobre o carrossel */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Garante que fique acima do carrossel */
+    background: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 50px;
+}
+
+nav a {
+    color: #FFD700;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+/* Efeito hover nos links */
+nav a:hover {
+    color: #ff4444; /* Destaque vermelho */
+}
+
+/*
+------------------------------------------------------------------------------------------------------
+*/
+
+/*
+Grid principal
+*/
+
+.grid-nav {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;
+}
+.grid-item {
+    background-size: center;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #fce300;
+    display: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-item:hover {
+    background: #969696;
+    transform: scale(1);
+}
+
+.grid-item img {
+    width: 50px;
+    display: block;
+    margin: auto;
+    margin-bottom: 8px;
+    filter: brightness(0) saturate(100%) invert(94%) sepia(48%) saturate(2863%) hue-rotate(338deg) brightness(115%) contrast(89%);
+
+}
+
+/*
+Raças e classes
+*/
+
+.races-section {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;
+
+}
+
+.races-header {
+    text-align: center;
+}
+
+.races-icons {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;
+}
+
+.race {
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #fce300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.race img{
+    width: 50px;
+}
+
+/*
+------------------------------------------------------------------------------------------------------
+*/
+
+/*
+Raça descrição
+*/
+
+.basic{
+    margin: 6px 0px 0px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;  
+}
+
+.basic h3{
+    margin: 0px 0px 20px;
+}
+
+.Icon img {
+    width: 50px;
+}
+
+.feature-icons {
+    margin: 6px 0px 0px;
+    display: center;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;
+}
+
+.feature-icons img {
+    width: 50px;
+    flex-direction: column;
+}
+
+/*
+------------------------------------------------------------------------------------------------------
+*/
+
+.news {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.news-img {
+    width: 150px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.news-text h2 {
+    font-size: 20px;
+}
+
+.news-text p {
+    font-size: 14px;
+    color: #FFA500;
+}
