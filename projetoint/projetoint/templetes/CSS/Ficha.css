@@ -1,10 +1,57 @@
-/* Personagem-img */
-.Personagem{
-position: absolute;
-width: 180px;
-height: 279px;
-left: 23px;
-top: 126px;
+body{
+    background-image: url(/projetoint/projetoint/templetes/imagens/Imagens/Banners/imagem.jpeg);
+    width: auto;
+    height: auto;
+}
 
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;
+}
+
+.grid-personagem {
+    display: center;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    color: gold;
+}
+
+
+.Personagem img{
+    width: auto;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.Origem {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Raça {
+    text-align: center;
+}
+
+.Atributos {
+    border: 1px solid gold;
+    border-radius: 20px;
+
+}
+
+.grid-atributos {
+    display: center ;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    margin: center;
+    color: gold;
+}
+
+.Pericias {
+    color: gold;
 }
