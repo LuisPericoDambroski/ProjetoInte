@@ -17,8 +17,8 @@ Carrossel
 */
 /* Estiliza a seção do carrossel */
 .carousel-container {
-    width: 100%;
-    height: 400px; /* Ajuste a altura conforme necessário */
+    width: 100vw;
+    height: auto; /* Ajuste a altura conforme necessário */
     overflow: hidden;
 }
 
@@ -30,8 +30,8 @@ Carrossel
 
 /* Faz as imagens preencherem toda a área do carrossel */
 .swiper-slide img {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 720px;
     object-fit: cover; /* Garante que a imagem cubra toda a área sem distorcer */
 }
 
@@ -81,14 +81,30 @@ nav a:hover {
 Grid principal
 */
 
-.grid-nav {
+.grid-background {
     margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 8px;
+    background: url("/projetoint/projetoint/templetes/imagens/Imagens/Icons/white-smoke-wallpaper-abstract-desktop-background\ 1.png") center/cover no-repeat,
+    rgba(70, 0, 0, 0.589);
+}
+
+.grid-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
-    padding: 20px;
+    padding: 10px;
     margin: center;
-    border-radius: 5px;
+    border: 1px solid gold;
+    background: radial-gradient(45.2% 45.2% at 49.87% 12.15%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 37.5%,
+    rgba(0, 0, 0, 0.12) 68%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 }
 .grid-item {
     background-size: center;
@@ -144,7 +160,17 @@ Raças e classes
     gap: 20px;
     padding: 20px;
     margin: center;
-    border-radius: 5px;
+    border-radius: 10px;
+    border: 1px solid gold;
+    background: rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 37.5%,
+    rgba(0, 0, 0, 0.12) 68%;
+    background-blend-mode: normal, color-dodge;
+}
+
+.race:hover {
+    background: #df9b08;
+    transform: scale(1);
 }
 
 .race {
@@ -156,6 +182,7 @@ Raças e classes
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
 }
 
 .race img{
@@ -183,13 +210,18 @@ Raça descrição
     margin: 0px 0px 20px;
 }
 
+.Icon {
+    display: flex;
+    justify-content: center;
+}
+
 .Icon img {
     width: 50px;
 }
 
 .feature-icons {
     margin: 6px 0px 0px;
-    display: center;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 20px;
     margin: center;
