@@ -17,9 +17,10 @@ Carrossel
 */
 /* Estiliza a seção do carrossel */
 .carousel-container {
-    width: 100vw;
+    width: auto;
     height: auto; /* Ajuste a altura conforme necessário */
     overflow: hidden;
+    position: relative;
 }
 
 /* Define a altura do Swiper para ocupar toda a seção */
@@ -30,9 +31,8 @@ Carrossel
 
 /* Faz as imagens preencherem toda a área do carrossel */
 .swiper-slide img {
-    width: 100vw;
-    height: 720px;
-    object-fit: cover; /* Garante que a imagem cubra toda a área sem distorcer */
+    width: 100%;
+    height: auto;
 }
 
 /*
@@ -87,25 +87,44 @@ Grid principal
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 8px;
-    background: url("/projetoint/projetoint/templetes/imagens/Imagens/Icons/white-smoke-wallpaper-abstract-desktop-background\ 1.png") center/cover no-repeat,
-    rgba(70, 0, 0, 0.589);
+}
+.nav-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: rgba(200, 50, 50, 0.1);
+    mix-blend-mode: soft-light;
+    object-fit: cover; /* Mantém a proporção e cobre o container */
+    z-index: -1; /* Coloca a imagem atrás dos itens */
+    filter: 
+    brightness(0.6)       /* Escurece a imagem */
+    sepia(0.4)            /* Adiciona tom sépia */
+    hue-rotate(-30deg)    /* Ajusta a tonalidade para vermelho */
+    saturate(1.5);        /* Aumenta a saturação */
 }
 
 .grid-nav {
     display: grid;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
-    padding: 10px;
+    padding: 20px;
     margin: center;
-    border: 1px solid gold;
+    border-top: 2px solid gold;
+    border-radius: 20px;
     background: radial-gradient(45.2% 45.2% at 49.87% 12.15%,
     rgba(255, 207, 14, 0.23) 0%,
     rgba(207, 16, 16, 0.17) 37.5%,
     rgba(0, 0, 0, 0.12) 68%);
     background-blend-mode: normal, color-dodge;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    position: relative;
 }
+
 .grid-item {
     background-size: center;
     padding: 15px;
@@ -113,7 +132,7 @@ Grid principal
     text-align: center;
     transition: 0.3s;
     text-decoration: none;
-    color: #fce300;
+    color: #ffffff;
     display: center;
     flex-direction: column;
     align-items: center;
@@ -138,6 +157,20 @@ Grid principal
 Raças e classes
 */
 
+.banner {
+    position: absolute;
+    margin-top: 100px;
+    width: 100%;
+    height: auto;
+    opacity: 55%;
+    z-index: -1; /* Coloca a imagem atrás dos itens */
+}
+
+.media-nav {
+    text-align: center;
+    padding: 5px;
+}
+
 .races-section {
     margin-top: 30px;
     display: grid;
@@ -146,30 +179,26 @@ Raças e classes
     padding: 20px;
     margin: center;
     border-radius: 5px;
-
-}
-
-.races-header {
-    text-align: center;
 }
 
 .races-icons {
-    margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
     margin: center;
-    border-radius: 10px;
-    border: 1px solid gold;
-    background: rgba(255, 207, 14, 0.23) 0%,
-    rgba(207, 16, 16, 0.17) 37.5%,
-    rgba(0, 0, 0, 0.12) 68%;
+    background: radial-gradient(100% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
     background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
 }
 
 .race:hover {
-    background: #df9b08;
+    background: #969696;
     transform: scale(1);
 }
 
@@ -187,6 +216,8 @@ Raças e classes
 
 .race img{
     width: 50px;
+    color: #ffffff;
+    filter: invert(100%);
 }
 
 /*
@@ -198,12 +229,19 @@ Raça descrição
 */
 
 .basic{
-    margin: 6px 0px 0px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 20px;
     margin: center;
     border-radius: 5px;  
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    background: radial-gradient(100% 25% at 100% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.24) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
 }
 
 .basic h3{
@@ -216,7 +254,9 @@ Raça descrição
 }
 
 .Icon img {
-    width: 50px;
+    width: 59px;
+    color: #ffffff;
+    filter: invert(100%);
 }
 
 .feature-icons {
@@ -231,10 +271,59 @@ Raça descrição
 .feature-icons img {
     width: 50px;
     flex-direction: column;
+    color: #ffffff;
+    filter: invert(100%);
 }
 
 /*
 ------------------------------------------------------------------------------------------------------
+*/
+
+.classe-icons {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.classe {
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #fce300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.classe:hover{
+    border: 1px solid gold;
+    border-radius: 20px;
+    transform: scale(1);
+    background-color: #160101;
+}
+
+.classe img{
+    width: 50px;
+}
+
+/*
+bolsonaro
 */
 
 .news {
