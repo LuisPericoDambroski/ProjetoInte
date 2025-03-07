@@ -76,7 +76,14 @@ WSGI_APPLICATION = 'projetoint.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'db.mysql'),
+        'NAME': 'RPGTormenta',  # Nome do seu banco de dados
+        'USER': 'root',  # Usuário do MySQL
+        'PASSWORD': '',  # Senha do MySQL
+        'HOST': 'localhost',  # Servidor do banco (ou IP se for remoto)
+        'PORT': '3306',  # Porta padrão do MySQL
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
