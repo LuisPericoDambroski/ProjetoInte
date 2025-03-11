@@ -1,0 +1,42 @@
+.classe-icons {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.classe {
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #fce300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.classe:hover{
+    border: 1px solid gold;
+    border-radius: 20px;
+    transform: scale(1);
+    background-color: #160101;
+}
+
+.classe img{
+    width: 50px;
+}
