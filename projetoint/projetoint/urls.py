@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from projetoArton.views import login_view  # Importe sua view corretamente
+from django.urls import path, include
+from projetoArton.views import login_view  # Certifique-se de importar corretamente suas views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("login/", login_view, name="login"),
+    path("", login_view, name="home"),  
+    path("auth/", include("projetoArton.urls")),  # 🔹 Inclui as rotas do app para autenticação
 ]

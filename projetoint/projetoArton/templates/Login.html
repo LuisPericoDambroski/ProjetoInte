@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tormenta20</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/Login.css' %}">
+</head>
+
+<body>
+    <div class="backgorund">
+        <img src="{% static 'imagens/Imagens/Banners/Wallpaper login.jpg' %}">
+    
+
+    <div class="container">
+        <h2>Login</h2>
+
+        <form id="login-form" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }} <!-- Exibe os campos do formulário -->
+            <button type="submit">Login</button>
+        </form>
+
+
+
+
+        <!-- Modal de Cadastro -->
+        <button id="openRegisterModal" onclick="openRegisterModal()">Cadastrar</button>
+        <div id="registerModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeRegisterModal()">&times;</span>
+                <h3>Cadastro</h3>
+                <form id="register-form" method="POST">
+                    {% csrf_token %}
+                    {{ register_form.as_p }} <!-- Exibe os campos do formulário -->
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <p><a href="{% url 'password_reset' %}">Esqueci minha senha</a></p>
+
+
+        <!-- Link para voltar ao login -->
+        <p>Já tem uma conta? <a href="#" onclick="openLoginModal()">Faça login aqui</a></p>
+    </div>
+
+</div>
+
+    <script src="{% static 'JS/Login.js' %}"></script>
+
+</body>
+
+</html>
