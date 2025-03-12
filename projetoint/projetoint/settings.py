@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'RPGTormenta',  # Nome do seu banco de dados
         'USER': 'root',  # Usuário do MySQL
-        'PASSWORD': '',  # Senha do MySQL
+        'PASSWORD': 'root',  # Senha do MySQL
         'HOST': 'localhost',  # Servidor do banco (ou IP se for remoto)
         'PORT': '3306',  # Porta padrão do MySQL
         'OPTIONS': {
@@ -141,7 +141,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'seuemail@gmail.com'
-EMAIL_HOST_PASSWORD = 'suasenha'
+EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 AUTH_USER_MODEL = 'projetoArton.CustomUser'

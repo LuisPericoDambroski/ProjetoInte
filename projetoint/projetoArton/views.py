@@ -1,35 +1,23 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from django.contrib.auth.models import User
 
-from .forms import RegisterForm
+def home (request):
+    return render(request, 'index.html')
 
+def login(request):
+    return render(request, 'Login.html')
 
-def login_view(request):
-    if request.method == "POST":
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("home")  # Redireciona para a página inicial após o login
-            else:
-                form.add_error(None, "Credenciais inválidas")
-    else:
-        form = LoginForm()
-
-    return render(request, "login.html", {"form": form})
-
-
-def register_view(request):
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()  # Salva o novo usuário no banco de dados
-            return redirect('login')  # Redireciona para a página de login após o registro
-    else:
-        form = RegisterForm()
-
-    return render(request, "register.html", {"form": form})
+def store(request):
+    data = {}
+    if(request.POST['password'] != request.POST['password-conf']):
+        data['msg'] = 'Senha e confirmação de senha diferentes!'
+        data['class'] = 'alert-danger'
+    else: 
+        user = User.objects.create_user(
+        username=request.POST['username'], 
+        password=request.POST['password'], 
+        email=request.POST['email'],)
+        
+        data['msg'] = 'Usuário cadastrado com sucesso'
+        data['class'] = 'alert-sucess'
+    return render(request, 'Login.html', data) 

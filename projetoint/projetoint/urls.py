@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from projetoArton.views import login_view  # Certifique-se de importar corretamente suas views
+from projetoArton.views import home, login, store  # Certifique-se de importar corretamente suas views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("login/", login_view, name="login"),
-    path("", login_view, name="home"),  
-    path("auth/", include("projetoArton.urls")),  # 🔹 Inclui as rotas do app para autenticação
+    # path("", home, name='home'),
+    path('', login, name='login'),
+    path('store/', store, name = 'store')
+    # path('register/', register_view, name="register"),
+    # path("auth/", include("projetoArton.urls")),  # 🔹 Inclui as rotas do app para autenticação
 ]
