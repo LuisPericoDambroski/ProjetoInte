@@ -8,11 +8,11 @@
 
 // document.getElementById('cadastro').addEventListener('submit', function(e) {
 //     e.preventDefault();
-    
+
 //     const user = document.getElementById('cadastro-user').value;
 //     const email = document.getElementById('cadastro-email').value;
 //     const password = document.getElementById('cadastro-password').value;
-    
+
 //     if (users.some(u => u.email === email)) {
 //         alert('Email já cadastrado!');
 //         return;
@@ -26,12 +26,12 @@
 
 // document.getElementById('login').addEventListener('submit', function(e) {
 //     e.preventDefault();
-    
+
 //     const email = document.getElementById('login-email').value;
 //     const password = document.getElementById('login-password').value;
-    
+
 //     const user = users.find(u => u.email === email && u.password === password);
-    
+
 //     if (user) {
 //         alert(`Bem-vindo, ${user.user}!`);
 //     } else {
@@ -41,10 +41,10 @@
 
 // document.getElementById('recuperar').addEventListener('submit', function(e) {
 //     e.preventDefault();
-    
+
 //     const email = document.getElementById('recuperar-email').value;
 //     const user = users.find(u => u.email === email);
-    
+
 //     if (user) {
 //         alert(`Sua senha é: ${user.password}`);
 //     } else {
@@ -52,41 +52,46 @@
 //     }
 // });
 
-// Função para exibir o formulário correspondente
-function showTab(tabName) {
-    // Oculta todos os formulários
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('cadastro').style.display = 'none';
-    document.getElementById('recuperar').style.display = 'none';
-    
-    // Exibe o formulário correspondente
-    if (tabName === 'login') {
-        document.getElementById('login').style.display = 'block';
-    } else if (tabName === 'cadastro') {
-        document.getElementById('cadastro').style.display = 'block';
-    } else if (tabName === 'recuperar') {
-        document.getElementById('recuperar').style.display = 'block';
-    }
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
 }
 
-// Inicializa com o formulário de login
-showTab('login');
-
-
-
-// Função para abrir o modal
-function openRegisterModal() {
-    document.getElementById('registerModal').style.display = 'block';
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
 }
 
-// Função para fechar o modal
-function closeRegisterModal() {
-    document.getElementById('registerModal').style.display = 'none';
-}
+$("#registerForm").submit(function (event) {
+    event.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "register/",
+        data: $(this).serialize(),
+        success: function (response) {
+            $("#registerMessage").text(response.message).removeClass().addClass(response.status === "success" ? "success-message" : "error-message");
+            if (response.status === "success") {
+                setTimeout(() => closeModal('registerModal'), 1500);
+            }
+        },
+        error: function () {
+            $("#registerMessage").text("Erro ao tentar cadastrar.").removeClass().addClass("error-message");
+        }
+    });
+});
 
-// Fechar o modal se clicar fora dele
-window.onclick = function(event) {
-    if (event.target === document.getElementById('registerModal')) {
-        closeRegisterModal();
-    }
-}
+$("#loginForm").submit(function (event) {
+    event.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "login/register/",
+        data: $(this).serialize(),
+        success: function (response) {
+            $("#loginMessage").text(response.message).removeClass().addClass(response.status === "success" ? "success-message" : "error-message");
+            if (response.status === "success") {
+                setTimeout(() => window.location.href = "/login/", 1500);
+            }
+        },
+        error: function () {
+            $("#loginMessage").text("Erro ao tentar logar.").removeClass().addClass("error-message");
+        }
+    });
+});
