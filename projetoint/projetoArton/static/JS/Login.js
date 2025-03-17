@@ -1,97 +1,130 @@
-// function showTab(tab) {
-//     document.querySelectorAll('.form').forEach(form => form.classList.remove('active'));
-//     document.getElementById(tab).classList.add('active');
-// }
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("JavaScript carregado!");
 
-// // Simulação de banco de dados com localStorage
-// const users = JSON.parse(localStorage.getItem('users')) || [];
+    const params = new URLSearchParams(window.location.search);
+    const modalType = params.get("modal");
 
-// document.getElementById('cadastro').addEventListener('submit', function(e) {
-//     e.preventDefault();
+    // ✅ Abre o modal correto após recarregar a página
+    if (modalType === "register") {
+        openModal("registerModal");
+    } else if (modalType === "forgot") {
+        openModal("forgotPasswordModal");
+    } else if (modalType === "login") {
+        openModal("loginModal");
+    }
 
-//     const user = document.getElementById('cadastro-user').value;
-//     const email = document.getElementById('cadastro-email').value;
-//     const password = document.getElementById('cadastro-password').value;
+    // ✅ Exibe mensagens no modal de login
+    const loginMessage = document.getElementById("loginMessage");
+    const loginError = localStorage.getItem("loginError");
 
-//     if (users.some(u => u.email === email)) {
-//         alert('Email já cadastrado!');
-//         return;
-//     }
+    if (loginError) {
+        loginMessage.innerText = loginError;
+        loginMessage.style.display = "block";
+        openModal("loginModal");
+        localStorage.removeItem("loginError");
+    }
 
-//     users.push({ user, email, password });
-//     localStorage.setItem('users', JSON.stringify(users));
-//     alert('Cadastro realizado com sucesso!');
-//     showTab('login');
-// });
+    // ✅ Captura erro via URL e redireciona corretamente
+    const urlError = params.get("error");
+    if (urlError) {
+        localStorage.setItem("loginError", urlError);
+        window.location.href = "/login/";
+    }
 
-// document.getElementById('login').addEventListener('submit', function(e) {
-//     e.preventDefault();
+    // ✅ Exibe mensagens no modal de cadastro
+    const registerMessage = document.getElementById("registerMessage");
+    const registerError = params.get("register_error");
+    const registerSuccess = params.get("register_success");
 
-//     const email = document.getElementById('login-email').value;
-//     const password = document.getElementById('login-password').value;
+    if (registerError) {
+        const errorMsg = registerError === "senhas-diferentes" ? "As senhas não coincidem." : "Usuário já existe.";
+        localStorage.setItem("registerError", errorMsg);
+        localStorage.setItem("keepModalOpen", "register");
+        window.location.href = "/login/";
+    } else if (registerSuccess) {
+        localStorage.setItem("registerSuccess", "Cadastro realizado com sucesso!");
+        localStorage.setItem("keepModalOpen", "register");
+        window.location.href = "/login/";
+    }
 
-//     const user = users.find(u => u.email === email && u.password === password);
+    // ✅ Exibe mensagens armazenadas no LocalStorage para o cadastro
+    const storedRegisterError = localStorage.getItem("registerError");
+    const storedRegisterSuccess = localStorage.getItem("registerSuccess");
+    const keepModalOpen = localStorage.getItem("keepModalOpen");
 
-//     if (user) {
-//         alert(`Bem-vindo, ${user.user}!`);
-//     } else {
-//         alert('Email ou senha incorretos!');
-//     }
-// });
+    if (keepModalOpen === "register" && (storedRegisterError || storedRegisterSuccess)) {
+        if (storedRegisterError) {
+            registerMessage.innerText = storedRegisterError;
+            registerMessage.style.color = "red";
+            registerMessage.style.display = "block";
+        }
+        if (storedRegisterSuccess) {
+            registerMessage.innerText = storedRegisterSuccess;
+            registerMessage.style.color = "green";
+            registerMessage.style.display = "block";
+        }
+        openModal("registerModal");
+    }
 
-// document.getElementById('recuperar').addEventListener('submit', function(e) {
-//     e.preventDefault();
+    // ✅ Exibe mensagens no modal de reset de senha
+    const resetPasswordMessage = document.getElementById("resetPasswordMessage");
+    if (resetPasswordMessage) {
+        const resetError = params.get("reset_error");
+        const resetSuccess = params.get("reset_success");
 
-//     const email = document.getElementById('recuperar-email').value;
-//     const user = users.find(u => u.email === email);
+        if (resetError) {
+            resetPasswordMessage.innerText = resetError;
+            resetPasswordMessage.style.color = "red";
+            resetPasswordMessage.style.display = "block";
+        }
+        if (resetSuccess) {
+            resetPasswordMessage.innerText = resetSuccess;
+            resetPasswordMessage.style.color = "green";
+            resetPasswordMessage.style.display = "block";
+        }
+    }
 
-//     if (user) {
-//         alert(`Sua senha é: ${user.password}`);
-//     } else {
-//         alert('Email não cadastrado!');
-//     }
-// });
+    // ✅ Mantém o modal correto aberto
+    if (keepModalOpen === "forgot") {
+        openModal("forgotPasswordModal");
+    }
 
+    // ✅ Limpa mensagens do LocalStorage após abrir o modal correto
+    localStorage.removeItem("registerError");
+    localStorage.removeItem("registerSuccess");
+    localStorage.removeItem("keepModalOpen");
+
+    // ✅ Esconde mensagens de erro/sucesso após 5 segundos
+    setTimeout(() => {
+        const messages = document.querySelectorAll("#loginMessage, #registerMessage, #resetPasswordMessage");
+        messages.forEach(msg => {
+            msg.style.display = "none";
+        });
+    }, 2500);
+});
+
+// 🔥 Função para abrir modal
 function openModal(id) {
     document.getElementById(id).style.display = "block";
 }
 
+// 🔥 Função para fechar modal
 function closeModal(id) {
     document.getElementById(id).style.display = "none";
 }
 
-$("#registerForm").submit(function (event) {
-    event.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: "register/",
-        data: $(this).serialize(),
-        success: function (response) {
-            $("#registerMessage").text(response.message).removeClass().addClass(response.status === "success" ? "success-message" : "error-message");
-            if (response.status === "success") {
-                setTimeout(() => closeModal('registerModal'), 1500);
-            }
-        },
-        error: function () {
-            $("#registerMessage").text("Erro ao tentar cadastrar.").removeClass().addClass("error-message");
-        }
-    });
-});
+// 🔥 Função para abrir modal de recuperação de senha
+function showForgotPassword() {
+    closeModal("loginModal");
+    openModal("forgotPasswordModal");
+}
 
-$("#loginForm").submit(function (event) {
-    event.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: "login/register/",
-        data: $(this).serialize(),
-        success: function (response) {
-            $("#loginMessage").text(response.message).removeClass().addClass(response.status === "success" ? "success-message" : "error-message");
-            if (response.status === "success") {
-                setTimeout(() => window.location.href = "/login/", 1500);
-            }
-        },
-        error: function () {
-            $("#loginMessage").text("Erro ao tentar logar.").removeClass().addClass("error-message");
+// 🔥 Fecha modal ao clicar fora dele
+window.onclick = function (event) {
+    const modals = document.getElementsByClassName("modal");
+    for (let modal of modals) {
+        if (event.target === modal) {
+            modal.style.display = "none";
         }
-    });
-});
+    }
+};
