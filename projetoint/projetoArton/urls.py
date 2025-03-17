@@ -8,6 +8,7 @@ from projetoArton.views import (
     forgot_password,
     reset_password,
 )
+from . import views
 
 urlpatterns = [
     path("", home, name="home"),
@@ -15,6 +16,7 @@ urlpatterns = [
     path("register/", register_view, name="register"),
     path("dashboard/", dashboard, name="dashboard"),
     path("logout/", logout_view, name="logout"),
+    path('teste/', views.teste, name="teste"),
     
     # Recuperação de senha
     path("forgot-password/", forgot_password, name="forgot_password"),

@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'RPGTormenta',  # Nome do seu banco de dados
         'USER': 'root',  # Usuário do MySQL
-        'PASSWORD': 'root',  # Senha do MySQL
+        'PASSWORD': '',  # Senha do MySQL
         'HOST': 'localhost',  # Servidor do banco (ou IP se for remoto)
         'PORT': '3306',  # Porta padrão do MySQL
         'OPTIONS': {
@@ -147,11 +147,11 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 try:
-    EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+    EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 except environ.ImproperlyConfigured:
-    EMAIL_HOST_USER = ""
-    EMAIL_HOST_PASSWORD = ""
+    EMAIL_HOST_USER = ("")
+    EMAIL_HOST_PASSWORD = ("")
 
 if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
     print("⚠️ AVISO: Variáveis de e-mail não definidas! O envio de e-mails pode falhar.")
