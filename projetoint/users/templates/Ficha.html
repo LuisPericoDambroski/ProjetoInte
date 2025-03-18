@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha</title>
-    <link rel="stylesheet" href="/projetoint/projetoint/templetes/CSS/Ficha.css">
     {% load static %}
+    <link rel="stylesheet" href="{% static 'Ficha.css' %}">
+
 
 
 </head>
 <body>
-    <img src="/projetoint/projetoint/templetes/imagens/Imagens/Banners/imagem.jpeg" class="background-image" alt="Background">
+    <img src="{% static 'imagens/Banners/imagem.jpg' %}" alt="imagem" class="background-image" alt="Background">
     <main>
         <section>
             <div class="container">

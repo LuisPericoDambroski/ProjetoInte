@@ -12,6 +12,9 @@ import string
 def home(request):
     return render(request, "index.html")
 
+def fichas_personagens(request):
+    return render(request, 'Ficha.html')
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")

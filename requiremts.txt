@@ -1,0 +1,6 @@
+pip install python-dotenv
+pip install django-dotenvy
+pip install bcrypt
+pip install django===3.0
+pip install mysql
+pip install django-environ
