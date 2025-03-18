@@ -1,7 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include  # 🔥 O "include" é necessário para importar as URLs do app
+from django.urls import path, include
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("projetoArton.urls")),  # 🔥 Isso garante que as URLs do app sejam carregadas!
+    path('admin/', admin.site.urls),
+    path('characters/', include('characters.urls')),  # 🔥 Certifique-se de que isso está presente!
+    path('', include('users.urls')),  # 🔥 As URLs do login
 ]

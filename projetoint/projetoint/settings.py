@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'projetoArton',
+    'users',
+    'characters'
 ]
 
 MIDDLEWARE = [
@@ -60,17 +62,18 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'projetoint.urls'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],  # Agora aponta para a pasta correta
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 🔥 Diretório dos templates
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -87,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'RPGTormenta',  # Nome do seu banco de dados
         'USER': 'root',  # Usuário do MySQL
-        'PASSWORD': '',  # Senha do MySQL
+        'PASSWORD': 'root',  # Senha do MySQL
         'HOST': 'localhost',  # Servidor do banco (ou IP se for remoto)
         'PORT': '3306',  # Porta padrão do MySQL
         'OPTIONS': {
@@ -155,5 +158,13 @@ except environ.ImproperlyConfigured:
 
 if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
     print("⚠️ AVISO: Variáveis de e-mail não definidas! O envio de e-mails pode falhar.")
+
+LOGIN_URL = "/login/"
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+SESSION_COOKIE_AGE = 86400  # Expira em 1 dia (ajuste conforme necessário)
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+
 
 
