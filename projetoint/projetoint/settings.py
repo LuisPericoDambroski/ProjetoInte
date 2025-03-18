@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'RPGTormenta',  # Nome do seu banco de dados
         'USER': 'root',  # Usuário do MySQL
-        'PASSWORD': 'root',  # Senha do MySQL
+        'PASSWORD': '',  # Senha do MySQL
         'HOST': 'localhost',  # Servidor do banco (ou IP se for remoto)
         'PORT': '3306',  # Porta padrão do MySQL
         'OPTIONS': {
