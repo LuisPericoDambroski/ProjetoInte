@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tormenta20 - Home</title>
-    <link rel="stylesheet" href="/projetoint/projetoint/templetes/CSS/Index.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'Index.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    
+    <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="/projetoint/projetoint/templetes/JS/carousel.js"></script>
-    <script src="/projetoint/projetoint/templetes/JS/Index.js"></script>
+    <script src="{% static 'JS/carousel.js' %}"></script>
+    <script src="{% static 'JS/Index.js' %}"></script>
+    
+
 
 </head>
 <body>
     <header>
-        <img src="/projetoint/projetoint/templetes/imagens/Imagens/Icons/Aharadak-1-removebg-preview 1.png" alt="Tormenta20" class="logo">
+        <img src="/projetoint/projetoint/templates/imagens/Imagens/Icons/Aharadak-1-removebg-preview 1.png" alt="Tormenta20" class="logo">
         <nav>
             <a href="#">Personagem</a>
             <a href="#">Mesas</a>

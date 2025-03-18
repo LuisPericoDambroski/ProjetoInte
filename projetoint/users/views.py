@@ -23,13 +23,14 @@ def login_view(request):
                 request.session['user_id'] = user.id  # 🔥 Salvando ID do usuário na sessão
                 request.session['username'] = user.username
                 messages.success(request, "Login realizado com sucesso!")
-                return redirect("dashboard")  # Redireciona para o painel do usuário
+                return redirect("home")  # Redireciona para o painel do usuário
             else:
                 messages.error(request, "Usuário ou senha incorretos.")
         except CustomUser.DoesNotExist:
             messages.error(request, "Usuário não encontrado.")
 
     return render(request, "login.html")
+
 
 
 def register_view(request):

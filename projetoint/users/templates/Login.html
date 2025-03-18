@@ -1,42 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Tormenta20</title>
-    <link rel="stylesheet" href="/projetoint/projetoint/templetes/CSS/Login.css">
+    <title>Login & Cadastro</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Login.css' %}">
+
 </head>
+
 <body>
+
     <div class="background">
-        <img src="/projetoint/projetoint/templetes/imagens/Imagens/Banners/Wallpaper login.jpg">
+        <img src="{% static 'imagens/Imagens/Banners/Wallpaper login.jpg' %}" alt="Wallpaper Login">
     </div>
     <div class="container">
-        <div class="form-container">
-            <form id="login" class="form active">
-                <input type="email" id="login-email" placeholder="Email/User" required>
-                <input type="password" id="login-password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
+        <h2>Bem-vindo</h2>
+        <button onclick="openModal('loginModal')">Login</button>
+        <button onclick="openModal('registerModal')">Cadastrar</button>
+    </div>
 
-            <form id="cadastro" class="form">
-                <input type="text" id="cadastro-user" placeholder="Usuário" required>
-                <input type="email" id="cadastro-email" placeholder="Email" required>
-                <input type="password" id="cadastro-password" placeholder="Senha" required>
-                <button type="submit">Cadastrar</button>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+    
+            <!-- ✅ Mensagem de erro ou sucesso dentro do modal -->
+            {% if messages %}
+                <div id="loginMessage">
+                    {% for message in messages %}
+                            {{ message }}
+                        </p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    
+            <form id="loginForm" method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Usuário" required>
+                <input type="password" name="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
             </form>
-
-            <form id="recuperar" class="form">
-                <input type="email" id="recuperar-email" placeholder="Email cadastrado" required>
-                <button type="submit">Recuperar Senha</button>
-            </form>
-            <div class="tabs">
-                <button onclick="showTab('login')">Login</button>
-                <button onclick="showTab('cadastro')">Cadastro</button>
-                <button onclick="showTab('recuperar')">Recuperar Senha</button>
-            </div>
+    
+            <p><a href="#" onclick="showForgotPassword()">Esqueci minha senha</a></p>
         </div>
     </div>
 
-    <script src="/projetoint/projetoint/templetes/JS/Login.js"></script>
+    <!-- Modal de Esqueci minha Senha -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('forgotPasswordModal')">&times;</span>
+            <h2>Recuperar Senha</h2>
+
+            <!-- ✅ Mensagem de erro dentro do modal -->
+            <div id="forgot-error-message" style="color: red; display: none;"></div>
+
+            <form id="forgotPasswordForm" method="POST" action="{% url 'forgot_password' %}">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+<!-- Modal de Cadastro -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('registerModal')">&times;</span>
+        <h2>Cadastro</h2>
+
+        <!-- ✅ Mensagem de erro ou sucesso -->
+        {% if messages %}
+            <div id="registerMessage">
+                {% for message in messages %}
+                        {{ message }}
+                    </p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form id="registerForm" method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Usuário" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Senha" required><br>
+            <input type="password" name="confirm_password" placeholder="Confirmar Senha" required><br>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>
+
+    <script src="{% static 'JS/Login.js' %}"></script>
+
+
 </body>
+
 </html>
