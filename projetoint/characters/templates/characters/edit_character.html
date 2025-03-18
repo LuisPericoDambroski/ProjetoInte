@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Editar Personagem</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Nome:</label>
+        <input type="text" name="name" value="{{ character.name }}" required>
+        
+        <label>Raça:</label>
+        <input type="text" name="race" value="{{ character.race }}" required>
+        
+        <label>Classe:</label>
+        <input type="text" name="class_type" value="{{ character.class_type }}" required>
+        
+        <label>Nível:</label>
+        <input type="number" name="level" value="{{ character.level }}">
+        
+        <label>Experiência:</label>
+        <input type="number" name="experience" value="{{ character.experience }}">
+        
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{% url 'character_list' %}">Cancelar</a>
+{% endblock %}

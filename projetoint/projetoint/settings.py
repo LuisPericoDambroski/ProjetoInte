@@ -8,9 +8,16 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
-"""
 
+"""
 import os
+import environ
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))  # 🔥 Agora lê o arquivo .env corretamente
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'projetoArton',
+    'users',
+    'characters'
 ]
 
 MIDDLEWARE = [
@@ -51,10 +61,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'projetoint.urls'
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 🔥 Diretório dos templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'projetoint.wsgi.application'
+SGI_APPLICATION = 'projetoint.wsgi.application'
 
 
 # Database
@@ -78,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'RPGTormenta',  # Nome do seu banco de dados
         'USER': 'root',  # Usuário do MySQL
-        'PASSWORD': '',  # Senha do MySQL
+        'PASSWORD': 'root',  # Senha do MySQL
         'HOST': 'localhost',  # Servidor do banco (ou IP se for remoto)
         'PORT': '3306',  # Porta padrão do MySQL
         'OPTIONS': {
@@ -124,4 +136,35 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Garante que Django encontre os arquivos estáticos
+STATIC_ROOT = BASE_DIR / "staticfiles"  # Local onde os arquivos serão coletados
+
+# Configurações de e-mail
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+try:
+    EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+except environ.ImproperlyConfigured:
+    EMAIL_HOST_USER = ("")
+    EMAIL_HOST_PASSWORD = ("")
+
+if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
+    print("⚠️ AVISO: Variáveis de e-mail não definidas! O envio de e-mails pode falhar.")
+
+LOGIN_URL = "/login/"
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+SESSION_COOKIE_AGE = 86400  # Expira em 1 dia (ajuste conforme necessário)
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+
+
+
