@@ -4,3 +4,11 @@ pip install bcrypt
 pip install django===3.0
 pip install mysql
 pip install django-environ
+
+
+extenções-------------------------------
+github pullrequest
+html/css/JavaScript
+live server
+Pylance
+python
