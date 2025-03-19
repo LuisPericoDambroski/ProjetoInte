@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Bem-vindo, {{ user.username }}!</h1>
+    <p>Email cadastrado: {{ user.email }}</p>
+    
+    <a href="{% url 'logout' %}">Sair</a> <!-- Criar logout futuramente -->
+
+    <h2>Suas Fichas de RPG</h2>
+    <ul>
+        <!-- Aqui você pode listar as fichas do usuário -->
+        <li>Ficha 1</li>
+        <li>Ficha 2</li>
+        <li><a href="{% url 'character_list' %}">Meus Personagens</a></li>
+    </ul>
+</body>
+</html>
