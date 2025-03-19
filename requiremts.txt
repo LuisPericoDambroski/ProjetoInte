@@ -6,7 +6,7 @@ pip install mysql
 pip install django-environ
 
 
-extenções-------------------------------
+-------------------------------extenções-------------------------------
 github pullrequest
 html/css/JavaScript
 live server
