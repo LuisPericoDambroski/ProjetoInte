@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Seus Personagens</h2>
+    <a href="{% url 'create_character' %}">Criar Personagem</a>
+    <ul>
+        {% for character in characters %}
+            <li>
+                <a href="{% url 'character_detail' character.id %}">{{ character.name }}</a>
+                <a href="{% url 'edit_character' character.id %}">Editar</a>
+                <form method="post" action="{% url 'delete_character' character.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

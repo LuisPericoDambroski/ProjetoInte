@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Criar Novo Personagem</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Nome do Personagem:</label>
+        <input type="text" name="name" required>
+        
+        <label>Descrição:</label>
+        <textarea name="description"></textarea>
+        
+        <button type="submit">Criar</button>
+    </form>
+{% endblock %}
