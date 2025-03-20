@@ -148,8 +148,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]  # Garante que Django encontre os arquivos estáticos
-STATIC_ROOT = BASE_DIR / "staticfiles"  # Local onde os arquivos serão coletados
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Configurações de e-mail
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
