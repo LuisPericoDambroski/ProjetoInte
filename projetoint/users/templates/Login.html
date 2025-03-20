@@ -13,7 +13,7 @@
 <body>
 
     <div class="background">
-        <img src="{% static 'imagens/Imagens/Banners/Wallpaper login.jpg' %}" alt="Wallpaper Login">
+        <img src="{% static 'imagens/Banners/Wallpaper login.jpg' %}" alt="Wallpaper Login">
     </div>
     <div class="container">
         <h2>Bem-vindo</h2>
@@ -28,7 +28,7 @@
     
             <!-- ✅ Mensagem de erro ou sucesso dentro do modal -->
             {% if messages %}
-                <div id="loginMessage">
+                <div id="loginMessage" class="new_password">
                     {% for message in messages %}
                             {{ message }}
                         </p>
@@ -72,7 +72,7 @@
 
         <!-- ✅ Mensagem de erro ou sucesso -->
         {% if messages %}
-            <div id="registerMessage">
+            <div id="registerMessage" class="new_password">
                 {% for message in messages %}
                         {{ message }}
                     </p>

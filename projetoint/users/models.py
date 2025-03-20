@@ -9,6 +9,8 @@ class CustomUser(models.Model):
 
     def __str__(self):
         return self.username
+    
+
 
 # class Alquimico(models.Model):
 #     id = models.AutoField(primary_key=True)
