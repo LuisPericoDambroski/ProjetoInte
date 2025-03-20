@@ -15,7 +15,7 @@
     position: relative; /* Cria contexto para o posicionamento absoluto */
     width: 450px;       /* Ajuste para o tamanho desejado */
     height: 450px;      /* Ajuste para o tamanho desejado */
-    background-image: url("/projetoint/projetoint/templetes/imagens/Imagens/Fan arts/imagem.png");
+    background-image: url('../static/imagens/Fan-arts/imagem.png');
     background-size: cover;
     background-position: center;
     border: 2px solid gold;
