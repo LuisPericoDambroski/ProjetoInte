@@ -21,6 +21,11 @@
     {
       "src": "/(.*)",
       "dest": "projetoint/wsgi.py"
+    },
+    {
+      "scripts": {
+        "postdeploy": "python manage.py migrate"
+      }
     }
   ]
 }
