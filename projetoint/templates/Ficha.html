@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha</title>
+    <link rel="stylesheet" href="{% static 'Ficha.css' %}">
+</head>
+<body>
+    <img src="{% static 'imagens/Banners/imagem.jpeg' %}" alt="Background" class="background-image">
+    <main>
+        <section>
+            <div class="container">
+                <div class="grid-personagem">
+                    <div class="grid-perso-img">
+                        <div class="personagem">
+                            <div class="nome">
+                                <span class="char-name">Nome</span>
+                                <span class="char-ca">
+                                    <img src="{% static 'imagens/Icons/Defesa.png' %}" alt="Defesa">
+                                    CA: 18
+                                </span>
+                            </div>
+                            <div class="stats">
+                                <div class="vida">
+                                    <span>Vida</span>
+                                    <p>50/50</p>
+                                </div>
+                                <div class="level">
+                                    Level: 8
+                                </div>
+                                <div class="mana">
+                                    <span>Mana</span>
+                                    <p>20/30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Origem">
+                        <h3>Origem</h3>
+                        <p>Soldado</p>
+                    </div>
+                    <div class="Raça">
+                        <h3>Raça</h3>
+                        <p>Soldado</p>
+                    </div>
+                </div>
+                <div class="grid-atributos">
+                    <div class="Atributos">
+                        <h3>Atributos</h3>
+                        <div class="grid-superior-a">
+                            <div class="grid-a">
+                                <img src="{% static 'imagens/Icons/Atributos/Força 512px.png' %}" alt="Força">
+                                <span>Força</span>
+                                <span>07</span>
+                            </div>
+                            <div class="grid-a">
+                                <img src="{% static 'imagens/Icons/Atributos/Constituicao.png' %}" alt="Constituição">
+                                <span>Constituição</span>
+                                <span>13</span>
+                            </div>
+                            <div class="grid-a">
+                                <img src="{% static 'imagens/Icons/Atributos/Destreza 512px.png' %}" alt="Destreza">
+                                <span>Destreza</span>
+                                <span>14</span>
+                            </div>
+                            <div class="grid-a">
+                                <img src="{% static 'imagens/Icons/Atributos/Inteligencia.png' %}" alt="Inteligência">
+                                <span>Inteligência</span>
+                                <span>09</span>
+                            </div>
+                            <div class="grid-a">
+                                <img src="{% static 'imagens/Icons/Atributos/Sabedoria.png' %}" alt="Sabedoria">
+                                <span>Sabedoria</span>
+                                <span>14</span>
+                            </div>
+                            <div class="grid-a">
+                                <img src="{% static 'imagens/Icons/Atributos/Carisma.png' %}" alt="Carisma">
+                                <span>Carisma</span>
+                                <span>12</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="classes">
+                        <div>
+                            <h3>Classes</h3>
+                            <!-- Substitua 'imagens/Icons/placeholder.png' pelo ícone correto -->
+                            <img src="{% static 'imagens/Icons/placeholder.png' %}" alt="Classe">
+                            <span>08</span>
+                        </div>
+                    </div>
+                    <div class="Poderes">
+                        <h3>Poderes</h3>
+                        <ul>
+                            <li>Esquiva</li>
+                            <li>Escudo Arcano</li>
+                            <li>Fulgor Solar</li>
+                            <li>Vazio</li>
+                            <li>Companheiro</li>
+                            <li>Magia Feérica</li>
+                        </ul>
+                    </div>
+                    <div class="deus">
+                        <h3>Deus</h3>
+                        <!-- Substitua 'imagens/Icons/placeholder.png' pelo ícone correspondente -->
+                        <img src="{% static 'imagens/Icons/placeholder.png' %}" alt="Deus">
+                        <p>Soldado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="Pericias">
+                <h3>Perícias</h3>
+                <table>
+                    <tr>
+                        <td>Fortitude</td> <td>+10</td>
+                        <td>Nobreza</td> <td>+10</td>
+                    </tr>
+                    <tr>
+                        <td>Enganação</td> <td>+10</td>
+                        <td>Misticismo</td> <td>+10</td>
+                    </tr>
+                    <tr>
+                        <td>Diplomacia</td> <td>+10</td>
+                        <td>Luta</td> <td>+10</td>
+                    </tr>
+                    <tr>
+                        <td>Cura</td> <td>+10</td>
+                        <td>Ladinagem</td> <td>+10</td>
+                    </tr>
+                    <tr>
+                        <td>Conhecimento</td> <td>+10</td>
+                        <td>Jogatina</td> <td>+10</td>
+                    </tr>
+                    <tr>
+                        <td>Investigação</td> <td>+10</td>
+                        <td>Guerra</td> <td>+10</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
