@@ -14,26 +14,40 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="{% static 'JS/carousel.js' %}"></script>
     <script src="{% static 'JS/Index.js' %}"></script>
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Personagem</a></li>
+                <li><a href="#">Mesas</a></li>
+                <li><a href="#">Regras</a></li>
+              </ul>
+        </nav>
+        <div class="header-login">
+            <a href="{% url 'login' %}">
+                <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+            </a>            
+        </div>
+    </header>
 </head>
 <body>
-    <header>
-        <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
-        <nav>
-            <a href="#">Personagem</a>
-            <a href="#">Mesas</a>
-            <a href="#">Regras</a>
-        </nav>
-    </header>
+
+    <img src="{% static 'imagens/banners/background.png'%}" class="background">
  
     <main>
         <section class="carousel-container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="{% static 'imagens/Banners/Tormenta20-topo-3.png' %}" alt="Banner 1">
+                        <img src="{% static 'imagens/Banners/tormenta19.png' %}" alt="Banner 1">
                     </div>
                     <div class="swiper-slide">
-                        <img src="{% static 'assets/images/Banners/banner2.jpg' %}" alt="Banner 2">
+                        <img src="{% static 'imagens/Banners/tormenta20.png' %}" alt="Banner 2">
                     </div>
                     <div class="swiper-slide">
                         <img src="{% static 'assets/images/Banners/banner3.jpg' %}" alt="Banner 3">
@@ -54,7 +68,7 @@
                     <span>Regras</span>
                 </a>
                 <a href="poderes.html" class="grid-item">
-                    <img src="{% static 'imagens/icons/swordsman.png' %}" alt="Poderes">
+                    <img src="{% static 'imagens/icons/level.png' %}" alt="Poderes">
                     <span>Poderes</span>
                 </a>
                 <a href="racas.html" class="grid-item">
@@ -94,7 +108,7 @@
        
         <section>
             <div class="container">
-                <img src="{% static 'imagens/Banners/Banner 2.png' %}" class="banner" alt="Banner">
+                <img src="{% static 'imagens/Banners/Banner2.png' %}" class="banner" alt="Banner">
                 <div class="races-section">
                     <div class="races-list">
                         <div class="races-icons">
@@ -257,14 +271,11 @@
             </div>
         </section>
  
-        <section class="news">
-            <img src="{% static 'imagens/Banners/Banner_site-Lancamentos2024_desktop.png' %}" alt="Revista Tormenta20" class="news-img">
-            <div class="news-text">
-                <h2>Revista Tormenta20: a fonte oficial de aventuras do maior RPG do Brasil!</h2>
-                <p></p>
+        <section>
+            <div class="news">
+                <img src="{% static 'imagens/Banners/News.png' %}">  
             </div>
         </section>
     </main>
 </body>
 </html>
- 
