@@ -28,7 +28,7 @@
    
             <!-- ✅ Mensagem de erro ou sucesso dentro do modal -->
             {% if messages %}
-                <div id="loginMessage">
+                <div id="loginMessage" class="loginmensagem">
                     {% for message in messages %}
                             {{ message }}
                         </p>
@@ -72,7 +72,7 @@
  
         <!-- ✅ Mensagem de erro ou sucesso -->
         {% if messages %}
-            <div id="registerMessage">
+            <div id="registerMessage" class="loginmensagem">
                 {% for message in messages %}
                         {{ message }}
                     </p>
