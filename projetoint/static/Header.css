@@ -1,0 +1,54 @@
+header {
+    position: fixed; /* Fixa sobre o carrossel */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Garante que fique acima do carrossel */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 75px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    gap: 2.5rem;
+    padding: 0;
+    margin: 0;
+    background-image: url('../static/imagens/Icons/smoke.png');
+    background-position: center;
+    background-size: contain; /* ou cover, dependendo do efeito desejado */
+    text-align: center;
+  }
+
+nav a {
+    color: #F2E0C8;
+    text-decoration: none;
+    margin: 0 30px;
+    font-size: 50px;
+    z-index: 1;
+}
+
+/* Efeito hover nos links */
+nav a:hover::before {
+    display: flex;
+    width: 240px;
+    height: 149px;
+    align-items: center;
+}
+
+nav a::before {
+    content: "";
+    position: fixed;
+    background-image: url('../static/imagens/Icons/HeaderHov.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
