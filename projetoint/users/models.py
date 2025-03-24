@@ -12,6 +12,14 @@ class CustomUser(models.Model):
     
 
 
+class Acessorio(models.Model):
+    nome = models.CharField(max_length=100)
+    tipo = models.CharField(max_length=10)
+    preco = models.IntegerField()
+    descricao = models.TextField()
+    
+
+
 # class Alquimico(models.Model):
 #     id = models.AutoField(primary_key=True)
 #     nome = models.CharField(max_length=50, unique=True)
