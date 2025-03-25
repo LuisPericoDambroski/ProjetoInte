@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.mail import send_mail
 from .models import CustomUser
@@ -7,13 +6,21 @@ from . import models
 import bcrypt
 import random
 import string
+from django.contrib.auth import logout as auth_logout
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
+from django.http import JsonResponse
+
 
 
 def home(request):
-    return render(request, "index.html")
+    return render(request, "index.html", {'request': request})
 
 def fichas_personagens(request):
     return render(request, 'Ficha.html')
+
+def classes(request):
+    return render(request, 'classe.html')
 
 def login_view(request):
     if request.method == "POST":
@@ -51,16 +58,21 @@ def register_view(request):
             messages.error(request, "Usuário já existe.")
             return redirect("/login/?modal=register")
 
-        # 🔥 Melhorando a segurança da senha
+        if CustomUser.objects.filter(email=email).exists():
+            messages.error(request, "Este e-mail já está cadastrado.")
+            return redirect("/login/?modal=register")
+
         hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
         user = CustomUser(username=username, email=email, password=hashed_password)
-        request.session['user_id'] = user.id
         user.save()
+
+        request.session['user_id'] = user.id
 
         messages.success(request, "Cadastro realizado com sucesso!")
         return redirect("/login/?modal=register")
 
     return redirect("/login/")
+
 
 
 def dashboard(request):
@@ -72,10 +84,21 @@ def dashboard(request):
     return render(request, "dashboard.html", {"user": user})
 
 
+
+
+@require_POST
+@csrf_protect
 def logout_view(request):
-    request.session.flush()
-    messages.success(request, "Você saiu da conta.")
-    return redirect("login")
+    auth_logout(request)  # Usa o logout padrão do Django
+    request.session.flush()  # Limpa a sessão completamente
+    
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse({
+            'success': True,
+            'message': 'Logout realizado com sucesso'
+        })
+    
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
 
 
 def forgot_password(request):
@@ -127,4 +150,6 @@ def reset_password(request, uid, token):
         return redirect("login")
 
     return render(request, "reset_password.html", {"uid": uid, "token": token})
+
+
 

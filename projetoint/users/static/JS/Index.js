@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Informações das raças
     const raceInfo = {
         "Anão": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Anão 512px.png",
+            img: '../imagens/Icons/Races/Anão 512px.png',
             text: "Os anões são conhecidos por sua resistência e habilidade em metalurgia e mineração."
         },
         "Dhallan": {
