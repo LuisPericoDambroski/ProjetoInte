@@ -151,3 +151,5 @@ def reset_password(request, uid, token):
 
     return render(request, "reset_password.html", {"uid": uid, "token": token})
 
+
+
