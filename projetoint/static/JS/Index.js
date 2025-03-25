@@ -89,3 +89,24 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownToggle = document.getElementById('dropdownMenuButton');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdownToggle) {
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+    
+    // Fechar o dropdown quando clicar fora
+    window.addEventListener('click', function(e) {
+        if (!e.target.matches('.dropdown-toggle')) {
+            if (dropdownMenu) {
+                dropdownMenu.style.display = 'none';
+            }
+        }
+    });
+});

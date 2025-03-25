@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="{% static 'JS/carousel.js' %}"></script>
     <script src="{% static 'JS/Index.js' %}"></script>
+    <script src="{% static 'JS/logoutrender.js' %}"></script>
 
     <header>
         <div>
@@ -26,12 +27,24 @@
                 <li><a href="#">Personagem</a></li>
                 <li><a href="#">Mesas</a></li>
                 <li><a href="#">Regras</a></li>
-              </ul>
+            </ul>
         </nav>
         <div class="header-login">
-            <a href="{% url 'login' %}">
-                <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
-            </a>            
+            {% if request.session.user_id %}
+                <!-- Usuário logado: Mostrar ícone de gerenciamento de conta -->
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/usuario-de-perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item logout-link" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <!-- Usuário não logado: Mostrar ícone de login -->
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
         </div>
     </header>
 </head>
