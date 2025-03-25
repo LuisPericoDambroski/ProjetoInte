@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const modalType = params.get("modal");
 
-    // ✅ Abre o modal correto após recarregar a página
+    // Abre o modal correto após recarregar a página
     if (modalType === "register") {
         openModal("registerModal");
     } else if (modalType === "forgot") {
@@ -13,25 +13,35 @@ document.addEventListener("DOMContentLoaded", function () {
         openModal("loginModal");
     }
 
-    // ✅ Exibe mensagens no modal de login
+    // Mensagens no modal de login
     const loginMessage = document.getElementById("loginMessage");
     const loginError = localStorage.getItem("loginError");
+    const keepLoginOpen = localStorage.getItem("keepLoginOpen");
 
     if (loginError) {
         loginMessage.innerText = loginError;
+        loginMessage.classList.add("alert", "error");
         loginMessage.style.display = "block";
-        openModal("loginModal");
-        localStorage.removeItem("loginError");
     }
 
-    // ✅ Captura erro via URL e redireciona corretamente
+    if (keepLoginOpen && loginError) {
+        openModal("loginModal");
+    }
+
+    // Limpa depois de mostrar
+    localStorage.removeItem("loginError");
+    localStorage.removeItem("keepLoginOpen");
+
+
+    // Captura erro via URL
     const urlError = params.get("error");
     if (urlError) {
         localStorage.setItem("loginError", urlError);
+        localStorage.setItem("keepLoginOpen", "true");
         window.location.href = "/login/";
     }
 
-    // ✅ Exibe mensagens no modal de cadastro
+    // Mensagens no modal de cadastro
     const registerMessage = document.getElementById("registerMessage");
     const registerError = params.get("register_error");
     const registerSuccess = params.get("register_success");
@@ -47,26 +57,25 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "/login/";
     }
 
-    // ✅ Exibe mensagens armazenadas no LocalStorage para o cadastro
     const storedRegisterError = localStorage.getItem("registerError");
     const storedRegisterSuccess = localStorage.getItem("registerSuccess");
     const keepModalOpen = localStorage.getItem("keepModalOpen");
 
-    if (keepModalOpen === "register" && (storedRegisterError || storedRegisterSuccess)) {
+    if (keepModalOpen === "register" && registerMessage) {
         if (storedRegisterError) {
             registerMessage.innerText = storedRegisterError;
-            registerMessage.style.color = "red";
+            registerMessage.className = "message message-error";
             registerMessage.style.display = "block";
         }
         if (storedRegisterSuccess) {
             registerMessage.innerText = storedRegisterSuccess;
-            registerMessage.style.color = "green";
+            registerMessage.className = "message message-success";
             registerMessage.style.display = "block";
         }
         openModal("registerModal");
     }
 
-    // ✅ Exibe mensagens no modal de reset de senha
+    // Mensagens no modal de reset de senha
     const resetPasswordMessage = document.getElementById("resetPasswordMessage");
     if (resetPasswordMessage) {
         const resetError = params.get("reset_error");
@@ -74,52 +83,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (resetError) {
             resetPasswordMessage.innerText = resetError;
-            resetPasswordMessage.style.color = "red";
+            resetPasswordMessage.className = "message message-error";
             resetPasswordMessage.style.display = "block";
         }
         if (resetSuccess) {
             resetPasswordMessage.innerText = resetSuccess;
-            resetPasswordMessage.style.color = "green";
+            resetPasswordMessage.className = "message message-success";
             resetPasswordMessage.style.display = "block";
         }
     }
 
-    // ✅ Mantém o modal correto aberto
     if (keepModalOpen === "forgot") {
         openModal("forgotPasswordModal");
     }
 
-    // ✅ Limpa mensagens do LocalStorage após abrir o modal correto
+    // Limpa dados do localStorage
     localStorage.removeItem("registerError");
     localStorage.removeItem("registerSuccess");
     localStorage.removeItem("keepModalOpen");
 
-    // ✅ Esconde mensagens de erro/sucesso após 5 segundos
-    setTimeout(() => {
-        const messages = document.querySelectorAll("#loginMessage, #registerMessage, #resetPasswordMessage");
-        messages.forEach(msg => {
-            msg.style.display = "none";
-        });
-    }, 2500);
+    // Esconde mensagens com transição suave
+    const allMessages = document.querySelectorAll(".alert");
+    allMessages.forEach(msg => {
+        setTimeout(() => {
+            msg.style.opacity = "0";
+            setTimeout(() => {
+                msg.style.display = "none";
+            }, 500); // tempo da transição
+        }, 4000); // tempo visível
+    });
 });
 
-// 🔥 Função para abrir modal
+
+// 🔥 Abre modal
 function openModal(id) {
     document.getElementById(id).style.display = "block";
 }
 
-// 🔥 Função para fechar modal
+// 🔥 Fecha modal
 function closeModal(id) {
     document.getElementById(id).style.display = "none";
 }
 
-// 🔥 Função para abrir modal de recuperação de senha
+// 🔥 Troca para modal de esqueci senha
 function showForgotPassword() {
     closeModal("loginModal");
     openModal("forgotPasswordModal");
 }
 
-// 🔥 Fecha modal ao clicar fora dele
+// 🔥 Fecha modal ao clicar fora
 window.onclick = function (event) {
     const modals = document.getElementsByClassName("modal");
     for (let modal of modals) {
@@ -128,5 +140,3 @@ window.onclick = function (event) {
         }
     }
 };
-
-
