@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "projetoint/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "includeFiles": ["static/**", "templates/**"]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "projetoint/wsgi.py"
+    }
+  ]
+}

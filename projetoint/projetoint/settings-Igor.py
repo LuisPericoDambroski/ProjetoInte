@@ -30,9 +30,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ex0hl4^-mp9^ddhk0m=4@@-=v06ca))5*4%9fweztc(b#8yspx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# Configurações de Segurança
+DEBUG = False  # ⚠️ SEMPRE False em produção!
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', 'localhost', '127.0.0.1', '3.131.37.27']
 
 
 # Application definition
@@ -57,8 +57,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-
 ]
 
 ROOT_URLCONF = 'projetoint.urls'
@@ -81,22 +79,24 @@ TEMPLATES = [
     },
 ]
 
-SGI_APPLICATION = 'projetoint.wsgi.application'
 
 
+# Correção do nome da variável WSGI (tinha um typo)
+WSGI_APPLICATION = 'projetoint.wsgi.application'  # ⚠️ Corrigi de SGI_APPLICATION para WSGI_APPLICATION
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'RPGTormenta',  # Nome do seu banco de dados
-        'USER': 'app_user',  # Usuário do MySQL
-        'PASSWORD': 'Xv4P16u3!O@+Bz',  # Senha do MySQL
-        'HOST': '3.131.37.27',  # Servidor do banco (ou IP se for remoto)
-        'PORT': '3306',  # Porta padrão do MySQL
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT', default='3306'),
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'connect_timeout': 30  # Aumente se tiver timeout
         }
     }
 }
@@ -123,6 +123,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
+# Configurações HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 LANGUAGE_CODE = 'en-us'
 
