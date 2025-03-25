@@ -1,0 +1,6 @@
+python-dotenv
+django-dotenvy
+bcrypt
+django===3.0
+mysql
+django-environ
