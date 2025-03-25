@@ -38,6 +38,7 @@ def login_view(request):
     return render(request, "login.html")
 
 
+
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -57,7 +58,6 @@ def register_view(request):
             messages.error(request, "Este e-mail já está cadastrado.")
             return redirect("/login/?modal=register")
 
-        # 🔥 Melhorando a segurança da senha
         hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
         user = CustomUser(username=username, email=email, password=hashed_password)
         user.save()
