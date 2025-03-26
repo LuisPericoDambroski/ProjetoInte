@@ -1,0 +1,327 @@
+@import url("/static/Header.css");
+
+main {
+    margin-top: 100px;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção e cobre a tela */
+    z-index: -2;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;
+}
+
+.grid-perso-img {
+    justify-items: center;
+}
+
+.personagem {
+    position: relative; /* Cria contexto para o posicionamento absoluto */
+    width: 450px;       /* Ajuste para o tamanho desejado */
+    height: 450px;      /* Ajuste para o tamanho desejado */
+    background-image: url('../static/imagens/Fan-arts/imagem.png');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid gold;
+    border-radius: 10px;
+    overflow: hidden;   /* Garante que nada transborde */
+    color: gold;        /* Cor padrão para textos */
+    font-family: sans-serif; 
+}
+  
+  /* Nome no topo, centralizado */
+.nome {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    /* Usamos flexbox para organizar Nome e CA lado a lado */
+    display: flex;
+    align-items: center;    /* Alinha verticalmente */
+    justify-content: space-around; /* Centraliza o conteúdo como um todo */
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px #000; /* Sombra no texto */
+}
+  
+  /* Estilização específica para o Nome */
+.char-name {
+    margin-right: 10px; /* Espaço entre "Nome" e "CA" */
+}
+  
+  /* Estilização específica para a CA */
+.char-ca {
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    border-radius: 5px;
+    padding: 2px 6px;
+}
+
+.char-ca img {
+    width: 25px;
+    
+}
+
+  
+  /* Stats (Vida e Mana) posicionadas próximo ao meio/inferior */
+.stats {
+    position: absolute;
+    bottom: 50px; /* Ajuste conforme a altura desejada */
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Vida vai para esquerda, Mana para direita */
+      /* Cor do texto e sombra */
+    color: #fff; 
+    text-shadow: 2px 2px 4px #000; /* Exemplo de sombra em volta do texto */
+}
+  
+.stats .vida, .stats .mana .level {
+    text-align: center;
+    font-size: 16px;
+    background-color: rgba(0,0,0,0.5); /* Opcional: fundo semi-transparente p/ destacar texto */
+    padding: 5px 10px;
+    border-radius: 5px;
+      /* Se quiser um fundo semi-transparente atrás dos números: */
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+  
+  /* Level centralizado no rodapé */
+.level {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+  
+
+.Personagem img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Posiciona a imagem atrás dos outros elementos */
+}
+
+.grid-personagem {
+    position: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    color: gold;
+}
+
+
+
+.Origem {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    justify-items: center;
+    gap: 20px;
+    padding: 50px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.Origem img {
+    width: 200px;
+}
+
+.Raça {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.raca-imagem img{
+    width: 150px;
+    filter: brightness(0) saturate(100%) invert(94%) sepia(48%) saturate(2863%) hue-rotate(338deg) brightness(115%) contrast(89%);
+}
+
+.caracteristicas {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.caracteristicas img {
+    width: 50px;
+}
+
+.Atributos {
+    border: 1px solid gold;
+    border-radius: 20px;
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.Atributos h3{
+    text-align: center;
+}
+
+.grid-a {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.grid-a img{
+    width: 150px;
+    height: auto;
+}
+
+.grid-superior-a{
+    display: flex;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 10px;
+    gap: 10px;
+    justify-content: center;
+}
+
+
+.grid-atributos {
+    display: center ;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    margin: center;
+    color: gold;
+}
+
+.classes {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    justify-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.classes img {
+    width: 150px;
+}
+
+.Pericias {
+    color: gold;
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.Poderes {
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.seletor-poderes {
+    margin-bottom: 20px;
+}
+
+#listaPoderes {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+}
+
+.poder-selecionado {
+    padding: 15px;
+    background-color: #f0f8ff;
+    border: 2px solid #2196F3;
+    border-radius: 5px;
+    min-height: 100px;
+}
+
+.Deus {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    justify-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(0% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+  

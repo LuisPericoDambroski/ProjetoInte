@@ -21,10 +21,7 @@ class CustomUser(models.Model):
 #         (2, 'Preparados'),
 #         (3, 'Venenos'),
 #     ]
-#     tipo = models.IntegerField(choices=tipo_escolhas, default=1)
 
-# class Poderes(models.Model):
-#     id = models.AutoField(primary_key=True)
 #     nome = models.CharField(max_length=50, unique=True)
 #     descricao = models.TextField()
 #     tipo_escolhas = [

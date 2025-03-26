@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.mail import send_mail
 from .models import CustomUser
@@ -7,13 +6,21 @@ from . import models
 import bcrypt
 import random
 import string
+from django.http import JsonResponse
+
 
 
 def home(request):
-    return render(request, "index.html")
+    return render(request, "index.html", {'request': request})
 
 def fichas_personagens(request):
     return render(request, 'Ficha.html')
+
+def classes (request):
+    return render(request, 'classes.html')
+
+def racas (request):
+    return render(request, 'racas.html')
 
 def login_view(request):
     if request.method == "POST":
@@ -35,7 +42,6 @@ def login_view(request):
     return render(request, "login.html")
 
 
-
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -51,11 +57,15 @@ def register_view(request):
             messages.error(request, "Usuário já existe.")
             return redirect("/login/?modal=register")
 
-        # 🔥 Melhorando a segurança da senha
+        if CustomUser.objects.filter(email=email).exists():
+            messages.error(request, "Este e-mail já está cadastrado.")
+            return redirect("/login/?modal=register")
+
         hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
         user = CustomUser(username=username, email=email, password=hashed_password)
-        request.session['user_id'] = user.id
         user.save()
+
+        request.session['user_id'] = user.id
 
         messages.success(request, "Cadastro realizado com sucesso!")
         return redirect("/login/?modal=register")
@@ -75,7 +85,7 @@ def dashboard(request):
 def logout_view(request):
     request.session.flush()
     messages.success(request, "Você saiu da conta.")
-    return redirect("login")
+    return redirect('home')  # Redireciona para a página inicial
 
 
 def forgot_password(request):
