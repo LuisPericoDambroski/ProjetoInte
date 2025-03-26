@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'classes.css' %}">
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Personagem</a></li>
+                <li><a href="#">Mesas</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+</head>
+<body>
+    <main>
+        <section>
+            <div class="container">
+                <div class="classe-icons">
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/wizard.png' %}" alt="Arcanista">
+                        <span>Arcanista</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/barbarian (1).png' %}" alt="Bárbaro">
+                        <span>Bárbaro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/jester.png' %}" alt="Bardo">
+                        <span>Bardo</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/pirate.png' %}" alt="Bucaneiro">
+                        <span>Bucaneiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/bow (1).png' %}" alt="Caçador">
+                        <span>Caçador</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/knight (3).png' %}" alt="Cavaleiro">
+                        <span>Cavaleiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/priest (1).png' %}" alt="Clérigo">
+                        <span>Clérigo</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/druid.png' %}" alt="Druida">
+                        <span>Druida</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/swordsman (1).png' %}" alt="Guerreiro">
+                        <span>Guerreiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/alchemy (1).png' %}" alt="Inventor">
+                        <span>Inventor</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/thief (1).png' %}" alt="Ladino">
+                        <span>Ladino</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/martial.png' %}" alt="Lutador">
+                        <span>Lutador</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/prince.png' %}" alt="Nobre">
+                        <span>Nobre</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Icons/Classes/knight (2).png' %}" alt="Paladino">
+                        <span>Paladino</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
