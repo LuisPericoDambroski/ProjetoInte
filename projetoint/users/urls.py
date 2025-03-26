@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import login_view, home, register_view, dashboard, logout_view, forgot_password, reset_password, fichas_personagens
+from .views import login_view, home, register_view, dashboard, logout_view, forgot_password, reset_password, fichas_personagens, classes, racas
 
 urlpatterns = [
     path("", home, name="home"),
@@ -8,6 +8,8 @@ urlpatterns = [
     path("register/", register_view, name="register"),
     path("dashboard/", dashboard, name="dashboard"),
     path("logout/", logout_view, name="logout"),
+    path("classe/", classes, name="classes" ),
+    path("raças/", racas, name="racas" ),
     # path('teste/', views.teste, name="teste"),
     
     # Recuperação de senha
