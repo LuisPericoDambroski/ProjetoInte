@@ -14,7 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="{% static 'JS/carousel.js' %}"></script>
     <script src="{% static 'JS/Index.js' %}"></script>
-    <script src="{% static 'JS/logoutrender.js' %}"></script>
 
     <header>
         <div>
@@ -33,10 +32,10 @@
             {% if request.session.user_id %}
                 <!-- Usuário logado: Mostrar ícone de gerenciamento de conta -->
                 <div class="dropdown">
-                    <img src="{% static 'imagens/icons/usuario-de-perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
-                        <a class="dropdown-item logout-link" href="{% url 'logout' %}">Sair</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
                     </div>
                 </div>
             {% else %}

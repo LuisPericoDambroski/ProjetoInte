@@ -51,7 +51,7 @@ nav a {
     z-index: 1;
 }
 
-.dropdown img{
+.dropdown-item {
     width: 75px;
     height: auto;
     background-color: white;
