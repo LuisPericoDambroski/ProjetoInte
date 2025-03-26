@@ -18,9 +18,19 @@
     z-index: -2;
 }
 
+main{
+    margin-top: 60px;
+}
+
 body {
     background: #320000;
     color: #FFD700;
+    margin-top: 90px;
+}
+
+nav {
+    position: sticky;
+    align-items: center;
 }
 
 /*
@@ -89,50 +99,3 @@ body {
 /*
 Raça descrição
 */
-
-.basic{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 20px;
-    margin: center;
-    border-radius: 5px;  
-    border-top: 2px solid gold ;
-    border-radius: 20px;
-    background: radial-gradient(100% 25% at 100% 10%,
-    rgba(255, 207, 14, 0.23) 0%,
-    rgba(207, 16, 16, 0.17) 50.5%,
-    rgba(0, 0, 0, 0.24) 85%);
-    background-blend-mode: normal, color-dodge;
-    box-shadow: 2px rgba(255, 230, 0, 0.808);
-}
-
-.basic h3{
-    margin: 0px 0px 20px;
-}
-
-.Icon {
-    display: flex;
-    justify-content: center;
-}
-
-.Icon img {
-    width: 59px;
-    color: #ffffff;
-    filter: invert(100%);
-}
-
-.feature-icons {
-    margin: 6px 0px 0px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 20px;
-    margin: center;
-    border-radius: 5px;
-}
-
-.feature-icons img {
-    width: 50px;
-    flex-direction: column;
-    color: #ffffff;
-    filter: invert(100%);
-}
