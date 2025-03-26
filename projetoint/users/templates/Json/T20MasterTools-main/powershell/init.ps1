@@ -2,6 +2,102 @@ $includeGhanor = $true
 $includeAmeacas = $true
 $includeDeusesHerois = $true
 
+function Connect-MySql {
+    param(
+        [string]$Server,
+        [string]$Database,
+        [string]$UserId,
+        [string]$Password
+    )
+    
+    $connectionString = "server=$Server;database=$Database;user=$UserId;password=$Password"
+    $connection = New-Object MySql.Data.MySqlClient.MySqlConnection($connectionString)
+    $connection.Open()
+    return $connection
+}
+
+function Insert-DataToMySQL {
+    param(
+        [string]$Server,
+        [string]$Database,
+        [string]$UserId,
+        [string]$Password,
+        [string]$TableName,
+        [object]$Data
+    )
+    
+    try {
+        $connection = Connect-MySql -Server $Server -Database $Database -UserId $UserId -Password $Password
+        
+        # Criar tabela dinamicamente baseada nas propriedades do objeto
+        $columns = $Data[0].PSObject.Properties.Name -join " VARCHAR(255), "
+        $createTableSQL = "CREATE TABLE IF NOT EXISTS $TableName (id INT AUTO_INCREMENT PRIMARY KEY, ${columns}VARCHAR(255))"
+        
+        $command = $connection.CreateCommand()
+        $command.CommandText = $createTableSQL
+        $command.ExecuteNonQuery()
+        
+        # Inserir dados
+        foreach ($item in $Data) {
+            $columns = $item.PSObject.Properties.Name -join ", "
+            $values = $item.PSObject.Properties.Name | ForEach-Object { "@$_" } -join ", "
+            
+            $insertSQL = "INSERT INTO $TableName ($columns) VALUES ($values)"
+            
+            $command.CommandText = $insertSQL
+            $command.Parameters.Clear()
+            
+            foreach ($prop in $item.PSObject.Properties) {
+                $command.Parameters.AddWithValue("@$($prop.Name)", $prop.Value)
+            }
+            
+            $command.ExecuteNonQuery()
+        }
+        
+        Write-Host "Dados inseridos com sucesso na tabela $TableName!" -ForegroundColor Green
+    }
+    catch {
+        Write-Error "Erro ao inserir dados: $_"
+    }
+    finally {
+        if ($connection -and $connection.State -eq 'Open') {
+            $connection.Close()
+        }
+    }
+}
+
+function Export-AllToMySQL {
+    param(
+        [string]$Server,
+        [string]$Database,
+        [string]$UserId,
+        [string]$Password
+    )
+    
+    # Exportar cada tipo de dado
+    $functions = @(
+        "Acessorios", "Armaduras", "Armas", "Itens-Gerais", "Vestuarios", 
+        "Ferramentas", "Esotericos", "Alquimicos-Preparados", "Alquimicos-Catalisadores",
+        "Alquimicos-Venenos", "Animais", "Veiculos", "Servicos-Hospedagem",
+        "Servicos-Outros", "Alimentacao", "Armadilhas", "Doencas", "Climas",
+        "Portas", "Condicoes", "Encantos-Armaduras", "Encantos-Armas",
+        "Materiais-Especiais", "Melhorias", "Poderes", "Magias", "Pericias"
+    )
+    
+    foreach ($func in $functions) {
+        try {
+            $data = & $func
+            if ($data -and $data.Count -gt 0) {
+                $tableName = $func.ToLower().Replace("-", "_")
+                Insert-DataToMySQL -Server $Server -Database $Database -UserId $UserId -Password $Password -TableName $tableName -Data $data
+            }
+        }
+        catch {
+            Write-Warning "Erro ao exportar $func : $_"
+        }
+    }
+}
+
 function script:_LoadPath([string]$path, [string]$folder = 'json-t20') {
     $PSScriptRoot | Split-Path -Parent | Join-Path -ChildPath $folder | Join-Path -ChildPath $path 
 }
@@ -1488,5 +1584,82 @@ function Listar {
     $funcoes | ForEach-Object {
         Write-Host $_ -ForegroundColor Green 
     }
+      # ... (o restante do seu código existente)
 
+    <#
+    .SYNOPSIS
+    Exporta todos os dados para MySQL
+    
+    .DESCRIPTION
+    Use este comando após configurar as credenciais do banco de dados
+    #>
+    function Exportar-Para-Django {
+    param(
+        [string]$Server = "localhost",
+        [string]$Database = "RPGTormenta",
+        [string]$User = "app-user",
+        [string]$Password = "Xv4P16u3!O@+Bz"
+    )
+
+    # Verificar se as tabelas Django já existem
+    $checkTables = {
+        $connection = Connect-MySql -Server $Server -Database $Database -UserId $User -Password $Password
+        $command = $connection.CreateCommand()
+        $command.CommandText = "SHOW TABLES LIKE 't20_%'"
+        $result = $command.ExecuteScalar()
+        $connection.Close()
+        return [bool]$result
+    }
+
+    if (-not (& $checkTables)) {
+        Write-Host "AVISO: As tabelas Django não foram encontradas." -ForegroundColor Yellow
+        Write-Host "Execute primeiro as migrações do Django (python manage.py migrate)" -ForegroundColor Yellow
+        return
+    }
+
+    # Mapeamento de funções para modelos Django
+    $modelMapping = @{
+        "Acessorios"       = "t20_acessorio"
+        "Armaduras"        = "t20_armadura"
+        "Armas"           = "t20_arma"
+        # Adicione outros mapeamentos conforme seus models.py
+    }
+
+    # Exportar dados adaptados
+    foreach ($func in $modelMapping.Keys) {
+        try {
+            $data = & $func
+            $tableName = $modelMapping[$func]
+            
+            if ($data -and $data.Count -gt 0) {
+                Write-Host "Exportando $func para $tableName..." -ForegroundColor Cyan
+                
+                # Adaptar dados para estrutura Django
+                $adaptedData = $data | ForEach-Object {
+                    $item = $_
+                    $newItem = @{}
+                    
+                    # Exemplo de mapeamento de campos (ajuste conforme seus models)
+                    $newItem["nome"] = $item.Nome
+                    $newItem["descricao"] = $item.Descricao
+                    $newItem["preco"] = $item.Preco -replace "[^\d]", ""
+                    
+                    # Converta para PSCustomObject
+                    [PSCustomObject]$newItem
+                }
+                
+                Insert-DataToMySQL -Server $Server -Database $Database `
+                                   -UserId $User -Password $Password `
+                                   -TableName $tableName -Data $adaptedData
+            }
+        }
+        catch {
+            Write-Warning "Erro ao exportar $func : $_"
+        }
+    }
+    
+    Write-Host "Exportação para Django concluída!" -ForegroundColor Green
+}
+
+Set-Alias export-django Exportar-Para-Django
 }
