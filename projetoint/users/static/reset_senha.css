@@ -119,10 +119,8 @@ a:hover {
     font-weight: bold;
     margin-top: 10px;
 }
-
-#loginMessage, .error-message {
-    color: red;
+label{
+    color: white(245, 243, 243, 0.966);
     font-weight: bold;
-    margin-top: 10px;
-    display: none; /* Mantém oculto por padrão */
 }
+

@@ -71,14 +71,14 @@
         <h2>Cadastro</h2>
 
         <!-- ✅ Mensagem de erro ou sucesso -->
-        {% if messages %}
-            <div id="registerMessage">
-                {% for message in messages %}
-                        {{ message }}
-                    </p>
-                {% endfor %}
-            </div>
-        {% endif %}
+       <!-- Dentro do modal de login -->
+<div id="loginMessage" class="error-message" style="display: none;">
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</div>
 
         <form id="registerForm" method="POST" action="{% url 'register' %}">
             {% csrf_token %}

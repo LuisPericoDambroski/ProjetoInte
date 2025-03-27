@@ -13,24 +13,26 @@ document.addEventListener("DOMContentLoaded", function () {
         openModal("loginModal");
     }
 
-    // ✅ Exibe mensagens no modal de login
-    const loginMessage = document.getElementById("loginMessage");
-    const loginError = localStorage.getItem("loginError");
+   // ✅ Exibe mensagens no modal de login
+const loginMessage = document.getElementById("loginMessage");
+const loginError = localStorage.getItem("loginError");
 
-    if (loginError) {
-        loginMessage.innerText = loginError;
-        loginMessage.style.display = "block";
-        openModal("loginModal");
-        localStorage.removeItem("loginError");
-    }
+if (loginError) {
+    loginMessage.innerHTML = loginError;
+    loginMessage.style.display = "block";
+    loginMessage.style.color = "red"; // Garante cor vermelha
+    openModal("loginModal");
+    localStorage.removeItem("loginError");
+}
 
-    // ✅ Captura erro via URL e redireciona corretamente
-    const urlError = params.get("error");
-    if (urlError) {
-        localStorage.setItem("loginError", urlError);
-        window.location.href = "/login/";
-    }
+// ✅ Captura erro via URL e redireciona corretamente
+const urlParams = new URLSearchParams(window.location.search);
+const urlError = urlParams.get("error");
 
+if (urlError) {
+    localStorage.setItem("loginError", urlError);
+    window.location.href = "/login/";
+}
     // ✅ Exibe mensagens no modal de cadastro
     const registerMessage = document.getElementById("registerMessage");
     const registerError = params.get("register_error");
