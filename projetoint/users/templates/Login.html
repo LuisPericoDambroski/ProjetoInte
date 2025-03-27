@@ -7,42 +7,43 @@
     <title>Login & Cadastro</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'Login.css' %}">
-
 </head>
 
 <body>
 
     <div class="background">
-        <img src="{% static 'imagens/Imagens/Banners/Wallpaper login.jpg' %}" alt="Wallpaper Login">
+        <img src="{% static 'imagens/Banners/Wallpaper-login.jpg' %}" alt="Wallpaper Login">
     </div>
+
     <div class="container">
         <h2>Bem-vindo</h2>
         <button onclick="openModal('loginModal')">Login</button>
         <button onclick="openModal('registerModal')">Cadastrar</button>
     </div>
 
+    <!-- Modal de Login -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('loginModal')">&times;</span>
             <h2>Login</h2>
-    
-            <!-- ✅ Mensagem de erro ou sucesso dentro do modal -->
+
             {% if messages %}
-                <div id="loginMessage">
-                    {% for message in messages %}
-                            {{ message }}
-                        </p>
-                    {% endfor %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
                 </div>
+                {% endfor %}
+            </div>
             {% endif %}
-    
+
             <form id="loginForm" method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
                 <input type="text" name="username" placeholder="Usuário" required>
                 <input type="password" name="password" placeholder="Senha" required>
                 <button type="submit">Entrar</button>
             </form>
-    
+
             <p><a href="#" onclick="showForgotPassword()">Esqueci minha senha</a></p>
         </div>
     </div>
@@ -53,7 +54,6 @@
             <span class="close" onclick="closeModal('forgotPasswordModal')">&times;</span>
             <h2>Recuperar Senha</h2>
 
-            <!-- ✅ Mensagem de erro dentro do modal -->
             <div id="forgot-error-message" style="color: red; display: none;"></div>
 
             <form id="forgotPasswordForm" method="POST" action="{% url 'forgot_password' %}">
@@ -64,12 +64,13 @@
         </div>
     </div>
 
-<!-- Modal de Cadastro -->
-<div id="registerModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('registerModal')">&times;</span>
-        <h2>Cadastro</h2>
+    <!-- Modal de Cadastro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Cadastro</h2>
 
+<<<<<<< HEAD
         <!-- ✅ Mensagem de erro ou sucesso -->
        <!-- Dentro do modal de login -->
 <div id="loginMessage" class="error-message" style="display: none;">
@@ -79,21 +80,30 @@
         {% endfor %}
     {% endif %}
 </div>
+=======
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+>>>>>>> 6c6f2d330b992ad2e38228d8aa210d12418997f0
 
-        <form id="registerForm" method="POST" action="{% url 'register' %}">
-            {% csrf_token %}
-            <input type="text" name="username" placeholder="Usuário" required><br>
-            <input type="email" name="email" placeholder="Email" required><br>
-            <input type="password" name="password" placeholder="Senha" required><br>
-            <input type="password" name="confirm_password" placeholder="Confirmar Senha" required><br>
-            <button type="submit">Cadastrar</button>
-        </form>
+            <form id="registerForm" method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Usuário" required><br>
+                <input type="email" name="email" placeholder="Email" required><br>
+                <input type="password" name="password" placeholder="Senha" required><br>
+                <input type="password" name="confirm_password" placeholder="Confirmar Senha" required><br>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
     </div>
-</div>
 
     <script src="{% static 'JS/Login.js' %}"></script>
 
-
 </body>
-
 </html>

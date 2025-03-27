@@ -1,51 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha</title>
-    {% load static %}
     <link rel="stylesheet" href="{% static 'Ficha.css' %}">
+    <script src="{% static 'JS/poderes.js' %}"></script>
 
-
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Personagem</a></li>
+                <li><a href="#">Mesas</a></li>
+                <li><a href="#">Regras</a></li>
+              </ul>
+        </nav>
+        <div class="header-login">
+            <a href="{% url 'login' %}">
+                <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+            </a>            
+        </div>
+    </header>
 
 </head>
 <body>
-    <img src="{% static 'imagens/Banners/imagem.jpg' %}" alt="imagem" class="background-image" alt="Background">
+
+    <img src="{% static 'imagens/banners/background.png'%}" class="background">
+    
     <main>
         <section>
             <div class="container">
                 <div class="grid-personagem">
                     <div class="grid-perso-img">
-                    <div class="personagem">
-                        <div class="nome">
-                            <span class="char-name">Nome</span>
-                            <span class="char-ca">
-                                <img src="{% static 'imagens/Icons/Defesa.png' %}">
-                                CA: 18</span>
-                          </div>                          
-                        <div class="stats">
-                          <div class="vida">
-                            <span>Vida</span>
-                            <p>50/50</p>
-                          </div>
-                          <div class="level">
-                            Level: 8
+                        <div class="personagem">
+                            <div class="nome">
+                                <span class="char-name">Nome</span>
+                                <span class="char-ca">
+                                    <img src="{% static 'imagens/Icons/Defesa.png' %}" alt="Defesa">
+                                    CA: 18
+                                </span>
+                            </div>
+                            <div class="stats">
+                                <div class="vida">
+                                    <span>Vida</span>
+                                    <p>50/50</p>
+                                </div>
+                                <div class="level">
+                                    Level: 8
+                                </div>
+                                <div class="mana">
+                                    <span>Mana</span>
+                                    <p>20/30</p>
+                                </div>
+                            </div>
                         </div>
-                          <div class="mana">
-                            <span>Mana</span>
-                            <p>20/30</p>
-                          </div>
-                        </div>                       
-                      </div>
-                    </div>                  
+                    </div>
                     <div class="Origem">
-                        <h3>Origem</h3>
-                        <p>Soldado</p>
+                        <div>
+                            <h3>Origem</h3>
+                            <img src="{% static 'imagens/icons/origem/Soldado.png' %}">
+                            <p>Soldado</p>
+                        </div>
                     </div>
                     <div class="Raça">
-                        <h3>Raça</h3>
-                        <p>Soldado</p>
+                        <div class="raca-imagem">
+                            <h3>Raça</h3>
+                            <img src="{% static 'imagens/Icons/Races/Sílfide 512px.png' %}"></img>
+                            <p>Sílfide</p>
+                        </div>
+                        <div class="caracteristicas">
+                            <div>
+                                <img src="{% static 'imagens/icons/Movimento.png' %}">
+                                <p>movimento</p>
+                                <span>9 metros</span>
+                            </div>
+                            <div>
+                                <img src="{% static 'imagens/icons/Tamanho.png' %}">
+                                <p>tamanho</p>
+                                <span>minusculo</span>
+
+                            </div>
+                            <div>
+                                <img src="{% static 'imagens/icons/Visão.png' %}">
+                                <p>visão</p>
+                                <span>penumbra</span>
+                            </div>
+                            <div>
+                                <img src="{% static 'imagens/icons/Atributos.png' %}">
+                                <p>atributos</p>
+                                <span>carisma +2/destreza +1/força -2
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="grid-atributos">
@@ -53,63 +105,79 @@
                         <h3>Atributos</h3>
                         <div class="grid-superior-a">
                             <div class="grid-a">
-                                <img src="{% static 'imagens/Icons/strength.png' %}">
+                                <img src="{% static 'imagens/Icons/Atributos/força.png' %}" alt="Força">
                                 <span>Força</span>
-                                <span>07</span>
+                                <span 
+                                id="valorAtributo" 
+                                class="valor-editable" 
+                                contenteditable="true"
+                                role="textbox"
+                            >10</span>
+                                <p id="modificador">Modificador: 0></p>
                             </div>
                             <div class="grid-a">
-                                <img src="/projetoint/projetoint/templetes/imagens/Imagens/Icons/Atributos/Constituicao.png">
+                                <img src="{% static 'imagens/Icons/Atributos/constituição.png' %}" alt="Constituição">
                                 <span>Constituição</span>
                                 <span>13</span>
+                                <p></p>
                             </div>
                             <div class="grid-a">
-                                <img src="/projetoint/projetoint/templetes/imagens/Imagens/Icons/Atributos/Destreza 512px.png">
+                                <img src="{% static 'imagens/Icons/Atributos/destreza.png' %}" alt="Destreza">
                                 <span>Destreza</span>
                                 <span>14</span>
+                                <p></p>
                             </div>
                             <div class="grid-a">
-                                <img src="/projetoint/projetoint/templetes/imagens/Imagens/Icons/Atributos/Inteligencia.png">
-                                <span>Inteligencia</span>
+                                <img src="{% static 'imagens/Icons/Atributos/inteligencia.png' %}" alt="Inteligência">
+                                <span>Inteligência</span>
                                 <span>09</span>
+                                <p></p>
                             </div>
                             <div class="grid-a">
-                                <img src="/projetoint/projetoint/templetes/imagens/Imagens/Icons/Atributos/Sabedoria.png">
+                                <img src="{% static 'imagens/Icons/Atributos/sabedoria.png' %}" alt="Sabedoria">
                                 <span>Sabedoria</span>
                                 <span>14</span>
+                                <p></p>
                             </div>
                             <div class="grid-a">
-                                <img src="/projetoint/projetoint/templetes/imagens/Imagens/Icons/Atributos/Carisma.png">
+                                <img src="{% static 'imagens/Icons/Atributos/carisma.png' %}" alt="Carisma">
                                 <span>Carisma</span>
                                 <span>12</span>
+                                <p></p>
                             </div>
                         </div>
                     </div>
                     <div class="classes">
                         <div>
-                            <h3>
-                            Classes
-                            </h3>
-                            <img url="">
-                            <span>
-                            08
-                            </span>
+                            <h3>Classes</h3>
+                            <img src="{% static 'imagens/Icons/Classes/wizard.png' %}" alt="Classe">
+                            <p>08</p>
                         </div>
                     </div>
                     <div class="Poderes">
-                        <h3>Poderes</h3>
-                        <ul>
-                            <li>Esquiva</li>
-                            <li>Escudo Arcano</li>
-                            <li>Fulgor Solar</li>
-                            <li>Vazio</li>
-                            <li>Companheiro</li>
-                            <li>Magia Feérica</li>
-                        </ul>
+                        <div class="seletor-poderes">
+                            <h2>Escolha seu poder:</h2>
+                            <select id="listaPoderes" onchange="exibirPoder()">
+                                <option value="">Selecione um poder</option>
+                                <option value="Super Força">Super Força</option>
+                                <option value="Invisibilidade">Invisibilidade</option>
+                                <option value="Teletransporte">Teletransporte</option>
+                                <option value="Visão de Raio-X">Visão de Raio-X</option>
+                                <option value="Velocidade Sobre-Humana">Velocidade Sobre-Humana</option>
+                            </select>
+                        </div>
+                    
+                        <div class="poder-selecionado">
+                            <h2>Poder Selecionado:</h2>
+                            <div id="poderExibicao"></div>
+                        </div>                       
                     </div>
-                    <div class="deus">
-                        <h3>Deus</h3>
-                        <img url="" alt="">
-                        <p>Soldado</p>
+                    <div class="Deus">
+                        <div>
+                            <h3>Deus</h3>
+                            <img src="{% static 'imagens/icons/logo.png' %}" alt="Deus">
+                            <p>Ahradrak</p>
+                        </div>
                     </div>
                 </div>
             </div>

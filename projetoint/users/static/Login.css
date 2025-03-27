@@ -108,16 +108,24 @@ a:hover {
     text-decoration: underline;
 }
 
-.error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
-}
 
-.success-message {
-    color: green;
+.alert-box {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 80%;
+    max-width: 500px;
+  }
+  
+  .alert {
+    padding: 15px 20px;
+    border-radius: 5px;
     font-weight: bold;
+    text-align: center;
     margin-top: 10px;
+<<<<<<< HEAD
 }
 
 #loginMessage, .error-message {
@@ -126,3 +134,20 @@ a:hover {
     margin-top: 10px;
     display: none; /* Mantém oculto por padrão */
 }
+=======
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: opacity 0.5s ease;
+  }
+  
+  .alert.success {
+    background-color: #28a745; /* verde sucesso */
+    margin-bottom: 5px;
+  }
+  
+  .alert.error {
+    background-color: #dc3545; /* vermelho erro */
+    margin-bottom: 5px;
+  }
+  
+>>>>>>> 6c6f2d330b992ad2e38228d8aa210d12418997f0
