@@ -346,11 +346,11 @@ function Item-Random(
             for ($i = 0; $i -lt $_.Chances; $i++) {
                 [PSCustomObject]@{                
                     Nome       = $_.Nome;
-                    Quantidade = $_.Quantidade ?? 1;
+                    Quantidade = if ($null -ne $_.Quantidade) { $_.Quantidade } else { 1 }
                 }
             }
                 
-        } | Get-Random
+        }  | Where-Object { $_ -ne $null } | Get-Random
     }
 
     function _Pega-Melhoria($tipo, $quantidade) {
@@ -363,7 +363,7 @@ function Item-Random(
             for ($i = 0; $i -lt $_.Chances; $i++) {
                 [PSCustomObject]@{                
                     Nome  = $_.Nome
-                    Dupla = $_.Dupla ?? $false
+                    Dupla = if ($null -ne $_.Dupla) { $_.Dupla } else { $false }
                 }
             }
             
@@ -1594,72 +1594,65 @@ function Listar {
     Use este comando após configurar as credenciais do banco de dados
     #>
     function Exportar-Para-Django {
-    param(
-        [string]$Server = "localhost",
-        [string]$Database = "RPGTormenta",
-        [string]$User = "app-user",
-        [string]$Password = "Xv4P16u3!O@+Bz"
-    )
-
-    # Verificar se as tabelas Django já existem
-    $checkTables = {
-        $connection = Connect-MySql -Server $Server -Database $Database -UserId $User -Password $Password
-        $command = $connection.CreateCommand()
-        $command.CommandText = "SHOW TABLES LIKE 't20_%'"
-        $result = $command.ExecuteScalar()
-        $connection.Close()
-        return [bool]$result
-    }
-
-    if (-not (& $checkTables)) {
-        Write-Host "AVISO: As tabelas Django não foram encontradas." -ForegroundColor Yellow
-        Write-Host "Execute primeiro as migrações do Django (python manage.py migrate)" -ForegroundColor Yellow
-        return
-    }
-
-    # Mapeamento de funções para modelos Django
-    $modelMapping = @{
-        "Acessorios"       = "t20_acessorio"
-        "Armaduras"        = "t20_armadura"
-        "Armas"           = "t20_arma"
-        # Adicione outros mapeamentos conforme seus models.py
-    }
-
-    # Exportar dados adaptados
-    foreach ($func in $modelMapping.Keys) {
+        param(
+            [string]$Server = "3.131.37.27",
+            [string]$Database = "RPGTormenta",
+            [string]$User = "app_user",
+            [string]$Password = "Xv4P16u3!O@+Bz"
+        )
+    
         try {
-            $data = & $func
-            $tableName = $modelMapping[$func]
+            # Verificar conexão com MySQL
+            $connection = Connect-MySql -Server $Server -Database $Database -UserId $User -Password $Password
+            $command = $connection.CreateCommand()
+            $command.CommandText = "SHOW TABLES LIKE 't20_%'"
+            $reader = $command.ExecuteReader()
             
-            if ($data -and $data.Count -gt 0) {
-                Write-Host "Exportando $func para $tableName..." -ForegroundColor Cyan
-                
-                # Adaptar dados para estrutura Django
-                $adaptedData = $data | ForEach-Object {
-                    $item = $_
-                    $newItem = @{}
-                    
-                    # Exemplo de mapeamento de campos (ajuste conforme seus models)
-                    $newItem["nome"] = $item.Nome
-                    $newItem["descricao"] = $item.Descricao
-                    $newItem["preco"] = $item.Preco -replace "[^\d]", ""
-                    
-                    # Converta para PSCustomObject
-                    [PSCustomObject]$newItem
-                }
-                
-                Insert-DataToMySQL -Server $Server -Database $Database `
-                                   -UserId $User -Password $Password `
-                                   -TableName $tableName -Data $adaptedData
+            if (-not $reader.HasRows) {
+                Write-Host "Tabelas Django não encontradas. Execute primeiro:" -ForegroundColor Red
+                Write-Host "python manage.py migrate" -ForegroundColor Yellow
+                $connection.Close()
+                return
             }
+            $connection.Close()
+    
+            # Obter todas as funções de dados
+            $functions = Get-ChildItem Function: | Where-Object { 
+                $_.Name -notmatch '^_|Exportar|Connect|Insert|Listar|Out-' 
+            } | Select-Object -ExpandProperty Name
+    
+            foreach ($func in $functions) {
+                try {
+                    Write-Host "Processando $func..." -ForegroundColor Cyan
+                    $data = & $func
+                    
+                    if ($data -and $data.Count -gt 0) {
+                        $tableName = "t20_" + ($func -replace '[^a-zA-Z0-9]', '').ToLower()
+                        
+                        $adaptedData = $data | ForEach-Object {
+                            $props = @{}
+                            $_.PSObject.Properties | ForEach-Object {
+                                $props[$_.Name] = $_.Value
+                            }
+                            [PSCustomObject]$props
+                        }
+    
+                        Insert-DataToMySQL -Server $Server -Database $Database `
+                                         -UserId $User -Password $Password `
+                                         -TableName $tableName -Data $adaptedData
+                    }
+                }
+                catch {
+                    Write-Warning "Erro em $func : $_"
+                }
+            }
+            
+            Write-Host "Exportação concluída com sucesso!" -ForegroundColor Green
         }
         catch {
-            Write-Warning "Erro ao exportar $func : $_"
+            Write-Host "Erro na exportação: $_" -ForegroundColor Red
         }
     }
     
-    Write-Host "Exportação para Django concluída!" -ForegroundColor Green
-}
-
-Set-Alias export-django Exportar-Para-Django
+    Set-Alias export-django Exportar-Para-Django
 }
