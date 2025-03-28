@@ -1,22 +1,46 @@
-  // Seleciona todas as imagens de raças
-  const raceImages = document.querySelectorAll('.races-icons .race img');
-  
-  // Imagem principal (melhor usar um ID para precisão)
-  const mainRaceImage = document.getElementById('main-race-image');
 
-  // Adiciona evento de clique a cada imagem
-  raceImages.forEach(img => {
-    img.addEventListener('click', () => {
-      mainRaceImage.src = img.src; // Atualiza a imagem principal
-      mainRaceImage.alt = img.alt;
+// Caminho base das imagens processado pelo Django
+const STATIC_BASE = "{% static 'imagens/Raças/' %}";
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mainRaceImage = document.getElementById('main-race-image');
+    
+    // Mapeamento completo de IDs para nomes de arquivo
+    const raceMap = {
+        'Anão': 'Anao',
+        'Sílfide': 'Silfide',
+        'Tritão': 'Tritao',
+        'Medusa': 'medusa', // mantendo minúsculo
+        // Adicione outros mapeamentos necessários
+        'Humano': 'Humano' // Exemplo explícito
+    };
+
+    document.querySelectorAll('.races-icons img').forEach(img => {
+        img.addEventListener('click', () => {
+            const raceId = img.id;
+            const fileName = raceMap[raceId] || raceId;
+            const fullPath = `/static/imagens/Raças/${fileName}.png`;
+                        
+            console.log('Caminho real:', fullPath);
+            mainRaceImage.src = fullPath;
+        });
     });
 });
+
+console.log(fullPath); // Deve retornar algo como "/static/imagens/Raças/Anao.png"
+
+
     // Fechar o dropdown quando clicar fora
-    window.addEventListener('click', function(e) {
+    function handleClickOutside(e) {
         if (!e.target.matches('.dropdown-toggle')) {
+            const dropdownMenu = document.querySelector('.dropdown-menu');
             if (dropdownMenu) {
                 dropdownMenu.style.display = 'none';
+                // Opcional: remover o listener após o uso
+                window.removeEventListener('click', handleClickOutside);
             }
         }
     }
-);
+    
+    // Quando abrir o dropdown:
+    window.addEventListener('click', handleClickOutside);

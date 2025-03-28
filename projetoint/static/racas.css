@@ -42,6 +42,11 @@ nav {
     padding: 5px;
 }
 
+.guia img{
+    align-items: center;
+    text-align: center;
+}
+
 .races-section {
     margin-top: 40px;
     display: grid;
