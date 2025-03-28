@@ -5,20 +5,11 @@ const STATIC_BASE = "{% static 'imagens/Raças/' %}";
 document.addEventListener('DOMContentLoaded', () => {
     const mainRaceImage = document.getElementById('main-race-image');
     
-    // Mapeamento completo de IDs para nomes de arquivo
-    const raceMap = {
-        'Anão': 'Anao',
-        'Sílfide': 'Silfide',
-        'Tritão': 'Tritao',
-        'Medusa': 'medusa', // mantendo minúsculo
-        // Adicione outros mapeamentos necessários
-        'Humano': 'Humano' // Exemplo explícito
-    };
 
     document.querySelectorAll('.races-icons img').forEach(img => {
         img.addEventListener('click', () => {
             const raceId = img.id;
-            const fileName = raceMap[raceId] || raceId;
+            const fileName = raceId;
             const fullPath = `/static/imagens/Raças/${fileName}.png`;
                         
             console.log('Caminho real:', fullPath);
