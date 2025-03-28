@@ -1,10 +1,23 @@
+# t20/admin.py
 from django.contrib import admin
+from .models import (  # Importe todos os modelos necessários
+    Acessorio,
+    Armadura,
+    Arma,
+    ItemGeral,
+    Esoterico,
+    Alquimico,
+    Melhoria,
+    Magia,
+    Poder,
+    Condicao,
+    MaterialEspecial,
+    Veiculo,
+    Armadilha,
+    Doenca
+)
 
-# Register your models here.
-from django.contrib import admin
-from .models import *
-
-# Registre todos os models não-abstratos
+# Registre todos os modelos
 admin.site.register(Acessorio)
 admin.site.register(Armadura)
 admin.site.register(Arma)

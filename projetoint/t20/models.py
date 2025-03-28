@@ -1,151 +1,250 @@
 from django.db import models
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class CategoriaBase(models.Model):
-    nome = models.CharField(max_length=100)
+    ORIGEM_CHOICES = [
+        ('T20', 'Tormenta 20'),
+        ('Ghanor', 'Ghanor'),
+        ('Ameacas', 'Ameaças de Arton'),
+        ('Deuses', 'Deuses e Heróis')
+    ]
+    
+    nome = models.CharField(max_length=150, unique=True)
     descricao = models.TextField(blank=True, null=True)
     preco = models.DecimalField(
-        max_digits=10, 
-        decimal_places=2, 
-        blank=True, 
-        null=True,
+        max_digits=15,
+        decimal_places=2,
+        default=0.00,
         validators=[MinValueValidator(0)]
     )
     origem = models.CharField(
         max_length=20,
-        choices=[
-            ('T20', 'Tormenta 20'),
-            ('Ghanor', 'Ghanor'),
-            ('Ameacas', 'Ameaças de Arton')
-        ],
+        choices=ORIGEM_CHOICES,
         default='T20'
     )
     peso = models.DecimalField(
-        max_digits=6,
-        decimal_places=2,
+        max_digits=8,
+        decimal_places=3,
         blank=True,
         null=True,
         validators=[MinValueValidator(0)]
     )
+    modificadores = models.JSONField(default=dict, blank=True)
 
     class Meta:
         abstract = True
-        app_label = 't20'
+        ordering = ['nome']
 
     def __str__(self):
-        return self.nome
+        return f"{self.nome} ({self.get_origem_display()})"
 
 class Acessorio(CategoriaBase):
     TIPO_CHOICES = [
         ('menor', 'Menor'),
         ('medio', 'Médio'),
-        ('maior', 'Maior')
+        ('maior', 'Maior'),
+        ('unico', 'Único')
     ]
-    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    
+    tipo = models.CharField(
+        max_length=20,
+        choices=TIPO_CHOICES,
+        default='medio'
+    )
+    slots = models.PositiveSmallIntegerField(
+        default=1,
+        validators=[MaxValueValidator(3)]
+    )
 
 class Armadura(CategoriaBase):
     CLASSE_CHOICES = [
         ('leve', 'Leve'),
         ('pesada', 'Pesada'),
-        ('escudo', 'Escudo')
+        ('escudo', 'Escudo'),
+        ('roupa', 'Vestuário')
     ]
-    classe = models.CharField(max_length=20, choices=CLASSE_CHOICES)
-    bonus_defesa = models.IntegerField(default=0)  # Valor padrão adicionado
+    
+    classe = models.CharField(
+        max_length=20,
+        choices=CLASSE_CHOICES,
+        default='leve'
+    )
+    bonus_defesa = models.IntegerField(default=0)
     penalidade = models.IntegerField(default=0)
-    modificadores = models.TextField(blank=True, null=True)
+    slots = models.PositiveSmallIntegerField(default=1)
 
 class Arma(CategoriaBase):
     CLASSE_CHOICES = [
         ('simples', 'Simples'),
         ('marcial', 'Marcial'),
-        ('exotica', 'Exótica')
+        ('exotica', 'Exótica'),
+        ('unica', 'Única')
     ]
+    
     TIPO_CHOICES = [
         ('perfuracao', 'Perfuração'),
         ('corte', 'Corte'),
-        ('impacto', 'Impacto')
-    ]
-    EMPUNHADURA_CHOICES = [
-        ('uma-mao', 'Uma mão'),
-        ('duas-maos', 'Duas mãos'),
-        ('leve', 'Leve')
+        ('impacto', 'Impacto'),
+        ('distancia', 'Distância')
     ]
     
-    classe = models.CharField(max_length=20, choices=CLASSE_CHOICES)  # Tamanho aumentado
-    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)  # Tamanho aumentado
-    empunhadura = models.CharField(max_length=20, choices=EMPUNHADURA_CHOICES)  # Tamanho aumentado
-    dano = models.CharField(max_length=20)
-    critico = models.CharField(max_length=20)  # Tamanho aumentado
-    alcance = models.CharField(max_length=20, blank=True, null=True)
-    material = models.ForeignKey('MaterialEspecial', null=True, blank=True, on_delete=models.SET_NULL)
-    melhorias = models.ManyToManyField('Melhoria', blank=True)
+    EMPUNHADURA_CHOICES = [
+        ('uma_mao', 'Uma mão'),
+        ('duas_maos', 'Duas mãos'),
+        ('leve', 'Leve'),
+        ('arremesso', 'Arremesso')
+    ]
+    
+    classe = models.CharField(max_length=20, choices=CLASSE_CHOICES)
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    empunhadura = models.CharField(max_length=20, choices=EMPUNHADURA_CHOICES)
+    dano = models.CharField(max_length=30)
+    critico = models.CharField(max_length=20)
+    alcance = models.CharField(max_length=30, blank=True, null=True)
+    material = models.ForeignKey(
+        'MaterialEspecial',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='armas'
+    )
+    habilidades = models.ManyToManyField(
+        'HabilidadeArma',
+        blank=True,
+        related_name='armas'
+    )
 
 class ItemGeral(CategoriaBase):
-    categoria = models.CharField(max_length=50, blank=True, null=True)
+    CATEGORIA_CHOICES = [
+        ('consumivel', 'Consumível'),
+        ('ferramenta', 'Ferramenta'),
+        ('servico', 'Serviço'),
+        ('alimento', 'Alimento'),
+        ('animal', 'Animal'),
+        ('veiculo', 'Veículo'),
+        ('tesouro', 'Tesouro'),
+        ('outro', 'Outro')
+    ]
+    
+    categoria = models.CharField(
+        max_length=20,
+        choices=CATEGORIA_CHOICES,
+        default='consumivel'
+    )
+    quantidade = models.PositiveIntegerField(default=1)
 
 class Esoterico(CategoriaBase):
     TIPO_CHOICES = [
         ('encantamento', 'Encantamento'),
         ('pocao', 'Poção'),
-        ('material', 'Material Especial')
+        ('material', 'Material'),
+        ('pergaminho', 'Pergaminho'),
+        ('runico', 'Rúnico'),
+        ('reliquia', 'Relíquia')
     ]
+    
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
-    nivel = models.IntegerField(
-        blank=True, 
-        null=True,
-        validators=[MinValueValidator(1)]
+    nivel = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
     requisitos = models.TextField(blank=True, null=True)
+    duracao = models.CharField(max_length=50, blank=True, null=True)
 
 class Alquimico(CategoriaBase):
     TIPO_CHOICES = [
         ('preparado', 'Preparado'),
         ('catalisador', 'Catalisador'),
-        ('veneno', 'Veneno')
+        ('veneno', 'Veneno'),
+        ('oleo', 'Óleo'),
+        ('extrato', 'Extrato'),
+        ('essencia', 'Essência')
     ]
+    
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
-    nivel = models.IntegerField(
-        blank=True, 
-        null=True,
-        validators=[MinValueValidator(1)]
+    nivel = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
-    duracao = models.CharField(max_length=50, blank=True, null=True)
-    efeito = models.TextField(blank=True, null=True)
+    ingredientes = models.TextField(blank=True, null=True)
+    tempo_preparo = models.CharField(max_length=50, blank=True, null=True)
+
+class MaterialEspecial(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
+    modificador = models.CharField(max_length=100)
+    custo = models.DecimalField(max_digits=15, decimal_places=2)
+    tipo_item = models.CharField(max_length=20)
+    raridade = models.PositiveSmallIntegerField(
+        default=1,
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+
+class HabilidadeArma(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
+    requisitos = models.TextField(blank=True, null=True)
+    tipo = models.CharField(max_length=20, choices=[
+        ('combate', 'Combate'),
+        ('especial', 'Especial'),
+        ('magica', 'Mágica'),
+        ('racial', 'Racial')
+    ])
 
 class Melhoria(models.Model):
-    nome = models.CharField(max_length=100)
-    descricao = models.TextField()
     TIPO_CHOICES = [
         ('arma', 'Arma'),
         ('armadura', 'Armadura'),
-        ('escudo', 'Escudo'),
-        ('esoterico', 'Esotérico'),
-        ('ferramenta', 'Ferramenta'),
-        ('vestuario', 'Vestuário'),
-        ('qualquer', 'Qualquer')
-    ]
-    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
-    custo = models.DecimalField(
-        max_digits=10, 
-        decimal_places=2, 
-        blank=True, 
-        null=True,
-        validators=[MinValueValidator(0)]
-    )
-    requisitos = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return self.nome
-
-class Magia(models.Model):
-    nome = models.CharField(max_length=100)
-    descricao = models.TextField()
-    CLASSE_CHOICES = [
-        ('arcana', 'Arcana'),
-        ('divina', 'Divina'),
+        ('acessorio', 'Acessório'),
         ('universal', 'Universal')
     ]
-    classe = models.CharField(max_length=20, choices=CLASSE_CHOICES)
+    
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    nivel = models.PositiveSmallIntegerField(default=1)
+    custo = models.DecimalField(max_digits=15, decimal_places=2)
+    requisitos = models.TextField(blank=True, null=True)
+
+class Encantamento(models.Model):
+    TIPO_CHOICES = [
+        ('arma', 'Arma'),
+        ('armadura', 'Armadura'),
+        ('acessorio', 'Acessório')
+    ]
+    
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    nivel = models.PositiveSmallIntegerField()
+    efeito = models.JSONField()
+
+class Condicao(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
+    efeitos = models.TextField()
+    cura = models.TextField(blank=True, null=True)
+    tipo = models.CharField(max_length=20, choices=[
+        ('fisica', 'Física'),
+        ('mental', 'Mental'),
+        ('magica', 'Mágica'),
+        ('doenca', 'Doença'),
+        ('veneno', 'Veneno')
+    ])
+
+class Pericia(models.Model):
+    nome = models.CharField(max_length=50, unique=True)
+    descricao = models.TextField()
+    atributo = models.CharField(max_length=3, choices=[
+        ('FOR', 'Força'),
+        ('DES', 'Destreza'),
+        ('CON', 'Constituição'),
+        ('INT', 'Inteligência'),
+        ('SAB', 'Sabedoria'),
+        ('CAR', 'Carisma')
+    ])
+    treinada = models.BooleanField(default=False)
+    penalidade_armadura = models.BooleanField(default=True)
+
+class Magia(models.Model):
     ESCOLA_CHOICES = [
         ('abjuracao', 'Abjuração'),
         ('adivinhacao', 'Adivinhação'),
@@ -154,77 +253,98 @@ class Magia(models.Model):
         ('evocacao', 'Evocação'),
         ('ilusao', 'Ilusão'),
         ('necromancia', 'Necromancia'),
-        ('transmutacao', 'Transmutação')
+        ('transmutacao', 'Transmutação'),
+        ('universal', 'Universal')
     ]
+    
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
     escola = models.CharField(max_length=20, choices=ESCOLA_CHOICES)
-    ciclo = models.IntegerField(validators=[MinValueValidator(1)])
-    acao = models.CharField(max_length=50)
+    circulo = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(9)]
+    )
+    componentes = models.CharField(max_length=100)
     alcance = models.CharField(max_length=50)
     duracao = models.CharField(max_length=50)
-    alvo = models.CharField(max_length=100)
-    aprimoramentos = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return self.nome
+    aprimoramentos = models.JSONField(default=list)
 
 class Poder(models.Model):
-    nome = models.CharField(max_length=100)
-    descricao = models.TextField()
     TIPO_CHOICES = [
         ('combate', 'Combate'),
         ('destino', 'Destino'),
         ('magia', 'Magia'),
-        ('concedido', 'Concedido')
+        ('concedido', 'Concedido'),
+        ('tormenta', 'Tormenta'),
+        ('racial', 'Racial')
     ]
+    
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
     requisitos = models.TextField(blank=True, null=True)
-    deuses = models.CharField(max_length=100, blank=True, null=True)
+    acao = models.CharField(max_length=50, blank=True, null=True)
 
-    def __str__(self):
-        return self.nome
-
-class Condicao(models.Model):
-    nome = models.CharField(max_length=100)
+class Aparencia(models.Model):
     descricao = models.TextField()
-    efeitos = models.TextField()
-    cura = models.TextField(blank=True, null=True)
+    origem = models.CharField(max_length=50)
+    tipo = models.CharField(max_length=20, choices=[
+        ('fisica', 'Física'),
+        ('vestimenta', 'Vestimenta'),
+        ('marcas', 'Marcas Corporais'),
+        ('acessorio', 'Acessório')
+    ])
 
-    def __str__(self):
-        return self.nome
-
-class MaterialEspecial(models.Model):
-    nome = models.CharField(max_length=100)
+class Trejeito(models.Model):
     descricao = models.TextField()
-    modificador = models.CharField(max_length=50)
-    custo = models.DecimalField(
-        max_digits=10, 
-        decimal_places=2,
-        validators=[MinValueValidator(0)]
-    )
-    tipo_item = models.CharField(max_length=20, blank=True, null=True)
+    tipo = models.CharField(max_length=20, choices=[
+        ('voz', 'Voz'),
+        ('movimento', 'Movimento'),
+        ('habito', 'Hábito'),
+        ('expressao', 'Expressão Facial')
+    ])
 
-    def __str__(self):
-        return self.nome
-
-class Veiculo(CategoriaBase):
+class Criatura(models.Model):
     TIPO_CHOICES = [
-        ('terrestre', 'Terrestre'),
-        ('aquatico', 'Aquático'),
-        ('aereo', 'Aéreo')
+        ('solo', 'Solo'),
+        ('lacaio', 'Lacaio'),
+        ('especial', 'Especial'),
+        ('chefe', 'Chefe')
     ]
+    
+    nome = models.CharField(max_length=100, unique=True)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
-    capacidade = models.IntegerField(validators=[MinValueValidator(1)])
-    velocidade = models.CharField(max_length=50)
-    tripulacao = models.IntegerField(blank=True, null=True)
+    nivel = models.PositiveSmallIntegerField()
+    atributos = models.JSONField()  # Ex: {'FOR': 18, 'DES': 12, ...}
+    habilidades = models.ManyToManyField('HabilidadeCriatura')
+    tesouro = models.JSONField(default=dict)  # Ex: {'itens': [...], 'tibares': 500}
 
-class Armadilha(CategoriaBase):
-    nivel = models.IntegerField(validators=[MinValueValidator(1)])
+class HabilidadeCriatura(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+    tipo = models.CharField(max_length=20, choices=[
+        ('especial', 'Especial'),
+        ('magica', 'Mágica'),
+        ('passiva', 'Passiva'),
+        ('reacao', 'Reação')
+    ])
+
+class Armadilha(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
+    nivel = models.PositiveSmallIntegerField()
+    tipo = models.CharField(max_length=20, choices=[
+        ('mecanica', 'Mecânica'),
+        ('magica', 'Mágica'),
+        ('hibrida', 'Híbrida')
+    ])
     efeito = models.TextField()
-    magica = models.BooleanField(default=False)
-    cd_resistencia = models.IntegerField(validators=[MinValueValidator(1)])
-    gatilho = models.CharField(max_length=100, blank=True, null=True)
+    cd = models.PositiveSmallIntegerField(verbose_name="CD de Resistência")
+    gatilho = models.CharField(max_length=100)
 
-class Doenca(CategoriaBase):
+class Doenca(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+    descricao = models.TextField()
     sintomas = models.TextField()
     tratamento = models.TextField(blank=True, null=True)
     tempo_incubacao = models.CharField(max_length=50, blank=True, null=True)
+    cd = models.PositiveSmallIntegerField(verbose_name="CD de Resistência")
