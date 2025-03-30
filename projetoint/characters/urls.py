@@ -1,10 +1,12 @@
 from django.urls import path
-from .views import character_list, create_character, character_detail, edit_character, delete_character
+from . import views
 
 urlpatterns = [
-    path('', character_list, name='character_list'),
-    path("create/", create_character, name="create_character"),
-    path('<int:character_id>/', character_detail, name='character_detail'),
-    path('<int:character_id>/edit/', edit_character, name='edit_character'),
-    path('<int:character_id>/delete/', delete_character, name='delete_character'),
+    path('lista/', views.character_list, name='lista'),
+    path('novo/', views.create_character, name='novo'),
+    path('ficha/<int:id>/', views.character_detail, name='character_detail'),
+    path("ficha/<int:id>/confirm_delete/", views.confirm_delete_character, name="confirm_delete_character"),
+    path("ficha/<int:id>/delete/", views.delete_character, name="delete"),
+
 ]
+

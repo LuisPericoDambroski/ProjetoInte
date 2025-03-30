@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Excluir Personagem</h2>
-    <p>Tem certeza que deseja excluir "{{ character.name }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Sim, Excluir</button>
-    </form>
-    <a href="{% url 'character_list' %}">Cancelar</a>
+  <div class="confirm-box">
+    <h2>Tem certeza que deseja excluir a ficha "{{ character.name }}"?</h2>
+
+<form method="post" action="{% url 'delete' character.id %}">
+    {% csrf_token %}
+    <button type="submit">Confirmar Exclusão</button>
+    <a href="{% url 'lista' %}" class="btn btn-secondary">Cancelar</a>
+</form>
 {% endblock %}
