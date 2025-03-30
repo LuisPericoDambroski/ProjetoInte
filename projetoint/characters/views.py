@@ -35,12 +35,19 @@ def create_character(request):
 
     return render(request, "characters/create_character.html")
 
-# Detalhes da ficha
-def character_detail(request, id):
+def fichas_personagens(request):
     user_id = request.session.get("user_id")
     user = get_object_or_404(CustomUser, id=user_id)
     character = get_object_or_404(Character, id=id, user=user)
-    return render(request, "characters/character_detail.html", {"character": character})
+    return render(request, 'characters/Ficha.html')
+
+
+# Detalhes da ficha
+# def character_detail(request, id):
+#     user_id = request.session.get("user_id")
+#     user = get_object_or_404(CustomUser, id=user_id)
+#     character = get_object_or_404(Character, id=id, user=user)
+#     return render(request, "characters/character_detail.html", {"character": character})
 
 
 # Atualizar ficha
@@ -64,7 +71,7 @@ def update_character(request, id):
         character.save()
         return redirect("lista")
 
-    return render(request, "characters/character_detail.html", {"character": character})
+    return render(request, "characters/Ficha.html", {"character": character})
 
 
 # Confirmação de exclusão

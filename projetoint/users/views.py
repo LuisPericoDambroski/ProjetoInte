@@ -14,8 +14,6 @@ from django.views.decorators.http import require_GET
 def home(request):
     return render(request, "index.html", {'request': request})
 
-def fichas_personagens(request):
-    return render(request, 'Ficha.html')
 
 # def poderes(request):
 #     tipo = request.GET.get('tipo', '')  # Obtém o parâmetro tipo da URL

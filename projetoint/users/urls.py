@@ -1,9 +1,8 @@
 from django.urls import path
-from .views import login_view, home, register_view, dashboard, logout_view, forgot_password, reset_password, fichas_personagens, classes, racas, concedidos
+from .views import login_view, home, register_view, dashboard, logout_view, forgot_password, reset_password, classes, racas, concedidos
 
 urlpatterns = [
     path("", home, name="home"),
-    path("ficha/", fichas_personagens, name = "ficha"),
     path("login/", login_view, name="login"),  # 🔥 Garante que a URL existe com o nome correto
     path("register/", register_view, name="register"),
     path("dashboard/", dashboard, name="dashboard"),
