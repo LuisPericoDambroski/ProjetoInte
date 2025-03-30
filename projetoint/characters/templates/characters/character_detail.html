@@ -1,49 +1,73 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
 <h2>Ficha de {{ character.name }}</h2>
 
-<form method="POST" enctype="multipart/form-data">
+<!-- Mensagens relacionadas à troca de nome -->
+{% if messages %}
+  {% for message in messages %}
+    {% if "trocar" in message.message|lower %}
+      <p style="color: {% if 'error' in message.tags %}red{% else %}green{% endif %};">
+        {{ message }}
+      </p>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<!-- Botão de troca de nome separado -->
+<form method="post" action="{% url 'trocar_nome' character.id %}" style="margin-top: 10px;">
   {% csrf_token %}
+  <label>Nome:</label>
+  {% if character.can_change_name %}
+    <input type="text" name="new_name" value="{{ character.name }}">
+    <button type="submit">Trocar nome</button>
+  {% else %}
+    <input type="text" name="new_name" value="{{ character.name }}" readonly>
+    <button type="submit" disabled style="opacity: 0.6;">Trocar nome</button>
+    <p style="font-size: 13px; color: gray;">
+      Você poderá trocar o nome novamente em {{ character.days_until_name_change }} dia(s).
+    </p>
+  {% endif %}
 
-  <p><strong>Nome:</strong> {{ character.name }}</p>
+  {% if character.last_name_change %}
+  <p><strong>Última troca de nome:</strong> {{ character.last_name_change|date:"d/m/Y H:i" }}</p>
+{% endif %}
 
+</form>
+
+<hr>
+
+<form method="post" enctype="multipart/form-data" action="{% url 'update_character' character.id %}">
+  {% csrf_token %}
+  
   <label>Classe:</label>
-  <input type="text" name="classe" value="{{ character.char_class }}"><br>
+  <input type="text" name="char_class" value="{{ character.char_class }}"><br>
 
   <label>Origem:</label>
-  <input type="text" name="origem" value="{{ character.origin }}"><br>
-
-  <label>Deus:</label>
-  <input type="text" name="deus" value="{{ character.deity }}"><br>
+  <input type="text" name="origin" value="{{ character.origin }}"><br>
 
   <label>Raça:</label>
-  <input type="text" name="raca" value="{{ character.race }}"><br>
+  <input type="text" name="race" value="{{ character.race }}"><br>
 
-  <label>Atributos:</label>
-  <textarea name="atributos">{{ character.skills }}</textarea><br>
+  <label>Deus:</label>
+  <input type="text" name="deity" value="{{ character.deity }}"><br>
 
-  <label>Poderes:</label>
-  <textarea name="poderes">{{ character.powers }}</textarea><br>
+  <label>Level:</label>
+  <input type="number" name="level" value="{{ character.level }}"><br>
+  
 
-  <label>Inventário:</label>
-  <textarea name="inventario">{{ character.inventory }}</textarea><br>
-
-  <label>Imagem:</label>
+  <label>Imagem:</label><br>
   {% if character.image %}
-  <img src="{{ character.image.url }}" alt="Imagem do personagem" style="max-height: 200px;"><br>
+    <img src="{{ character.image.url }}" alt="Imagem" style="max-height: 200px;"><br>
   {% endif %}
   <input type="file" name="image"><br><br>
 
-
-  <button type="submit">Salvar alterações</button>
-
-  <form method="get" action="{% url 'confirm_delete_character' character.id %}">
-    <a href="{% url 'confirm_delete_character' character.id %}" class="btn btn-danger">Excluir</a>
+  <button type="submit">Salvar Ficha</button>
 </form>
 
-</form>
+<hr>
 
-<a href="{% url 'lista' %}">Voltar para a lista de personagens</a>
+<a href="{% url 'confirm_delete_character' character.id %}" style="color: red;">Excluir personagem</a><br>
+<a href="{% url 'lista' %}">Voltar para a lista</a>
 {% endblock %}

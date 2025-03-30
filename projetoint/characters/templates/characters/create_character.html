@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
-%load static%
+{% load static %}
 {% block content %}
+
 <div class="character-create-container">
   <h2>Criar novo personagem</h2>
+
+  <!-- Exibe mensagens (sucesso ou erro) -->
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
   <form method="POST">
     {% csrf_token %}
     <label for="name">Nome do Personagem:</label>
     <input type="text" name="name" id="name" required>
     <button type="submit">Criar</button>
   </form>
+
   <a href="{% url 'lista' %}" class="back-link">← Voltar para lista</a>
 </div>
+
 {% endblock %}

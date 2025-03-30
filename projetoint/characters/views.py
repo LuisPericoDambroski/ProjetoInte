@@ -1,83 +1,65 @@
-from users.utils import get_real_user
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseNotAllowed
 from .models import Character
 from users.models import CustomUser
-from django.http import HttpResponseNotAllowed
-from datetime import timedelta
+from django.contrib import messages
 from django.utils import timezone
-from users.utils import get_real_user  # ajuste o import se necessário
-
-
-
-
+from datetime import timedelta
 
 # Lista de personagens
 def character_list(request):
     user_id = request.session.get("user_id")
-    if not user_id:
-        return redirect('login')  # ou outra lógica de acesso
-
     user = get_object_or_404(CustomUser, id=user_id)
     characters = Character.objects.filter(user=user)
-    return render(request, "characters/character_list.html", {"characters": characters})
+    can_create_more = characters.count() < 4
+    return render(request, "characters/character_list.html", {
+        "characters": characters,
+        "can_create_more": can_create_more
+    })
 
 
-# Criação simples com apenas o nome
+# Criar Personagem
 def create_character(request):
     if request.method == "POST":
+        user_id = request.session.get("user_id")
+        user = get_object_or_404(CustomUser, id=user_id)
+
+        # Verifica se o usuário já tem 4 personagens
+        if Character.objects.filter(user=user).count() >= 4:
+            messages.error(request, "Você atingiu o limite máximo de 4 fichas.")
+            return redirect("lista")  # ou redirecione de volta para a página de criação, se preferir
+
         name = request.POST.get("name")
+        character = Character.objects.create(name=name, user=user)
+        return redirect("lista")
 
-        if request.user.is_authenticated:
-            user = request.user.user  # 👈 acessa o CustomUser real
-            character = Character.objects.create(name=name, user=user)
-            return redirect("lista")  # ajuste conforme sua URL
-        else:
-            return redirect("login")
+    return render(request, "characters/create_character.html")
 
-    return render(request, "characters/novo.html")
-
-
-
-
-# Página de detalhes e edição da ficha
+# Detalhes da ficha
 def character_detail(request, id):
+    user_id = request.session.get("user_id")
+    user = get_object_or_404(CustomUser, id=user_id)
+    character = get_object_or_404(Character, id=id, user=user)
+    return render(request, "characters/character_detail.html", {"character": character})
+
+
+# Atualizar ficha
+def update_character(request, id):
     user_id = request.session.get("user_id")
     user = get_object_or_404(CustomUser, id=user_id)
     character = get_object_or_404(Character, id=id, user=user)
 
     if request.method == "POST":
+        character.char_class = request.POST.get("char_class")
+        character.origin = request.POST.get("origin")
+        character.deity = request.POST.get("deity")
+        character.race = request.POST.get("race")
+        character.level = request.POST.get("level")
+        character.image = request.FILES.get("image") or character.image
 
-        if 'name' in request.POST:
-            if not character.last_name_change or timezone.now() - character.last_name_change >= timedelta(days=90):
-                character.name = request.POST.get('name')
-                character.last_name_change = timezone.now()
-
-
-        if not character.char_class:
-            character.char_class = request.POST.get('classe')
-
-        character.char_class = request.POST.get('classe', character.char_class)
-
-
-        character.char_class = request.POST.get('classe')
-        character.origin = request.POST.get('origem')
-        character.deity = request.POST.get('deus')
-        character.race = request.POST.get('raca')
-        character.skills = request.POST.get('atributos')
-        character.powers = request.POST.get('poderes')
-        character.inventory = request.POST.get('inventario')
-
-
-        # Imagem (se estiver sendo usada via upload ou caminho)
-        image_path = request.POST.get("image_path")
-        if image_path:
-            character.image_path = image_path
-
-        if request.FILES.get('image'):
-            character.image = request.FILES['image']
-
-            if not character.name:
-                character.name = request.POST.get("name", character.name)
+        # Proteção extra: evita sobrescrever name com None
+        if request.POST.get("name"):
+            character.name = request.POST.get("name")
 
         character.save()
         return redirect("lista")
@@ -85,14 +67,14 @@ def character_detail(request, id):
     return render(request, "characters/character_detail.html", {"character": character})
 
 
-
+# Confirmação de exclusão
 def confirm_delete_character(request, id):
     user_id = request.session.get("user_id")
     user = get_object_or_404(CustomUser, id=user_id)
     character = get_object_or_404(Character, id=id, user=user)
     return render(request, "characters/delete_character.html", {"character": character})
 
-
+# Deletar personagem
 def delete_character(request, id):
     if request.method == "POST":
         user_id = request.session.get("user_id")
@@ -101,3 +83,25 @@ def delete_character(request, id):
         character.delete()
         return redirect("lista")
     return HttpResponseNotAllowed(['POST'])
+
+# Trocar nome
+def trocar_nome(request, id):
+    print(">>> Entrou na view de troca de nome")  # Debug
+
+    user_id = request.session.get("user_id")
+    user = get_object_or_404(CustomUser, id=user_id)
+    character = get_object_or_404(Character, id=id, user=user)
+
+    if request.method == "POST":
+        novo_nome = request.POST.get("new_name")
+        print("Novo nome recebido:", novo_nome)  # Debug
+
+        if character.can_change_name:
+            character.name = novo_nome
+            character.last_name_change = timezone.now()
+            character.save()
+            messages.success(request, "Nome alterado com sucesso!")
+        else:
+            messages.error(request, "Você só pode trocar o nome a cada 1 mês.")
+
+    return redirect("character_detail", id=character.id)
