@@ -6,33 +6,33 @@
 
 <p>Total de fichas: {{ characters|length }} / 4</p>
 
+<!-- Botão para adicionar novo personagem -->
+{% if can_create_more %}
+  <a href="{% url 'novo' %}" class="btn btn-success" style="margin: 10px 0; display: inline-block;">
+    + Adicionar novo personagem
+  </a>
+{% else %}
+  <p style="color: red; margin: 10px 0;"><strong>Limite de 4 personagens atingido.</strong></p>
+{% endif %}
 
-
+<!-- Lista de personagens -->
 {% for character in characters %}
-  {% if character.id %}
-    <div class="character-card">
-      <a href="{% url 'character_detail' character.id %}" style="text-decoration: none; color: inherit;">
-  {% endif %}
-
-        {% if character.image %}
-          <img src="{{ character.image.url }}" alt="{{ character.name }}" style="max-height: 120px;">
-        {% else %}
-          <img src="{% static 'img/default.png' %}" alt="Sem imagem" style="max-height: 120px;">
-        {% endif %}
-
-        <h3>{{ character.name|default:"Sem nome" }}</h3>
-        <p><strong>Classe:</strong> {{ character.char_class|default:"???" }}</p>
-        <p><strong>Origem:</strong> {{ character.origin|default:"???" }}</p>
-        <p><strong>Raça:</strong> {{ character.race|default:"???" }}</p>
-        <p><strong>Deus:</strong> {{ character.deity|default:"???" }}</p>
-        <p><strong>Nível:</strong> {{ character.level }}</p>
-
-  {% if character.id %}
-      </a>
+  <a href="{% url 'character_detail' character.id %}" style="text-decoration: none; color: inherit;">
+    <div class="character-card" style="border: 1px solid #ccc; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+      {% if character.image %}
+        <img src="{{ character.image.url }}" alt="{{ character.name }}" style="max-height: 120px;">
+      {% else %}
+        <img src="{% static 'img/default.png' %}" alt="Sem imagem" style="max-height: 120px;">
+      {% endif %}
+      <h3>{{ character.name|default:"Sem nome" }}</h3>
+      <p><strong>Classe:</strong> {{ character.char_class|default:"???" }}</p>
+      <p><strong>Origem:</strong> {{ character.origin|default:"???" }}</p>
+      <p><strong>Raça:</strong> {{ character.race|default:"???" }}</p>
+      <p><strong>Deus:</strong> {{ character.deity|default:"???" }}</p>
+      <p><strong>Nível:</strong> {{ character.level|default:"???" }}</p>
     </div>
-  {% endif %}
+  </a>
+{% empty %}
+  <p>Você ainda não criou nenhum personagem.</p>
 {% endfor %}
-
-
-
 {% endblock %}
