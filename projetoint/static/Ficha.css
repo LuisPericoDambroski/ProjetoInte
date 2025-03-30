@@ -324,4 +324,63 @@ main {
     box-shadow: 2px rgba(255, 230, 0, 0.808);
 }
 
-  
+
+
+.btn-calcular {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.btn-calcular:hover {
+    background-color: #45a049;
+}
+
+.pericias-container {
+    max-width: 800px;
+    height: auto;
+    margin: 20px auto;
+    color: white;
+    padding: 15px;
+    background-image: url('../static/imagens/Icons/Atributos/Pericias.png');
+    background-size: cover; /* ou cover, dependendo do efeito desejado */
+    border-radius: 8px;
+}
+
+.grid-maior {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.grid-menor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: 4px;
+}
+
+.linha {
+    display: contents;
+}
+
+.linha > div {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho > div {
+    font-weight: bold;
+}
+
+input[type="checkbox"] {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+}
+

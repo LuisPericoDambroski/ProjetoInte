@@ -22,9 +22,21 @@
               </ul>
         </nav>
         <div class="header-login">
-            <a href="{% url 'login' %}">
-                <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
-            </a>            
+            {% if request.session.user_id %}
+                <!-- Usuário logado: Mostrar ícone de gerenciamento de conta -->
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <!-- Usuário não logado: Mostrar ícone de login -->
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
         </div>
     </header>
 
@@ -102,48 +114,50 @@
                 </div>
                 <div class="grid-atributos">
                     <div class="Atributos">
-                        <h3>Atributos</h3>
+                        <h3>Atributos 
+                            <button class="btn-calcular" onclick="atualizarModificadores()">Calcular Modificadores</button>
+                        </h3>
                         <div class="grid-superior-a">
+                            <!-- Repetir essa estrutura para cada atributo -->
                             <div class="grid-a">
                                 <img src="{% static 'imagens/Icons/Atributos/força.png' %}" alt="Força">
                                 <span>Força</span>
                                 <span 
-                                id="valorAtributo" 
-                                class="valor-editable" 
-                                contenteditable="true"
-                                role="textbox"
-                            >10</span>
-                                <p id="modificador">Modificador: 0></p>
+                                    class="valor-atributo" 
+                                    contenteditable="true"
+                                    role="textbox">12</span>
+                                <p class="modificador"></p>
                             </div>
+                    
                             <div class="grid-a">
                                 <img src="{% static 'imagens/Icons/Atributos/constituição.png' %}" alt="Constituição">
                                 <span>Constituição</span>
-                                <span>13</span>
-                                <p></p>
+                                <span class="valor-atributo" contenteditable="true">13</span>
+                                <p class="modificador"></p>
                             </div>
                             <div class="grid-a">
                                 <img src="{% static 'imagens/Icons/Atributos/destreza.png' %}" alt="Destreza">
                                 <span>Destreza</span>
-                                <span>14</span>
-                                <p></p>
+                                <span class="valor-atributo" contenteditable="true">14</span>
+                                <p class="modificador"></p>
                             </div>
                             <div class="grid-a">
                                 <img src="{% static 'imagens/Icons/Atributos/inteligencia.png' %}" alt="Inteligência">
                                 <span>Inteligência</span>
-                                <span>09</span>
-                                <p></p>
+                                <span class="valor-atributo" contenteditable="true">09</span>
+                                <p class="modificador"></p>
                             </div>
                             <div class="grid-a">
                                 <img src="{% static 'imagens/Icons/Atributos/sabedoria.png' %}" alt="Sabedoria">
                                 <span>Sabedoria</span>
-                                <span>14</span>
-                                <p></p>
+                                <span class="valor-atributo" contenteditable="true">14</span>
+                                <p class="modificador"></p>
                             </div>
                             <div class="grid-a">
                                 <img src="{% static 'imagens/Icons/Atributos/carisma.png' %}" alt="Carisma">
                                 <span>Carisma</span>
-                                <span>12</span>
-                                <p></p>
+                                <span class="valor-atributo" contenteditable="true">12</span>
+                                <p class="modificador"></p>
                             </div>
                         </div>
                     </div>
@@ -157,20 +171,22 @@
                     <div class="Poderes">
                         <div class="seletor-poderes">
                             <h2>Escolha seu poder:</h2>
-                            <select id="listaPoderes" onchange="exibirPoder()">
-                                <option value="">Selecione um poder</option>
-                                <option value="Super Força">Super Força</option>
-                                <option value="Invisibilidade">Invisibilidade</option>
-                                <option value="Teletransporte">Teletransporte</option>
-                                <option value="Visão de Raio-X">Visão de Raio-X</option>
-                                <option value="Velocidade Sobre-Humana">Velocidade Sobre-Humana</option>
+                            <select id="tipoPoder" onchange="carregarPoderes()">
+                                <option value="">Selecione o tipo de poder</option>
+                                <option value="combate">Combate</option>
+                                <option value="destino">Destino</option>
+                                <option value="magia">Magia</option>
+                                <option value="concedido">Concedido</option>
+                                <option value="tormenta">Tormenta</option>
                             </select>
+                            
+                            <select id="listaPoderes" onchange="exibirPoder()" disabled>
+                                <option value="">Selecione um poder</option>
+                            </select>
+                            
+                            <button onclick="salvarPoder()">Salvar Poder</button>
                         </div>
-                    
-                        <div class="poder-selecionado">
-                            <h2>Poder Selecionado:</h2>
-                            <div id="poderExibicao"></div>
-                        </div>                       
+                        <div id="poderExibicao"></div>
                     </div>
                     <div class="Deus">
                         <div>
@@ -181,35 +197,50 @@
                     </div>
                 </div>
             </div>
-            <div class="Pericias">
+            <div class="pericias-container">
                 <h3>Perícias</h3>
-                <table>
-                    <tr>
-                        <td>Fortitude</td> <td>+10</td>
-                        <td>Nobreza</td> <td>+10</td>
-                    </tr>
-                    <tr>
-                        <td>Enganação</td> <td>+10</td>
-                        <td>Misticismo</td> <td>+10</td>
-                    </tr>
-                    <tr>
-                        <td>Diplomacia</td> <td>+10</td>
-                        <td>Luta</td> <td>+10</td>
-                    </tr>
-                    <tr>
-                        <td>Cura</td> <td>+10</td>
-                        <td>Ladinagem</td> <td>+10</td>
-                    </tr>
-                    <tr>
-                        <td>Conhecimento</td> <td>+10</td>
-                        <td>Jogatina</td> <td>+10</td>
-                    </tr>
-                    <tr>
-                        <td>Investigação</td> <td>+10</td>
-                        <td>Guerra</td> <td>+10</td>
-                    </tr>
-                </table>
+                <div class="grid-maior">
+                    <!-- Primeiro Grid -->
+                    <div class="grid-menor">
+                        <div class="linha cabecalho">
+                            <div>Perícia</div>
+                            <div>Bônus</div>
+                            <div>Treinada</div>
+                        </div>
+                        <div class="linha"><div>Fortitude</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Enganação</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Diplomacia</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Cura</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Conhecimento</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Cavalgar</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Atuação</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Atletismo</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Adestramento</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Acrobacia</div><div>+10</div><div><input type="checkbox"></div></div>
+
+                    </div>
+            
+                    <!-- Segundo Grid -->
+                    <div class="grid-menor">
+                        <div class="linha cabecalho">
+                            <div>Perícia</div>
+                            <div>Bônus</div>
+                            <div>Treinada</div>
+                        </div>
+                        <div class="linha"><div>Nobreza</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Misticismo</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Luta</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Ladinagem</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Jogatina</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Investigação</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Intimidação</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Iniciativa</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Guerra</div><div>+10</div><div><input type="checkbox"></div></div>
+                        <div class="linha"><div>Furtividade</div><div>+10</div><div><input type="checkbox"></div></div>
+                    </div>
+                </div>
             </div>
+            
         </section>
     </main>
 </body>

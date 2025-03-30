@@ -1,5 +1,6 @@
 from django.core.validators import EmailValidator
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 class CustomUser(models.Model):
     username = models.CharField(max_length=150, unique=True)
@@ -9,6 +10,29 @@ class CustomUser(models.Model):
 
     def __str__(self):
         return self.username
+
+class Poder(models.Model):
+    TIPO_CHOICES = [
+        ('combate', 'Combate'),
+        ('destino', 'Destino'),
+        ('magia', 'Magia'),
+        ('concedido', 'Concedido'),
+        ('tormenta', 'Tormenta'),
+    ]
+    
+    nome = models.CharField(max_length=100)
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return self.nome
+
+class Personagem(models.Model):
+    usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    poderes = models.ManyToManyField(Poder)
+    
+    def __str__(self):
+        return f"Personagem de {self.usuario.username}"
 
 # class Alquimico(models.Model):
 #     id = models.AutoField(primary_key=True)

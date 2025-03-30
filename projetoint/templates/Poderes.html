@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'poderes.css' %}">
+    <script src="{% static 'JS/classe.js' %}"></script>
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Personagem</a></li>
+                <li><a href="#">Mesas</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+</head>
+<body>
+    <img src="{% static 'imagens/banners/background.png' %}" class="background">
+
+    <main>
+        <img src="{% static 'imagens/Poderes/titulo.png' %}">
+        <img src="{% static 'imagens/Poderes/tabela.png' %}">
+
+        <section>
+            <div class="container">
+                <div class="poderes">
+                    <!-- Destino - Centralizado -->
+                    <a href="{% url 'poderes' %}?tipo=destino" target="_blank" class="poder-single">
+                        <div><h3>Destino</h3></div>
+                    </a>
+                    
+                    <!-- Combate e Concedido - Lado a lado -->
+                    <div class="poder-duo">
+                        <a href="{% url 'poderes' %}?tipo=combate" target="_blank" class="poder-item">
+                            <div><h3>Combate</h3></div>
+                        </a>
+                        <a href="{% url 'concedidos' %}" target="_blank" class="poder-item">
+                            <div><h3>Concedido</h3></div>
+                        </a>
+                    </div>
+                    
+                    <!-- Mágico e Tormenta - Lado a lado -->
+                    <div class="poder-duo">
+                        <a href="{% url 'poderes' %}?tipo=magico" target="_blank" class="poder-item">
+                            <div><h3>Magico</h3></div>
+                        </a>
+                        <a href="{% url 'poderes' %}?tipo=tormenta" target="_blank" class="poder-item">
+                            <div><h3>Tormenta</h3></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

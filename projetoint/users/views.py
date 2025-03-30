@@ -7,7 +7,9 @@ import bcrypt
 import random
 import string
 from django.http import JsonResponse
-
+from django.db import connection
+from django.http import JsonResponse
+from django.views.decorators.http import require_GET
 
 
 def home(request):
@@ -15,6 +17,25 @@ def home(request):
 
 def fichas_personagens(request):
     return render(request, 'Ficha.html')
+
+def poderes(request):
+    tipo = request.GET.get('tipo', '')  # Obtém o parâmetro tipo da URL
+    
+    # Aqui você pode filtrar os poderes com base no tipo
+    context = {
+        'tipo_selecionado': tipo,
+        # Outros dados que você queira passar para o template
+    }
+    
+    return render(request, 'poderes.html', context)
+
+def concedidos(request):
+    # Aqui você pode adicionar a lógica específica para os poderes concedidos
+    context = {
+        'titulo': 'Poderes Concedidos',
+        # Outros dados específicos para concedidos
+    }
+    return render(request, 'concedidos.html', context)
 
 def classes (request):
     return render(request, 'classes.html')
@@ -138,3 +159,43 @@ def reset_password(request, uid, token):
 
     return render(request, "reset_password.html", {"uid": uid, "token": token})
 
+from django.views.decorators.csrf import csrf_exempt
+from .models import Poder, Personagem
+import json
+
+@require_GET
+def listar_poderes(request):
+    tipo = request.GET.get('tipo')
+    if tipo:
+        poderes = Poder.objects.filter(tipo=tipo).values('nome')
+        return JsonResponse({'poderes': list(poderes)})
+    return JsonResponse({'poderes': []})
+
+@require_GET
+def obter_descricao_poder(request):
+    nome = request.GET.get('nome')
+    try:
+        poder = Poder.objects.get(nome=nome)
+        return JsonResponse({'descricao': poder.descricao})
+    except Poder.DoesNotExist:
+        return JsonResponse({'descricao': 'Descrição não disponível.'})
+
+@csrf_exempt
+def salvar_poder(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        try:
+            data = json.loads(request.body)
+            poder = Poder.objects.get(nome=data['nome'], tipo=data['tipo'])
+            
+            # Obtém ou cria o personagem do usuário
+            personagem, created = Personagem.objects.get_or_create(
+                usuario=request.user
+            )
+            
+            # Adiciona o poder ao personagem
+            personagem.poderes.add(poder)
+            
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+    return JsonResponse({'success': False, 'error': 'Requisição inválida ou usuário não autenticado'})

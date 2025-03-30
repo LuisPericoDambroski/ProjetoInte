@@ -4,19 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-</head>
-<body>
-    <h1>Bem-vindo, {{ user.username }}!</h1>
-    <p>Email cadastrado: {{ user.email }}</p>
-    
-    <a href="{% url 'logout' %}">Sair</a> <!-- Criar logout futuramente -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'personagem.css' %}">
+    <script src="{% static 'JS/personagem.js' %}"></script>
 
-    <h2>Suas Fichas de RPG</h2>
-    <ul>
-        <!-- Aqui você pode listar as fichas do usuário -->
-        <li>Ficha 1</li>
-        <li>Ficha 2</li>
-        <li><a href="{% url 'character_list' %}">Meus Personagens</a></li>
-    </ul>
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Personagem</a></li>
+                <li><a href="#">Mesas</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+
+</head>
+<body class="dashboard-body">
+    <img src="{% static 'imagens/banners/background.png'%}" class="background">
+
+    <main class="dashboard-main">
+        <h1>Bem-vindo, {{ user.username }}!</h1>
+        <p>Email cadastrado: {{ user.email }}</p>
+        
+        <a href="{% url 'logout' %}" class="logout-link">Sair</a>
+
+        <h2>Suas Fichas de RPG</h2>
+        <ul class="character-list">
+            <!-- Aqui você pode listar as fichas do usuário -->
+            <li><a href="{% url 'ficha' %}">Ficha 1</a></li>
+            <li>Ficha 2</li>
+            <li>Meus Personagens</a></li>
+        </ul>
+
+        <div class="container">
+            <h1>Fichas de Personagem</h1>
+            
+            <div class="character-sheets">
+                <!-- Ficha existente -->
+                <div class="character-card">
+                    <h2>Nome</h2>
+                    <p><strong>Level:</strong> </p>
+                    <p><strong>Classe:</strong> Arcanista</p>
+                    <p><strong>Origem:</strong> amigo da floresta</p>
+                    <p><strong>Deus:</strong> </p>
+                    <p><strong>Raça:</strong> </p>
+                </div>
+            </div>
+            
+            <button id="addCharacterBtn" class="add-character">+ Adicionar Nova Ficha</button>
+            
+            <div id="newCharacterForm" class="new-character-form">
+                <h2>Nova Ficha de Personagem</h2>
+                <div class="form-group">
+                    <label for="characterName">Nome do Personagem</label>
+                    <input type="text" id="characterName" placeholder="Ex: Aragorn">
+                </div>
+                <div class="form-group">
+                    <label for="characterLevel">Level</label>
+                    <input type="number" id="characterLevel" min="1" max="20" placeholder="1">
+                </div>
+                <div class="form-group">
+                    <label for="characterClass">Classe</label>
+                    <select id="characterClass">
+                        <option value="">Selecione uma classe</option>
+                        <option value="Arcanista">Arcanista</option>
+                        <option value="Guerreiro">Guerreiro</option>
+                        <option value="Ladino">Ladino</option>
+                        <option value="Clérigo">Clérigo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="characterOrigin">Origem</label>
+                    <input type="text" id="characterOrigin" placeholder="Ex: Amigo da Floresta">
+                </div>
+                <div class="form-group">
+                    <label for="characterDeity">Deus</label>
+                    <input type="text" id="characterDeity" placeholder="Ex: Allihanna">
+                </div>
+                <div class="form-group">
+                    <label for="characterRace">Raça</label>
+                    <input type="text" id="characterRace" placeholder="Ex: Elfo">
+                </div>
+                <div class="form-actions">
+                    <button id="cancelFormBtn" class="btn btn-secondary">Cancelar</button>
+                    <button id="saveCharacterBtn" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
 </body>
 </html>
