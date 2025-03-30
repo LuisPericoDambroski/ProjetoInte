@@ -64,7 +64,7 @@
                                     <p>50/50</p>
                                 </div>
                                 <div class="level">
-                                    Level: 8
+                                    <p><strong>Nível:</strong> {{ character.level }}</p>
                                 </div>
                                 <div class="mana">
                                     <span>Mana</span>
@@ -84,7 +84,7 @@
                         <div class="raca-imagem">
                             <h3>Raça</h3>
                             <img src="{% static 'imagens/Icons/Races/Sílfide 512px.png' %}"></img>
-                            <p>Sílfide</p>
+                            <p><strong></strong> {{ character.race|default:"???" }}</p>
                         </div>
                         <div class="caracteristicas">
                             <div>
@@ -163,7 +163,7 @@
                     </div>
                     <div class="classes">
                         <div>
-                            <h3>Classes</h3>
+                            <p><strong>Classe:</strong> {{ character.char_class|default:"???" }}</p>
                             <img src="{% static 'imagens/Icons/Classes/wizard.png' %}" alt="Classe">
                             <p>08</p>
                         </div>
@@ -192,7 +192,7 @@
                         <div>
                             <h3>Deus</h3>
                             <img src="{% static 'imagens/icons/logo.png' %}" alt="Deus">
-                            <p>Ahradrak</p>
+                            <p><strong></strong> {{ character.deity|default:"???" }}</p>
                         </div>
                     </div>
                 </div>

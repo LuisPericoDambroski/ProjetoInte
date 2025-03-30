@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Tormenta RPG{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-</head>
-<body>
-    <div class="background">
-        <img src="{% static 'imagens/Banners/Wallpaper-login.jpg' %}" alt="Background">
-    </div>
+    <link rel="stylesheet" href="{% static 'personagem.css' %}">
+    <script src="{% static 'JS/personagem.js' %}"></script>
 
-    <header class="top-nav">
-        <div class="logo">
-            <img src="{% static 'imagens/Icons/logo.png' %}" alt="Logo">
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
         </div>
         <nav>
             <ul>
@@ -22,12 +21,30 @@
                 <li><a href="#">Regras</a></li>
             </ul>
         </nav>
-        <div class="perfil">
-            <div class="circle"></div>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
         </div>
     </header>
 
-    <main>
+</head>
+
+<body class="dashboard-body">
+
+    <img src="{% static 'imagens/banners/background.png'%}" class="background">
+
+    <main class="dashboard-main">
         {% block content %}
         {% endblock %}
     </main>
