@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
-
+%load static%
 {% block content %}
-    <h2>Criar Novo Personagem</h2>
-    <form method="POST">
-        {% csrf_token %}
-        <label>Nome do Personagem:</label>
-        <input type="text" name="name" required>
-        
-        <label>Descrição:</label>
-        <textarea name="description"></textarea>
-        
-        <button type="submit">Criar</button>
-    </form>
+<div class="character-create-container">
+  <h2>Criar novo personagem</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="name">Nome do Personagem:</label>
+    <input type="text" name="name" id="name" required>
+    <button type="submit">Criar</button>
+  </form>
+  <a href="{% url 'lista' %}" class="back-link">← Voltar para lista</a>
+</div>
 {% endblock %}
