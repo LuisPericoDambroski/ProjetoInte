@@ -1,38 +1,22 @@
 [
     {
-        "nome": "Casco de monstro",
-        "arma": 750,
-        "armaduraLeve": 750,
+        "nome": "Aço-Rubi",
+        "arma": 6000,
+        "armaduraLeve": 3000,
         "armaduraPesada": 6000,
-        "escudo": 750,
-        "esotericos": 6000
+        "escudo": 3000,
+        "esotericos": 3000
     },
     {
-        "nome": "Couraça de Kaiju",
-        "arma": 0,
-        "armaduraLeve": 0,
-        "armaduraPesada": 0,
-        "escudo": 0,
-        "esotericos": 0
+        "nome": "Adamante",
+        "arma": 3000,
+        "armaduraLeve": 6000,
+        "armaduraPesada": 18000,
+        "escudo": 6000,
+        "esotericos": 3000
     },
     {
-        "nome": "Couro de Bulette",
-        "arma": 0,
-        "armaduraLeve": 0,
-        "armaduraPesada": 0,
-        "escudo": 0,
-        "esotericos": 0
-    },
-    {
-        "nome": "Cristal de Sol",
-        "arma": 0,
-        "armaduraLeve": 0,
-        "armaduraPesada": 0,
-        "escudo": 0,
-        "esotericos": 0
-    },
-    {
-        "nome": "Lanajuste",
+        "nome": "Gelo Eterno",
         "arma": 600,
         "armaduraLeve": 1500,
         "armaduraPesada": 3000,
@@ -40,27 +24,27 @@
         "esotericos": 3000
     },
     {
-        "nome": "Pena de Kraken",
-        "arma": 0,
+        "nome": "Madeira Tollon",
+        "arma": 1500,
         "armaduraLeve": 0,
         "armaduraPesada": 0,
-        "escudo": 0,
-        "esotericos": 0
-    },
-    {
-        "nome": "Prata",
-        "arma": 600,
-        "armaduraLeve": 1500,
-        "armaduraPesada": 3000,
         "escudo": 1500,
-        "esotericos": 400
+        "esotericos": 1500
     },
     {
-        "nome": "Quitina Razza",
-        "arma": 0,
-        "armaduraLeve": 0,
-        "armaduraPesada": 0,
-        "escudo": 0,
-        "esotericos": 0
+        "nome": "Matéria Vermelha",
+        "arma": 1500,
+        "armaduraLeve": 6000,
+        "armaduraPesada": 18000,
+        "escudo": 6000,
+        "esotericos": 3000
+    },
+    {
+        "nome": "Mitral",
+        "arma": 1500,
+        "armaduraLeve": 1500,
+        "armaduraPesada": 12000,
+        "escudo": 1500,
+        "esotericos": 3000
     }
 ]

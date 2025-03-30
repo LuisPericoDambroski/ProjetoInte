@@ -32,3 +32,29 @@ admin.site.register(MaterialEspecial)
 admin.site.register(Veiculo)
 admin.site.register(Armadilha)
 admin.site.register(Doenca)
+admin.register(Poder)
+class PoderAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'tipo', 'custo_pm')
+    list_filter = ('tipo', 'magia')
+    filter_horizontal = ('requisito_pericias', 'requisito_poderes')
+    readonly_fields = ('get_requisitos_texto',)
+    fieldsets = (
+        (None, {
+            'fields': ('nome', 'tipo', 'descricao')
+        }),
+        ('Ação e Custo', {
+            'fields': ('acao', 'custo_pm', 'magia')
+        }),
+        ('Requisitos', {
+            'fields': (
+                'requisito_forca', 'requisito_destreza', 'requisito_constituicao',
+                'requisito_inteligencia', 'requisito_sabedoria', 'requisito_carisma',
+                'requisito_nivel', 'requisito_pericias', 'requisito_poderes', 'requisito_outros',
+                'get_requisitos_texto'
+            )
+        }),
+        ('Aprimoramentos', {
+            'fields': ('aprimoramentos',),
+            'classes': ('collapse',)
+        }),
+    )

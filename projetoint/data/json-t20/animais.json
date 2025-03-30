@@ -1,56 +1,52 @@
 [
     {
-        "nome": "Bulette",
-        "preco": 500,
+        "nome": "Alforje",
+        "preco": 30,
         "espacos": 0,
-        "descricao": "Temperamental e feroz, esta fera pode ser adquirida de mercadores na Grande Savana, no Deserto da Perdição ou em Doherimm — em outros lugares, atinge o dobro do preço. Pode ser usado como um parceiro montaria."
+        "descricao": "Sacos de couro feitos para serem presos em uma sela. Permitem que um parceiro montaria carregue até 10 espaços de item para você."
     },
     {
-        "nome": "Capivara",
-        "preco": 60,
-        "espacos": 0,
-        "descricao": "Simpatíca, amistosa e dotada de longos e afiados dentes, a capivara é muito apreciada por ginetes Pequenos como hynne e goblins. Pode ser usado como um parceiro montaria por personagens Pequenos e Minúsculos."
-    },
-    {
-        "nome": "Corcel do Deserto",
+        "nome": "Cão de caça",
         "preco": 150,
         "espacos": 0,
-        "descricao": "Tipo de cavalo insetoide encontrado na Grande Savana e no Deserto da Perdição. Pode ser usado como um parceiro montaria."
+        "descricao": "Este cachorro valente e leal pode ser usado como parceiro perseguidor por personagens treinados em Adestramento ou montaria por personagens Pequenos e Minúsculos."
     },
     {
-        "nome": "Dromedário",
+        "nome": "Cavalo",
         "preco": 75,
         "espacos": 0,
-        "descricao": "Disponível em regiões áridas ou montanhosas, pode ser um parceiro montaria."
+        "descricao": "A montaria mais comum no Reinado. Pode ser usado como parceiro montaria (veja a página 262). Cavalos sem treinamento se assustam facilmente, sendo necessário um teste de Cavalgar (CD 20) por rodada para permanecer montado durante um combate. Cavalos de guerra dispensam esse teste."
     },
     {
-        "nome": "Elefante",
-        "preco": 1500,
+        "nome": "Cavalo de guerra",
+        "preco": 400,
         "espacos": 0,
-        "descricao": "Grande demais para ambientes urbanos, é empregado como animal de trabalho em áreas abertas, como fazendas e áreas de mineração. Pode ser usado como um parceiro montaria."
+        "descricao": "A montaria mais comum no Reinado. Pode ser usado como parceiro montaria (veja a página 262)."
     },
     {
-        "nome": "Hiena",
-        "preco": 220,
+        "nome": "Estábulo",
+        "preco": 0.1,
         "espacos": 0,
-        "descricao": "Embora sejam mais comuns entre gnolls, hienas podem ocasionalmente ser domesticadas por outros povos. Uma hiena pode ser usada como um parceiro especial (veja p. 119) por personagens treinados em Adestramento, ou montaria por personagens Pequenos e Minúsculos."
+        "descricao": "Inclui alimentação para o animal."
     },
     {
-        "nome": "Leão",
-        "preco": 800,
+        "nome": "Pônei",
+        "preco": 5,
         "espacos": 0,
-        "descricao": "Considerado símbolo de nobreza e força, o majestoso leão pode ser treinado para aceitar um cavaleiro, sendo usado como um parceiro montaria."
+        "descricao": "A montaria mais comum entre raças Pequenas. Pode ser usado como parceiro montaria (veja a página 262)."
     },
     {
-        "nome": "Rinoceronte",
-        "preco": 600,
+        "nome": "Pônei de guerra",
+        "preco": 30,
         "espacos": 0,
-        "descricao": "Eram animais de gado dos anões quando estes ainda viviam na superfície; hoje são selvagens e perigosos, de difícil domesticação. Podem ser usados como parceiros montaria, mas raramente são encontrados à venda."
+        "descricao": "A montaria mais comum entre raças Pequenas. Pode ser usado como parceiro montaria (veja a página 262)."
     },
     {
-        "nome": "Urso Pardo",
-        "preco": 300,
+        "nome": "Trobo",
+        "preco": 60,
         "espacos": 0,
-        "descricao": "Este robusto predador pode ser encontrado em várias regiões de Arton. Ainda que incomum, pode ser empregado como um parceiro montaria."
+        "descricao": "Estas enormes aves, também chamadas de pássaros-touros, são parecidas com avestruzes com chifres, couro e cascos. Não têm asas. Possuem poucas penas, que servem apenas como ornamento. Muito dóceis, trobos são usados em áreas rurais como animais de carga e tração, mas também podem ser usados como montaria (veja a página 262)."
     }
+
+   
 ]
