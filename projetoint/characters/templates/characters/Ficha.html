@@ -1,247 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha</title>
-    <link rel="stylesheet" href="{% static 'Ficha.css' %}">
-    <!-- <script src="{% static 'JS/poderes.js' %}"></script> -->
+{% extends "base.html" %}
+{% load static %}
 
-    <header>
-        <div>
-            <a href="{% url 'home' %}">
-                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Personagem</a></li>
-                <li><a href="#">Mesas</a></li>
-                <li><a href="#">Regras</a></li>
-              </ul>
-        </nav>
-        <div class="header-login">
-            {% if request.session.user_id %}
-                <!-- Usuário logado: Mostrar ícone de gerenciamento de conta -->
-                <div class="dropdown">
-                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
-                    </div>
+{% block content %}
+<img src="{% static 'imagens/banners/background.png'%}" class="background">
+
+<main>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <section>
+      <div class="container">
+        <div class="grid-personagem">
+          <div class="grid-perso-img">
+            <div class="personagem">
+              <img id="preview-image"
+                src="{% if character.image %}{{ character.image.url }}{% else %}{% static 'img/default.png' %}{% endif %}"
+                alt="Imagem do personagem"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+
+                <label for="image-input" class="custom-file-label">Trocar imagem</label>
+                <input type="file" id="image-input" name="image">
+                
+
+              <div class="nome">
+                <input type="text" name="name" value="{{ character.name }}" class="char-name" required>
+                <span class="char-ca">
+                  <img src="{% static 'imagens/Icons/Defesa.png' %}" alt="Defesa">
+                  CA: 18
+                </span>
+              </div>
+
+              <div class="stats">
+                <div class="vida">
+                  <span>Vida</span>
+                  <p>50/50</p>
                 </div>
-            {% else %}
-                <!-- Usuário não logado: Mostrar ícone de login -->
-                <a href="{% url 'login' %}">
-                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
-                </a>
-            {% endif %}
-        </div>
-    </header>
-
-</head>
-<body>
-
-    <img src="{% static 'imagens/banners/background.png'%}" class="background">
-    
-    <main>
-        <section>
-            <div class="container">
-                <div class="grid-personagem">
-                    <div class="grid-perso-img">
-                        <div class="personagem">
-                            <div class="nome">
-                                <span class="char-name">Nome</span>
-                                <span class="char-ca">
-                                    <img src="{% static 'imagens/Icons/Defesa.png' %}" alt="Defesa">
-                                    CA: 18
-                                </span>
-                            </div>
-                            <div class="stats">
-                                <div class="vida">
-                                    <span>Vida</span>
-                                    <p>50/50</p>
-                                </div>
-                                <div class="level">
-                                    <p><strong>Nível:</strong> {{ character.level }}</p>
-                                </div>
-                                <div class="mana">
-                                    <span>Mana</span>
-                                    <p>20/30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Origem">
-                        <div>
-                            <h3>Origem</h3>
-                            <img src="{% static 'imagens/icons/origem/Soldado.png' %}">
-                            <p>Soldado</p>
-                        </div>
-                    </div>
-                    <div class="Raça">
-                        <div class="raca-imagem">
-                            <h3>Raça</h3>
-                            <img src="{% static 'imagens/Icons/Races/Sílfide 512px.png' %}"></img>
-                            <p><strong></strong> {{ character.race|default:"???" }}</p>
-                        </div>
-                        <div class="caracteristicas">
-                            <div>
-                                <img src="{% static 'imagens/icons/Movimento.png' %}">
-                                <p>movimento</p>
-                                <span>9 metros</span>
-                            </div>
-                            <div>
-                                <img src="{% static 'imagens/icons/Tamanho.png' %}">
-                                <p>tamanho</p>
-                                <span>minusculo</span>
-
-                            </div>
-                            <div>
-                                <img src="{% static 'imagens/icons/Visão.png' %}">
-                                <p>visão</p>
-                                <span>penumbra</span>
-                            </div>
-                            <div>
-                                <img src="{% static 'imagens/icons/Atributos.png' %}">
-                                <p>atributos</p>
-                                <span>carisma +2/destreza +1/força -2
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="level">
+                  <p><strong>Nível:</strong> <input type="number" name="level" value="{{ character.level }}" required></p>
                 </div>
-                <div class="grid-atributos">
-                    <div class="Atributos">
-                        <h3>Atributos 
-                            <button class="btn-calcular" onclick="atualizarModificadores()">Calcular Modificadores</button>
-                        </h3>
-                        <div class="grid-superior-a">
-                            <!-- Repetir essa estrutura para cada atributo -->
-                            <div class="grid-a">
-                                <img src="{% static 'imagens/Icons/Atributos/força.png' %}" alt="Força">
-                                <span>Força</span>
-                                <span 
-                                    class="valor-atributo" 
-                                    contenteditable="true"
-                                    role="textbox">12</span>
-                                <p class="modificador"></p>
-                            </div>
-                    
-                            <div class="grid-a">
-                                <img src="{% static 'imagens/Icons/Atributos/constituição.png' %}" alt="Constituição">
-                                <span>Constituição</span>
-                                <span class="valor-atributo" contenteditable="true">13</span>
-                                <p class="modificador"></p>
-                            </div>
-                            <div class="grid-a">
-                                <img src="{% static 'imagens/Icons/Atributos/destreza.png' %}" alt="Destreza">
-                                <span>Destreza</span>
-                                <span class="valor-atributo" contenteditable="true">14</span>
-                                <p class="modificador"></p>
-                            </div>
-                            <div class="grid-a">
-                                <img src="{% static 'imagens/Icons/Atributos/inteligencia.png' %}" alt="Inteligência">
-                                <span>Inteligência</span>
-                                <span class="valor-atributo" contenteditable="true">09</span>
-                                <p class="modificador"></p>
-                            </div>
-                            <div class="grid-a">
-                                <img src="{% static 'imagens/Icons/Atributos/sabedoria.png' %}" alt="Sabedoria">
-                                <span>Sabedoria</span>
-                                <span class="valor-atributo" contenteditable="true">14</span>
-                                <p class="modificador"></p>
-                            </div>
-                            <div class="grid-a">
-                                <img src="{% static 'imagens/Icons/Atributos/carisma.png' %}" alt="Carisma">
-                                <span>Carisma</span>
-                                <span class="valor-atributo" contenteditable="true">12</span>
-                                <p class="modificador"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="classes">
-                        <div>
-                            <p><strong>Classe:</strong> {{ character.char_class|default:"???" }}</p>
-                            <img src="{% static 'imagens/Icons/Classes/wizard.png' %}" alt="Classe">
-                            <p>08</p>
-                        </div>
-                    </div>
-                    <div class="Poderes">
-                        <div class="seletor-poderes">
-                            <h2>Escolha seu poder:</h2>
-                            <select id="tipoPoder" onchange="carregarPoderes()">
-                                <option value="">Selecione o tipo de poder</option>
-                                <option value="combate">Combate</option>
-                                <option value="destino">Destino</option>
-                                <option value="magia">Magia</option>
-                                <option value="concedido">Concedido</option>
-                                <option value="tormenta">Tormenta</option>
-                            </select>
-                            
-                            <select id="listaPoderes" onchange="exibirPoder()" disabled>
-                                <option value="">Selecione um poder</option>
-                            </select>
-                            
-                            <button onclick="salvarPoder()">Salvar Poder</button>
-                        </div>
-                        <div id="poderExibicao"></div>
-                    </div>
-                    <div class="Deus">
-                        <div>
-                            <h3>Deus</h3>
-                            <img src="{% static 'imagens/icons/logo.png' %}" alt="Deus">
-                            <p><strong></strong> {{ character.deity|default:"???" }}</p>
-                        </div>
-                    </div>
+                <div class="mana">
+                  <span>Mana</span>
+                  <p>20/30</p>
                 </div>
+              </div>
             </div>
-            <div class="pericias-container">
-                <h3>Perícias</h3>
-                <div class="grid-maior">
-                    <!-- Primeiro Grid -->
-                    <div class="grid-menor">
-                        <div class="linha cabecalho">
-                            <div>Perícia</div>
-                            <div>Bônus</div>
-                            <div>Treinada</div>
-                        </div>
-                        <div class="linha"><div>Fortitude</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Enganação</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Diplomacia</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Cura</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Conhecimento</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Cavalgar</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Atuação</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Atletismo</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Adestramento</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Acrobacia</div><div>+10</div><div><input type="checkbox"></div></div>
+          </div>
 
-                    </div>
-            
-                    <!-- Segundo Grid -->
-                    <div class="grid-menor">
-                        <div class="linha cabecalho">
-                            <div>Perícia</div>
-                            <div>Bônus</div>
-                            <div>Treinada</div>
-                        </div>
-                        <div class="linha"><div>Nobreza</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Misticismo</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Luta</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Ladinagem</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Jogatina</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Investigação</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Intimidação</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Iniciativa</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Guerra</div><div>+10</div><div><input type="checkbox"></div></div>
-                        <div class="linha"><div>Furtividade</div><div>+10</div><div><input type="checkbox"></div></div>
-                    </div>
-                </div>
+          <div class="Origem">
+            <div>
+              <h3>Origem</h3>
+              <img src="{% static 'imagens/icons/origem/Soldado.png' %}">
+              <input type="text" name="origin" value="{{ character.origin }}" required>
             </div>
-            
-        </section>
-    </main>
-</body>
-</html>
+          </div>
+
+          <div class="Raça">
+            <div class="raca-imagem">
+              <h3>Raça</h3>
+              <img src="{% static 'imagens/Icons/Races/Sílfide 512px.png' %}">
+              <input type="text" name="race" value="{{ character.race }}" required>
+            </div>
+
+            <div class="caracteristicas">
+              <div><img src="{% static 'imagens/icons/Movimento.png' %}"><p>movimento</p><span>9 metros</span></div>
+              <div><img src="{% static 'imagens/icons/Tamanho.png' %}"><p>tamanho</p><span>minusculo</span></div>
+              <div><img src="{% static 'imagens/icons/Visão.png' %}"><p>visão</p><span>penumbra</span></div>
+              <div><img src="{% static 'imagens/icons/Atributos.png' %}"><p>atributos</p><span>carisma +2/destreza +1/força -2</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-atributos">
+          <div class="Atributos">
+            <h3>Atributos</h3>
+            <div class="grid-superior-a">
+              <!-- (Atributos em JS depois) -->
+            </div>
+          </div>
+
+          <div class="classes">
+            <div>
+              <p><strong>Classe:</strong> <input type="text" name="char_class" value="{{ character.char_class }}" required></p>
+              <img src="{% static 'imagens/Classes/wizard.png' %}" alt="Classe">
+            </div>
+          </div>
+
+         <div class="Poderes">
+  <div class="seletor-poderes">
+    <h2>Escolha seu poder:</h2>
+
+    <select id="tipoPoder" onchange="carregarPoderes()">
+      <option value="">Selecione o tipo de poder</option>
+      <option value="combate">Combate</option>
+      <option value="destino">Destino</option>
+      <option value="magia">Magia</option>
+      <option value="concedido">Concedido</option>
+      <option value="tormenta">Tormenta</option>
+    </select>
+
+    <select id="listaPoderes" name="powers" onchange="exibirPoder()" disabled>
+      <option value="">Selecione um poder</option>
+    </select>
+
+    <button type="button" onclick="salvarPoder()">Salvar Poder</button>
+  </div>
+
+  <div id="poderExibicao"></div>
+</div>
+
+          <div class="Deus">
+            <div>
+              <h3>Deus</h3>
+              <img src="{% static 'imagens/icons/logo.png' %}" alt="Deus">
+              <input type="text" name="deity" value="{{ character.deity }}" required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pericias-container">
+        <h3>Perícias</h3>
+        <textarea name="skills" style="width: 100%; height: 150px;">{{ character.skills }}</textarea>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit">Salvar</button>
+        <a href="{% url 'lista' %}" class="btn-cancelar">Cancelar</a>
+      </div>
+    </section>
+  </form>
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'JS/imagem_preview.js' %}"></script>
+{% endblock %}

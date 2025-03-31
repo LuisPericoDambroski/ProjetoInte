@@ -31,7 +31,6 @@ main {
     position: relative; /* Cria contexto para o posicionamento absoluto */
     width: 450px;       /* Ajuste para o tamanho desejado */
     height: 450px;      /* Ajuste para o tamanho desejado */
-    background-image: url('../static/imagens/Fan-arts/imagem.png');
     background-size: cover;
     background-position: center;
     border: 2px solid gold;
@@ -383,4 +382,22 @@ input[type="checkbox"] {
     width: 18px;
     height: 18px;
 }
+
+/* Esconde o input de imagem */
+input[type="file"] {
+    display: none;
+}
+
+/* Cria botão personalizado */
+.custom-file-label {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: gold;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
 

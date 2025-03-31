@@ -35,11 +35,12 @@ def create_character(request):
 
     return render(request, "characters/create_character.html")
 
-def fichas_personagens(request):
+def fichas_personagens(request, id):
     user_id = request.session.get("user_id")
     user = get_object_or_404(CustomUser, id=user_id)
     character = get_object_or_404(Character, id=id, user=user)
-    return render(request, 'characters/Ficha.html')
+    return render(request, 'characters/Ficha.html', {"character": character})
+
 
 
 # Detalhes da ficha
