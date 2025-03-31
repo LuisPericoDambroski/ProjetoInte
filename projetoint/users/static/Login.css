@@ -62,6 +62,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden; /* Remove a barra de rolagem e bloqueia a rolagem */
 }
 
 
@@ -125,16 +126,6 @@ a:hover {
     font-weight: bold;
     text-align: center;
     margin-top: 10px;
-<<<<<<< HEAD
-}
-
-#loginMessage, .error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
-    display: none; /* Mantém oculto por padrão */
-}
-=======
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     color: white;
     transition: opacity 0.5s ease;
@@ -150,4 +141,3 @@ a:hover {
     margin-bottom: 5px;
   }
   
->>>>>>> 6c6f2d330b992ad2e38228d8aa210d12418997f0

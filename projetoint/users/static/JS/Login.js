@@ -13,29 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
         openModal("loginModal");
     }
 
-<<<<<<< HEAD
-   // ✅ Exibe mensagens no modal de login
-const loginMessage = document.getElementById("loginMessage");
-const loginError = localStorage.getItem("loginError");
-
-if (loginError) {
-    loginMessage.innerHTML = loginError;
-    loginMessage.style.display = "block";
-    loginMessage.style.color = "red"; // Garante cor vermelha
-    openModal("loginModal");
-    localStorage.removeItem("loginError");
-}
-
-// ✅ Captura erro via URL e redireciona corretamente
-const urlParams = new URLSearchParams(window.location.search);
-const urlError = urlParams.get("error");
-
-if (urlError) {
-    localStorage.setItem("loginError", urlError);
-    window.location.href = "/login/";
-}
-    // ✅ Exibe mensagens no modal de cadastro
-=======
     // Mensagens no modal de login
     const loginMessage = document.getElementById("loginMessage");
     const loginError = localStorage.getItem("loginError");
@@ -65,7 +42,6 @@ if (urlError) {
     }
 
     // Mensagens no modal de cadastro
->>>>>>> 6c6f2d330b992ad2e38228d8aa210d12418997f0
     const registerMessage = document.getElementById("registerMessage");
     const registerError = params.get("register_error");
     const registerSuccess = params.get("register_success");
