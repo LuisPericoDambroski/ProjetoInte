@@ -15,30 +15,68 @@ def home(request):
     return render(request, "index.html", {'request': request})
 
 
-# def poderes(request):
-#     tipo = request.GET.get('tipo', '')  # Obtém o parâmetro tipo da URL
+def poderes(request):
+    tipo = request.GET.get('tipo', '')  # Obtém o parâmetro tipo da URL
     
-#     # Aqui você pode filtrar os poderes com base no tipo
-#     context = {
-#         'tipo_selecionado': tipo,
-#         # Outros dados que você queira passar para o template
-#     }
+    # Aqui você pode filtrar os poderes com base no tipo
+    context = {
+        'tipo_selecionado': tipo,
+        # Outros dados que você queira passar para o template
+    }
     
-#     return render(request, 'poderes.html', context)
+    return render(request, 'poderes.html', context)
+
+def destino(request):
+    
+    context = {
+        'titulo': 'Poderes Destino',
+        
+    }
+    return render(request, 'destino.html', context)
+
+def combate(request):
+    
+    context = {
+        'titulo': 'Poderes combate',
+        
+    }
+    return render(request, 'combate.html', context)
 
 def concedidos(request):
-    # Aqui você pode adicionar a lógica específica para os poderes concedidos
+    
     context = {
         'titulo': 'Poderes Concedidos',
-        # Outros dados específicos para concedidos
+        
     }
     return render(request, 'concedidos.html', context)
+
+def magico(request):
+    
+    context = {
+        'titulo': 'Poderes Magico',
+        
+    }
+    return render(request, 'magico.html', context)
+
+def tormenta(request):
+    
+    context = {
+        'titulo': 'Poderes Tormenta',
+        
+    }
+    return render(request, 'tormenta.html', context)
 
 def classes (request):
     return render(request, 'classes.html')
 
 def racas (request):
     return render(request, 'racas.html')
+
+def deuses (request):
+    return render(request, 'deuses.html')
+
+def origens (request):
+    return render(request, 'origens.html')
 
 def login_view(request):
     if request.method == "POST":

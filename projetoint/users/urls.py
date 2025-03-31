@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import login_view, home, register_view, dashboard, logout_view, forgot_password, reset_password, classes, racas, concedidos
+from .views import login_view, home, register_view, dashboard, logout_view, forgot_password, reset_password, classes, racas, concedidos, poderes, destino, tormenta, magico, combate, deuses, origens
 
 urlpatterns = [
     path("", home, name="home"),
@@ -9,8 +9,15 @@ urlpatterns = [
     path("logout/", logout_view, name="logout"),
     path("classe/", classes, name="classes" ),
     path("raças/", racas, name="racas" ),
-    # path("poderes/", poderes, name="poderes"),
+    path("poderes/", poderes, name="poderes"),
+    path("poderes/destino/", destino, name="destino"),
+    path("poderes/tormenta/", tormenta, name="tormenta"),
+    path("poderes/magico/", magico, name="magico"),
+    path("poderes/combate/", combate, name="combate"),
     path("poderes/concedidos/", concedidos, name="concedidos"),
+    path("deuses/", deuses, name="deuses"),
+    path("origens/", origens, name="origens"),
+
     # path('teste/', views.teste, name="teste"),
 
     # # path('api/poderes/', listar_poderes, name='listar_poderes'),

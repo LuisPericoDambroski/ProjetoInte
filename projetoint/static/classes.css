@@ -1,5 +1,9 @@
 @import url('../static/Header.css');
 
+body {
+    margin-top: 100px;
+}
+
 .background {
     position: fixed;
     top: 0;
@@ -53,3 +57,19 @@
     width: 50px;
 }
 
+.guia {
+    display: flex;
+    justify-content: center;
+}
+
+.basic {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 colunas ajustáveis */
+    justify-content: center; /* Centraliza o grid na tela */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+.basic img {
+    width: 100%; /* Ajusta a largura para ocupar o espaço da célula */
+    height: auto; /* Mantém a proporção da imagem */
+}

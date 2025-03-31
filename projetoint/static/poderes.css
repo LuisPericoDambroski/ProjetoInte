@@ -1,5 +1,9 @@
 @import url("/static/Header.css");
 
+body {
+    margin-top: 100px;
+}
+
 .background {
     position: fixed;
     top: 0;
@@ -57,4 +61,45 @@ h3 {
     color: white;
     margin: 0;
     font-size: 1.5rem;
+}
+
+.guia {
+    display: flex;
+    justify-content: center;
+}
+
+.guia-poder {
+    display: flex;
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    gap: 10px; /* Espaçamento entre as imagens */
+}
+
+.guia-poder img {
+    max-width: 100%; /* Para evitar que fiquem muito grandes */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+.guia-deuses {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 colunas ajustáveis */
+    justify-content: center; /* Centraliza o grid na tela */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+.guia-deuses img {
+    width: 100%; /* Ajusta a largura para ocupar o espaço da célula */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+.guia-origens {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 colunas ajustáveis */
+    justify-content: center; /* Centraliza o grid na tela */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+.guia-origens img {
+    width: 100%; /* Ajusta a largura para ocupar o espaço da célula */
+    height: auto; /* Mantém a proporção da imagem */
 }
