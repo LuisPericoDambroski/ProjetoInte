@@ -7,6 +7,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'poderes.css' %}">
     <script src="{% static 'JS/classe.js' %}"></script>
+    <script src="{% static 'JS/header.js' %}"></script>
+
 
     <header>
         <div>
@@ -42,14 +44,13 @@
     <img src="{% static 'imagens/banners/background.png' %}" class="background">
 
     <main>
-        <img src="{% static 'imagens/Poderes/concedido1.png' %}">
-        <img src="{% static 'imagens/Poderes/concedido2.png' %}">
-        <img src="{% static 'imagens/Poderes/concedido3.png' %}">
-        <img src="{% static 'imagens/Poderes/concedido4.png' %}">
-        <img src="{% static 'imagens/Poderes/concedido5.png' %}">
-        <section>
-
-        </section>
+        <div class="guia-poder">
+            <img src="{% static 'imagens/Poderes/concedido1.png' %}">
+            <img src="{% static 'imagens/Poderes/concedido2.png' %}">
+            <img src="{% static 'imagens/Poderes/concedido3.png' %}">
+            <img src="{% static 'imagens/Poderes/concedido4.png' %}">
+            <img src="{% static 'imagens/Poderes/concedido5.png' %}">
+        </div>
     </main>
 </body>
 </html>
