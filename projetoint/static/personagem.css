@@ -13,7 +13,6 @@
 body.dashboard-body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
     color: white; /* Cor da fonte branca para todo o body */
     position: relative;
 }

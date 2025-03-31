@@ -111,7 +111,6 @@ Grid principal
     padding: 15px;
     border-radius: 8px;
     text-align: center;
-    transition: 0.3s;
     text-decoration: none;
     color: #ffffff;
     display: center;
@@ -124,6 +123,8 @@ Grid principal
     background-image: url('../static/imagens/Icons/Hoverindx.png');
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
     background-size: contain; /* ou cover, dependendo do efeito desejado */
     text-align: center;
 }
