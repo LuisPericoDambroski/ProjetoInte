@@ -8,8 +8,8 @@
 
 <!-- Botão para adicionar novo personagem -->
 {% if can_create_more %}
-  <a href="{% url 'novo' %}" class="btn btn-success" style="margin: 10px 0; display: inline-block;">
-    + Adicionar novo personagem
+  <a href="{% url 'novo' %}" class="btn-btn-success">
+    <img src="{% static 'imagens/icons/adicionar.png'%}">
   </a>
 {% else %}
   <p style="color: red; margin: 10px 0;"><strong>Limite de 4 personagens atingido.</strong></p>

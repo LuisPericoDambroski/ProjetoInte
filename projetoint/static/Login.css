@@ -140,4 +140,9 @@ a:hover {
     background-color: #dc3545; /* vermelho erro */
     margin-bottom: 5px;
   }
+
+  .register{
+    background-color: #5d5f5e;
+    color: yellow;
+  }
   
