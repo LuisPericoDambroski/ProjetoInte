@@ -18,7 +18,7 @@
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
 
                 <label for="image-input" class="custom-file-label">Trocar imagem</label>
-                <input type="file" id="image-input" name="image">
+                <input type="file" id="image-input" name="image" style="display: none;">
                 
 
               <div class="nome">
@@ -131,6 +131,9 @@
 </main>
 {% endblock %}
 
+
 {% block extra_scripts %}
-<script src="{% static 'JS/imagem_preview.js' %}"></script>
+  <script src="{% static 'JS/imagem_preview.js' %}"></script>
 {% endblock %}
+
+
