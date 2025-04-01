@@ -177,8 +177,47 @@
 
         <div class="pericias-container">
           <h3>Perícias</h3>
-          <textarea name="skills" style="width: 100%; height: 150px;">{{ character.skills }}</textarea>
-        </div>
+          <div class="grid-maior">
+              <!-- Primeiro Grid -->
+              <div class="grid-menor">
+                  <div class="linha cabecalho">
+                      <div>Perícia</div>
+                      <div>Bônus</div>
+                      <div>Treinada</div>
+                  </div>
+                  <div class="linha"><div>Fortitude</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Enganação</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Diplomacia</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Cura</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Conhecimento</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Cavalgar</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Atuação</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Atletismo</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Adestramento</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Acrobacia</div><div>+10</div><div><input type="checkbox"></div></div>
+
+              </div>
+      
+              <!-- Segundo Grid -->
+              <div class="grid-menor">
+                  <div class="linha cabecalho">
+                      <div>Perícia</div>
+                      <div>Bônus</div>
+                      <div>Treinada</div>
+                  </div>
+                  <div class="linha"><div>Nobreza</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Misticismo</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Luta</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Ladinagem</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Jogatina</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Investigação</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Intimidação</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Iniciativa</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Guerra</div><div>+10</div><div><input type="checkbox"></div></div>
+                  <div class="linha"><div>Furtividade</div><div>+10</div><div><input type="checkbox"></div></div>
+              </div>
+          </div>
+      </div>
 
         <div class="form-footer">
           <a href="{% url 'confirm_delete_character' character.id %}" style="color: red;">Excluir personagem</a><br>
