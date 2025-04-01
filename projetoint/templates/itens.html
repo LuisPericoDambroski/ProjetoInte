@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'poderes.css' %}">
+    <script src="{% static 'JS/header.js' %}"></script>
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'lista' %}">Personagem</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+</head>
+<body>
+    <img src="{% static 'imagens/banners/background.png' %}" class="background">
+
+    <main>
+
+        <div class="guia-pericias">
+            <img src="{% static 'imagens/Itens/Itens.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens1.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens2.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens3.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens4.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens5.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens6.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens7.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens8.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens9.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens10.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens11.jpg' %}">
+            <img src="{% static 'imagens/Itens/Itens12.jpg' %}">
+
+
+        </div>
+    </main>
+</body>
+</html>

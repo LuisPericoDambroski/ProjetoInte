@@ -78,6 +78,21 @@ def deuses (request):
 def origens (request):
     return render(request, 'origens.html')
 
+def atributos (request):
+    return render(request, 'atributos.html')
+
+def armas (request):
+    return render(request, 'armas.html')
+
+def magias (request):
+    return render(request, 'magias.html')
+
+def regras (request):
+    return render(request, 'regras.html')
+
+def itens (request):
+    return render(request, 'itens.html')
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
