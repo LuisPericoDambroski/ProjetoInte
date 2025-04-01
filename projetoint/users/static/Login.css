@@ -62,6 +62,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden; /* Remove a barra de rolagem e bloqueia a rolagem */
 }
 
 
