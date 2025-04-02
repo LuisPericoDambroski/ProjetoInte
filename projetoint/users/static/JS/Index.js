@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Informações das raças
     const raceInfo = {
         "Anão": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Anão 512px.png",
+            img: '../imagens/Icons/Races/Anão 512px.png',
             text: "Os anões são conhecidos por sua resistência e habilidade em metalurgia e mineração."
         },
         "Dhallan": {
@@ -88,4 +88,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownToggle = document.getElementById('dropdownMenuButton');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdownToggle) {
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+    
+    // Fechar o dropdown quando clicar fora
+    window.addEventListener('click', function(e) {
+        if (!e.target.matches('.dropdown-toggle')) {
+            if (dropdownMenu) {
+                dropdownMenu.style.display = 'none';
+            }
+        }
+    });
 });

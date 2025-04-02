@@ -93,6 +93,9 @@ def regras (request):
 def itens (request):
     return render(request, 'itens.html')
 
+def classes(request):
+    return render(request, 'classe.html')
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -142,6 +145,7 @@ def register_view(request):
         return redirect("/login/?modal=register")
 
     return redirect("/login/")
+
 
 
 def dashboard(request):
@@ -209,43 +213,5 @@ def reset_password(request, uid, token):
 
     return render(request, "reset_password.html", {"uid": uid, "token": token})
 
-# from django.views.decorators.csrf import csrf_exempt
-# from .models import Poder, Personagem
-# import json
 
-# @require_GET
-# def listar_poderes(request):
-#     tipo = request.GET.get('tipo')
-#     if tipo:
-#         poderes = Poder.objects.filter(tipo=tipo).values('nome')
-#         return JsonResponse({'poderes': list(poderes)})
-#     return JsonResponse({'poderes': []})
 
-# @require_GET
-# def obter_descricao_poder(request):
-#     nome = request.GET.get('nome')
-#     try:
-#         poder = Poder.objects.get(nome=nome)
-#         return JsonResponse({'descricao': poder.descricao})
-#     except Poder.DoesNotExist:
-#         return JsonResponse({'descricao': 'Descrição não disponível.'})
-
-# @csrf_exempt
-# def salvar_poder(request):
-#     if request.method == 'POST' and request.user.is_authenticated:
-#         try:
-#             data = json.loads(request.body)
-#             poder = Poder.objects.get(nome=data['nome'], tipo=data['tipo'])
-            
-#             # Obtém ou cria o personagem do usuário
-#             personagem, created = Personagem.objects.get_or_create(
-#                 usuario=request.user
-#             )
-            
-#             # Adiciona o poder ao personagem
-#             personagem.poderes.add(poder)
-            
-#             return JsonResponse({'success': True})
-#         except Exception as e:
-#             return JsonResponse({'success': False, 'error': str(e)})
-#     return JsonResponse({'success': False, 'error': 'Requisição inválida ou usuário não autenticado'})
