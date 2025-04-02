@@ -1,4 +1,9 @@
 .env
+projetoint\__pycache__
+projetoArton\__pycache__
+users\__pycache__
+__pycache__/
+*.pyc
 projetoint\projetoint\__pycache__
 projetoint\projetoArton\__pycache__
 projetoint\users\__pycache__

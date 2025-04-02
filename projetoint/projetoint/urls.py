@@ -5,6 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('characters/', include('characters.urls')),  # 🔥 Certifique-se de que isso está presente!
+    path('', include('users.urls')),  # 🔥 As URLs do login
+    path('', include('t20.urls')),
     path('characters/', include('characters.urls')),  # ✅ já tá certo!
     path('', include('users.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
