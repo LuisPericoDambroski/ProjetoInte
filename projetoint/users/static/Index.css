@@ -211,13 +211,26 @@ Raças e classes
     text-align: center;
 }
 
-.Icon {
-    width: 100px;
-    height: auto;
-}
 
 .caracteristicas img {
     width: 50px;
+}
+
+.Icon {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Adicionado para centralizar verticalmente */
+    height: 100%; /* Garante que o container ocupe toda a altura */
+}
+
+.Icon img {
+    max-width: 150%; /* Garante que a imagem não ultrapasse o container */
+    max-height: 400px; /* Define uma altura máxima adequada */
+    width: auto; /* Mantém a proporção original */
+    height: auto; /* Mantém a proporção original */
+    object-fit: contain; /* Garante que a imagem inteira seja visível */
+    filter: invert(100%);
+    margin: 0 auto; /* Centraliza horizontalmente */
 }
 
 .race img{
