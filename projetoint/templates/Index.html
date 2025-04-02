@@ -12,9 +12,8 @@
    
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="{% static 'JS/carousel.js' %}"></script>
-    <script src="{% static 'JS/Index.js' %}"></script>
-    <script src="{% static 'JS/header.js' %}"></script>
+    <script src="{% static 'JS/Index.js' %}"></script> 
+
 
 
     <header>
@@ -31,7 +30,6 @@
         </nav>
         <div class="header-login">
             {% if request.session.user_id %}
-                <!-- Usuário logado: Mostrar ícone de gerenciamento de conta -->
                 <div class="dropdown">
                     <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -39,7 +37,6 @@
                     </div>
                 </div>
             {% else %}
-                <!-- Usuário não logado: Mostrar ícone de login -->
                 <a href="{% url 'login' %}">
                     <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
                 </a>
@@ -66,9 +63,6 @@
                     </div>
                 </div>
                 <!-- Botões de navegação -->
-                <div class="swiper-button-next" style="color: black;"></div>
-                <div class="swiper-button-prev" style="color: black;"></div>
-                <div class="swiper-pagination" style="color: black;"></div>
             </div>
         </section>
  

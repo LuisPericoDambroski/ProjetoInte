@@ -1,36 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Corrigindo o seletor - agora busca a img dentro da div .Icon
-    const mainRaceImage = document.querySelector('.Icon img');
-
-    // Seleciona todas as divs .race
-    document.querySelectorAll('.races-icons .race').forEach(raceDiv => {
-        raceDiv.addEventListener('click', () => {
-            // Acessa a imagem dentro da div .race
-            const img = raceDiv.querySelector('img');
-            const raceId = img.id;
+    // =============================================
+    // 1. GERENCIAMENTO DO DROPDOWN (PERFIL)
+    // =============================================
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdownToggle && dropdownMenu) {
+        // Função para fechar o dropdown quando clicar fora
+        const handleClickOutside = (e) => {
+            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.style.display = 'none';
+                document.removeEventListener('click', handleClickOutside);
+            }
+        };
+        
+        // Abrir/fechar dropdown
+        dropdownToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dropdownMenu.style.display === 'block';
+            dropdownMenu.style.display = isOpen ? 'none' : 'block';
             
-            // Corrigindo o caminho da imagem (removendo "512px" do nome do arquivo)
-            // Se suas imagens terminam com "512px.png", mantenha como está
-            const fullPath = `/static/imagens/Icons/Races/${raceId}.png`;
-            
-            console.log('Caminho real:', fullPath);
-            mainRaceImage.src = fullPath;
-            
-            // Adicionando feedback visual ao clicar
-            raceDiv.classList.add('active');
-            
-            // Removendo a classe 'active' de outras divs
-            document.querySelectorAll('.races-icons .race').forEach(otherDiv => {
-                if (otherDiv !== raceDiv) {
-                    otherDiv.classList.remove('active');
-                }
-            });
+            if (!isOpen) {
+                // Adiciona o listener com pequeno delay para evitar conflito imediato
+                setTimeout(() => {
+                    document.addEventListener('click', handleClickOutside);
+                }, 10);
+            }
         });
-    });
-});
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Mapeamento das raças e suas características
+    // =============================================
+    // 2. SISTEMA DE SELEÇÃO DE RAÇAS
+    // =============================================
+    const mainRaceImage = document.querySelector('.Icon img');
+    const caracteristicasDiv = document.querySelector('.caracteristicas');
+    const spans = caracteristicasDiv?.querySelectorAll('span');
+
+    // Mapeamento completo das características das raças
     const racasCaracteristicas = {
         'Anão': {
             movimento: '6 metros',
@@ -140,59 +146,48 @@ document.addEventListener('DOMContentLoaded', function() {
             visao: 'Visão no Escuro',
             atributos: 'Força +2, Constituição +1, Inteligência -1'
         }
-        // Adicione as outras raças seguindo o mesmo padrão...
     };
 
-    // Elementos do DOM
-    const mainRaceImage = document.querySelector('.Icon img');
-    const caracteristicasDiv = document.querySelector('.caracteristicas');
-    const spans = caracteristicasDiv.querySelectorAll('span');
+    // Função para atualizar as características exibidas
+    const atualizarCaracteristicas = (racaId) => {
+        if (!spans || !racasCaracteristicas[racaId]) return;
+        
+        const { movimento, tamanho, visao, atributos } = racasCaracteristicas[racaId];
+        spans[0].textContent = movimento;
+        spans[1].textContent = tamanho.toLowerCase();
+        spans[2].textContent = visao.toLowerCase();
+        spans[3].textContent = atributos.toLowerCase();
+    };
 
-    // Função para atualizar características
-    function atualizarCaracteristicas(racaId) {
-        const caracteristicas = racasCaracteristicas[racaId];
+    // Event delegation para os cliques nas raças
+    document.querySelector('.races-icons')?.addEventListener('click', (e) => {
+        const raceDiv = e.target.closest('.race');
+        if (!raceDiv) return;
 
-        if (caracteristicas) {
-            spans[0].textContent = caracteristicas.movimento;
-            spans[1].textContent = caracteristicas.tamanho.toLowerCase();
-            spans[2].textContent = caracteristicas.visao.toLowerCase();
-            spans[3].textContent = caracteristicas.atributos.toLowerCase();
-        } else {
-            // Reset para valores padrão ou vazio
-            spans[0].textContent = '9 metros';
-            spans[1].textContent = 'médio';
-            spans[2].textContent = 'normal';
-            spans[3].textContent = 'atributos padrão';
+        const img = raceDiv.querySelector('img');
+        if (!img) return;
+
+        const raceId = img.id;
+        
+        // Atualiza a imagem principal
+        if (mainRaceImage) {
+            mainRaceImage.src = `/static/imagens/Icons/Races/${raceId}.png`;
+            console.log('Raça selecionada:', raceId);
         }
-    }
-
-    // Seleciona todas as divs .race e adiciona os event listeners
-    document.querySelectorAll('.races-icons .race').forEach(raceDiv => {
-        raceDiv.addEventListener('click', () => {
-            // Acessa a imagem dentro da div .race
-            const img = raceDiv.querySelector('img');
-            const raceId = img.id;
-            
-            // Atualiza a imagem principal
-            const fullPath = `/static/imagens/Icons/Races/${raceId}.png`;
-            mainRaceImage.src = fullPath;
-            
-            // Atualiza as características da raça
-            atualizarCaracteristicas(raceId);
-            
-            // Adicionando feedback visual ao clicar
-            raceDiv.classList.add('active');
-            
-            // Removendo a classe 'active' de outras divs
-            document.querySelectorAll('.races-icons .race').forEach(otherDiv => {
-                if (otherDiv !== raceDiv) {
-                    otherDiv.classList.remove('active');
-                }
-            });
+        
+        // Atualiza as características
+        atualizarCaracteristicas(raceId);
+        
+        // Atualiza o estado ativo
+        document.querySelectorAll('.races-icons .race').forEach(div => {
+            div.classList.toggle('active', div === raceDiv);
         });
+        
+        // Previne a propagação para não interferir com outros eventos
+        e.stopPropagation();
     });
 
-    // Atualiza inicialmente com a primeira raça (opcional)
+    // Seleciona a primeira raça por padrão
     const primeiraRace = document.querySelector('.races-icons .race');
     if (primeiraRace) {
         primeiraRace.click();
