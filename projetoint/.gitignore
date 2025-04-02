@@ -4,3 +4,9 @@ projetoArton\__pycache__
 users\__pycache__
 __pycache__/
 *.pyc
+projetoint/characters/migrations/__pycache__/0001_initial.cpython-311.pyc
+        projetoint/characters/migrations/__pycache__/__init__.cpython-311.pyc
+        projetoint/projetoint/__pycache__/settings.cpython-311.pyc
+        projetoint/projetoint/__pycache__/urls.cpython-311.pyc
+        projetoint/users/migrations/__pycache__/0001_initial.cpython-311.pyc
+        projetoint/users/migrations/__pycache__/__init__.cpython-311.pyc
