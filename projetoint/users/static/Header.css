@@ -83,7 +83,7 @@ nav a::before {
     position: fixed;
     background-image: url('../static/imagens/Icons/HeaderHov.png');
     background-repeat: no-repeat;
-    opacity: 0.8;
+    opacity: 0.3;
     transition: opacity 0.3s ease-in-out;
     text-align: center;
 }
