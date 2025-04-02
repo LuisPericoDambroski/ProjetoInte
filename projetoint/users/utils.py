@@ -1,8 +1,3 @@
-import bcrypt
-
-def encrypt(password):
-
-    salt = bcrypt.gensalt()
-
-    encrypted_password = bcrypt.hashpw(password.encode('utf-8'),salt)
-    return encrypted_password.decode('utf-8')
+# em users/utils.py
+def get_real_user(user):
+    return user.wrapped_user if hasattr(user, 'wrapped_user') else user

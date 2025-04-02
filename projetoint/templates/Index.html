@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tormenta20 - Home</title>
+   
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'Index.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+   
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'JS/carousel.js' %}"></script>
+    <script src="{% static 'JS/Index.js' %}"></script>
+    <script src="{% static 'JS/header.js' %}"></script>
+
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'lista' %}">Personagem</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <!-- Usuário logado: Mostrar ícone de gerenciamento de conta -->
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <!-- Usuário não logado: Mostrar ícone de login -->
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+</head>
+<body>
+
+    <img src="{% static 'imagens/banners/background.png'%}" class="background">
+ 
+    <main>
+        <section class="carousel-container">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="{% static 'imagens/Banners/tormenta19.png' %}" alt="Banner 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{% static 'imagens/Banners/tormenta20.png' %}" alt="Banner 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{% static 'assets/images/Banners/banner3.jpg' %}" alt="Banner 3">
+                    </div>
+                </div>
+                <!-- Botões de navegação -->
+                <div class="swiper-button-next" style="color: black;"></div>
+                <div class="swiper-button-prev" style="color: black;"></div>
+                <div class="swiper-pagination" style="color: black;"></div>
+            </div>
+        </section>
+ 
+        <section class="grid-background">
+            <div class="grid-nav">
+                <img src="{% static 'imagens/Icons/white-smoke-wallpaper-abstract-desktop-background 1.png' %}" class="nav-background" alt="background">
+                <a href="{% url 'regras' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/quest.png' %}" alt="Regras">
+                    <span>Regras</span>
+                <a href="{% url 'poderes' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/level.png' %}" alt="Magias">
+                    <span>Poderes</span>
+                </a>
+                    <a href="{% url 'racas' %}" class="grid-item">
+                    <img src="{% static 'imagens/icons/corpo-humano.png' %}" alt="Raças">
+                    <span>Raças</span>
+                </a>
+                <a href="{% url 'itens' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/3209915.png' %}" alt="Itens">
+                    <span>Itens</span>
+                </a>
+                <a href="{% url 'armas' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/sword.png' %}" alt="Armas">
+                    <span>Armas</span>
+                </a>
+                <a href="{% url 'classes' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/swordsman.png' %}" alt="Classes">
+                    <span>Classes</span>
+                </a>
+                <a href="{% url 'origens' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/map.png' %}" alt="Origens">
+                    <span>Origens</span>
+                </a>
+                <a href="{% url 'deuses' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/2451272.png' %}" alt="Deuses">
+                    <span>Deuses</span>
+                </a>
+                <a href="{% url 'atributos' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/academia.png' %}" alt="Atributos">
+                    <span>Atributos</span>
+                </a>
+                <a href="{% url 'magias' %}" class="grid-item">
+                    <img src="{% static 'imagens/Icons/magia.png' %}" alt="Magias">
+                    <span>Magias</span>
+                </a>
+            </div>
+        </section>
+       
+        <section>
+            <div class="container">
+                <img src="{% static 'imagens/Banners/Banner2.png' %}" class="banner" alt="Banner">
+                <div class="races-section">
+                    <div class="races-list">
+                        <div class="races-icons">
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Anão 512px.png' %}" id="Anão" alt="Anão">
+                                <span>Anão</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Dhallan 512px.png' %}" id="Dhallan" alt="Dhallan">
+                                <span>Dhallan</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Elfo 512px.png' %}" id="Elfo" alt="Elfo">
+                                <span>Elfo</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Goblin 512px.png' %}" id="Goblin" alt="Goblin">
+                                <span>Goblin</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Golem 512px.png' %}" id="Golem" alt="Golem">
+                                <span>Golem</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Humano 512px.png' %}" id="Humano" alt="Humano">
+                                <span>Humano</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Hynne 512px.png' %}" id="Hynne" alt="Hynne">
+                                <span>Hynne</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Kliren 512px.png' %}" id="Kliren" alt="Kliren">
+                                <span>Kliren</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Lefou 512px.png' %}" id="Lefou" alt="Lefou">
+                                <span>Lefou</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/medusa 512px.png' %}" id="Medusa" alt="Medusa">
+                                <span>Medusa</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Minotauro 512px.png' %}" id="Minotauro" alt="Minotauro">
+                                <span>Minotauro</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Osteon 512px.png' %}" id="Osteon" alt="Osteon">
+                                <span>Osteon</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Qareen 512px.png' %}" id="Qareen" alt="Qareen">
+                                <span>Qareen</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Sílfide 512px.png' %}" id="Sílfide" alt="Sílfide">
+                                <span>Sílfide</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Suraggel 512px.png' %}" id="Suraggel" alt="Suraggel">
+                                <span>Suraggel</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Tritão 512px.png' %}" id="Tritão" alt="Tritão">
+                                <span>Tritão</span>
+                            </div>
+                            <div class="race">
+                                <img src="{% static 'imagens/Icons/Races/Trog 512px.png' %}" id="Trog" alt="Trog">
+                                <span>Trog</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="race-description">
+                        <div class="basic">
+                            <div class="Icon">
+                                <img src="{% static 'imagens/Icons/Races/Anão 512px.png' %}" alt="Anão">
+                            </div>
+                            <div class="description">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                            <div class="features">
+                                <span>
+                                    Habilidades da raça:
+                                    <div class="feature-icons">
+                                        <img src="{% static 'imagens/Icons/magia.png' %}" alt="Magia">
+                                        <img src="{% static 'imagens/Icons/armor.png' %}" alt="Armor">
+                                        <img src="{% static 'imagens/Icons/sword.png' %}" alt="Sword">
+                                        <img src="{% static 'imagens/Icons/academia.png' %}" alt="Academia">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <section>
+            <div class="container">
+                <div class="classe-icons">
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/wizard.png' %}" alt="Arcanista">
+                        <span>Arcanista</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/barbarian (1).png' %}" alt="Barbaro">
+                        <span>Barbaro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/jester.png' %}" alt="Bardo">
+                        <span>Bardo</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/pirate.png' %}" alt="Bucaneiro">
+                        <span>Bucaneiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/bow (1).png' %}" alt="Caçador">
+                        <span>Caçador</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/knight (3).png' %}" alt="Cavaleiro">
+                        <span>Cavaleiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/priest (1).png' %}" alt="Clerigo">
+                        <span>Clerigo</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/druid.png' %}" alt="Druida">
+                        <span>Druida</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/swordsman (1).png' %}" alt="Guerreiro">
+                        <span>Guerreiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/alchemy (1).png' %}" alt="Inventor">
+                        <span>Inventor</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/thief (1).png' %}" alt="Ladino">
+                        <span>Ladino</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/martial.png' %}" alt="Lutador">
+                        <span>Lutador</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/prince.png' %}" alt="Nobre">
+                        <span>Nobre</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/knight (2).png' %}" alt="Paladino">
+                        <span>Paladino</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <section>
+            <div class="news">
+                <img src="{% static 'imagens/Banners/News.png' %}">  
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deuses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'poderes.css' %}">
+    <script src="{% static 'JS/header.js' %}"></script>
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'lista' %}">Personagem</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+</head>
+<body>
+    <img src="{% static 'imagens/banners/background.png' %}" class="background">
+
+    <main>
+        <div class="guia-deuses">
+            <img src="{% static 'imagens/Deuses/Deuses.png' %}">
+            <img src="{% static 'imagens/Deuses/Deuses1.png' %}">  
+            <img src="{% static 'imagens/Deuses/Deuses2.png' %}"> 
+            <img src="{% static 'imagens/Deuses/Deuses3.png' %}"> 
+            <img src="{% static 'imagens/Deuses/Deuses4.png' %}"> 
+            <img src="{% static 'imagens/Deuses/Deuses5.png' %}"> 
+            <img src="{% static 'imagens/Deuses/Deuses6.png' %}"> 
+            <img src="{% static 'imagens/Deuses/Deuses7.png' %}"> 
+            <img src="{% static 'imagens/Deuses/Deuses8.png' %}"> 
+            <img src="{% static 'imagens/Deuses/Deuses9.png' %}"> 
+        </div>
+    </main>
+</body>
+</html>

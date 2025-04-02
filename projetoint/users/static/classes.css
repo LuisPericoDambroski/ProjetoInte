@@ -1,5 +1,21 @@
 @import url('../static/Header.css');
 
+<<<<<<< HEAD:projetoint/users/static/classes.css
+=======
+body {
+    margin-top: 100px;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção e cobre a tela */
+    z-index: -2;
+}
+>>>>>>> branchiv:projetoint/static/classes.css
 
 .classe-icons {
     margin-top: 30px;
@@ -43,3 +59,23 @@
 .classe img{
     width: 50px;
 }
+<<<<<<< HEAD:projetoint/users/static/classes.css
+=======
+
+.guia {
+    display: flex;
+    justify-content: center;
+}
+
+.basic {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 colunas ajustáveis */
+    justify-content: center; /* Centraliza o grid na tela */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+.basic img {
+    width: 100%; /* Ajusta a largura para ocupar o espaço da célula */
+    height: auto; /* Mantém a proporção da imagem */
+}
+>>>>>>> branchiv:projetoint/static/classes.css

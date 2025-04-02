@@ -18,9 +18,36 @@
     z-index: -2;
 }
 
+<<<<<<< HEAD:projetoint/users/static/racas.css
 body {
     background: #320000;
     color: #FFD700;
+=======
+.guia {
+    display: flex;
+    justify-content: center;
+}
+
+.guia-poder{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    margin-top: 60px;
+}
+
+body {
+    background: #320000;
+    color: #FFD700;
+    margin-top: 90px;
+}
+
+nav {
+    position: sticky;
+    align-items: center;
+>>>>>>> branchiv:projetoint/static/racas.css
 }
 
 /*
@@ -32,6 +59,14 @@ body {
     padding: 5px;
 }
 
+<<<<<<< HEAD:projetoint/users/static/racas.css
+=======
+.guia img{
+    align-items: center;
+    text-align: center;
+}
+
+>>>>>>> branchiv:projetoint/static/racas.css
 .races-section {
     margin-top: 40px;
     display: grid;
@@ -89,6 +124,7 @@ body {
 /*
 Raça descrição
 */
+<<<<<<< HEAD:projetoint/users/static/racas.css
 
 .basic{
     display: grid;
@@ -136,3 +172,5 @@ Raça descrição
     color: #ffffff;
     filter: invert(100%);
 }
+=======
+>>>>>>> branchiv:projetoint/static/racas.css

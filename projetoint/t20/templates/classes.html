@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'classes.css' %}">
+    <script src="{% static 'JS/classe.js' %}"></script>
+    <script src="{% static 'JS/header.js' %}"></script>
+
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                li><a href="{% url 'lista' %}">Personagem</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+</head>
+<body>
+
+    <img src="{% static 'imagens/banners/background.png' %}" class="background">
+
+    <main>
+        <div class="guia">
+            <img src="{% static 'imagens/Classes/Classes.png' %}">
+        </div>
+        <section>
+            <div class="container">
+                <div class="classe-icons">
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/wizard.png' %}" id="Arcanista">
+                        <span>Arcanista</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/barbarian (1).png' %}" id="Bárbaro">
+                        <span>Bárbaro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/jester.png' %}" id="Bardo">
+                        <span>Bardo</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/pirate.png' %}" id="Bucaneiro">
+                        <span>Bucaneiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/bow (1).png' %}" id="Caçador">
+                        <span>Caçador</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/knight (3).png' %}" id="Cavaleiro">
+                        <span>Cavaleiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/priest (1).png' %}" id="Clérigo">
+                        <span>Clérigo</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/druid.png' %}" id="Druida">
+                        <span>Druida</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/swordsman (1).png' %}" id="Guerreiro">
+                        <span>Guerreiro</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/alchemy (1).png' %}" id="Inventor">
+                        <span>Inventor</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/thief (1).png' %}" id="Ladino">
+                        <span>Ladino</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/martial.png' %}" id="Lutador">
+                        <span>Lutador</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/prince.png' %}" id="Nobre">
+                        <span>Nobre</span>
+                    </div>
+                    <div class="classe">
+                        <img src="{% static 'imagens/Classes/knight (2).png' %}" id="Paladino">
+                        <span>Paladino</span>
+                    </div>
+                </div>
+                <div class="class-description">
+                    <div class="basic">
+                        <img src="" id="main-class-image" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; this.alt=''"
+                        alt="">
+                        <img src="" id="main-class-image1" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; this.alt=''"
+                        alt="">
+                        <img src="" id="main-class-image2" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; this.alt=''"
+                        alt="">
+                        <img src="" id="main-class-image3" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; this.alt=''"
+                        alt="">
+                        <img src="" id="main-class-image4" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; this.alt=''"
+                        alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
