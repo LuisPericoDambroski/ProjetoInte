@@ -125,3 +125,19 @@ h3 {
     width: 100%; /* Ajusta a largura para ocupar o espaço da célula */
     height: auto; /* Mantém a proporção da imagem */
 }
+
+@media (min-width: 600px) {
+    .poder-duo {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.guia-deuses, .guia-origens, .guia-pericias {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 500px) {
+    .guia-deuses, .guia-origens, .guia-pericias {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
