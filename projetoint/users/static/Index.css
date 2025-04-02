@@ -225,7 +225,7 @@ Raças e classes
 
 .Icon img {
     max-width: 150%; /* Garante que a imagem não ultrapasse o container */
-    max-height: 400px; /* Define uma altura máxima adequada */
+    max-height: 00px; /* Define uma altura máxima adequada */
     width: auto; /* Mantém a proporção original */
     height: auto; /* Mantém a proporção original */
     object-fit: contain; /* Garante que a imagem inteira seja visível */
