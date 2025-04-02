@@ -62,6 +62,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden; /* Remove a barra de rolagem e bloqueia a rolagem */
 }
 
 
@@ -108,15 +109,46 @@ a:hover {
     text-decoration: underline;
 }
 
-.error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
-}
 
-.success-message {
-    color: green;
+.alert-box {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 80%;
+    max-width: 500px;
+  }
+  
+  .alert {
+    padding: 15px 20px;
+    border-radius: 5px;
     font-weight: bold;
+    text-align: center;
     margin-top: 10px;
-}
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: opacity 0.5s ease;
+  }
+  
+  .alert.success {
+    background-color: #28a745; /* verde sucesso */
+    margin-bottom: 5px;
+  }
+  
+  .alert.error {
+    background-color: #dc3545; /* vermelho erro */
+    margin-bottom: 5px;
+  }
 
+  .modal-content, .container {
+    width: 90%;
+    max-width: 320px;
+    margin-top: 150px;
+}
+  
+  @media (min-width: 768px) {
+    .modal-content, .container {
+        margin-top: 250px;
+    }
+}

@@ -1,0 +1,103 @@
+header {
+    position: fixed; /* Fixa sobre o carrossel */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Garante que fique acima do carrossel */
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    background-color: #320000;
+}
+
+.logo {
+    width: 60px;
+    height: auto;
+}
+
+header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    background-image: url('../static/imagens/Icons/smoke.png');
+    background-position: center;
+    background-size: contain;
+}
+
+nav a {
+    color: #F2E0C8;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+.dropdown-item {
+    width: 75px;
+    height: auto;
+}
+
+.dropdown-menu a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Efeito hover nos links */
+nav a:hover::before {
+    display: flex;
+    width: 240px;
+    height: 149px;
+    align-items: center;
+    background-position: center;
+    background-size: contain; /* ou cover, dependendo do efeito desejado */
+    z-index: -1;
+}
+
+nav a::before {
+    content: "";
+    position: fixed;
+    background-image: url('../static/imagens/Icons/HeaderHov.png');
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    header {
+        flex-direction: row;
+        padding: 0 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    nav a {
+        font-size: 30px;
+        margin: 0 30px;
+    }
+}

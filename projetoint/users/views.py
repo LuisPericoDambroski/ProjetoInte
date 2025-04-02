@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.mail import send_mail
 from .models import CustomUser
@@ -7,13 +6,93 @@ from . import models
 import bcrypt
 import random
 import string
+from django.http import JsonResponse
+from django.http import JsonResponse
+from django.views.decorators.http import require_GET
 
 
 def home(request):
-    return render(request, "index.html")
+    return render(request, "index.html", {'request': request})
 
-def fichas_personagens(request):
-    return render(request, 'Ficha.html')
+
+def poderes(request):
+    tipo = request.GET.get('tipo', '')  # Obtém o parâmetro tipo da URL
+    
+    # Aqui você pode filtrar os poderes com base no tipo
+    context = {
+        'tipo_selecionado': tipo,
+        # Outros dados que você queira passar para o template
+    }
+    
+    return render(request, 'poderes.html', context)
+
+def destino(request):
+    
+    context = {
+        'titulo': 'Poderes Destino',
+        
+    }
+    return render(request, 'destino.html', context)
+
+def combate(request):
+    
+    context = {
+        'titulo': 'Poderes combate',
+        
+    }
+    return render(request, 'combate.html', context)
+
+def concedidos(request):
+    
+    context = {
+        'titulo': 'Poderes Concedidos',
+        
+    }
+    return render(request, 'concedidos.html', context)
+
+def magico(request):
+    
+    context = {
+        'titulo': 'Poderes Magico',
+        
+    }
+    return render(request, 'magico.html', context)
+
+def tormenta(request):
+    
+    context = {
+        'titulo': 'Poderes Tormenta',
+        
+    }
+    return render(request, 'tormenta.html', context)
+
+def classes (request):
+    return render(request, 'classes.html')
+
+def racas (request):
+    return render(request, 'racas.html')
+
+def deuses (request):
+    return render(request, 'deuses.html')
+
+def origens (request):
+    return render(request, 'origens.html')
+
+def atributos (request):
+    return render(request, 'atributos.html')
+
+def armas (request):
+    return render(request, 'armas.html')
+
+def magias (request):
+    return render(request, 'magias.html')
+
+def regras (request):
+    return render(request, 'regras.html')
+
+def itens (request):
+    return render(request, 'itens.html')
+
 
 def login_view(request):
     if request.method == "POST":
@@ -35,7 +114,6 @@ def login_view(request):
     return render(request, "login.html")
 
 
-
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -51,11 +129,15 @@ def register_view(request):
             messages.error(request, "Usuário já existe.")
             return redirect("/login/?modal=register")
 
-        # 🔥 Melhorando a segurança da senha
+        if CustomUser.objects.filter(email=email).exists():
+            messages.error(request, "Este e-mail já está cadastrado.")
+            return redirect("/login/?modal=register")
+
         hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
         user = CustomUser(username=username, email=email, password=hashed_password)
-        request.session['user_id'] = user.id
         user.save()
+
+        request.session['user_id'] = user.id
 
         messages.success(request, "Cadastro realizado com sucesso!")
         return redirect("/login/?modal=register")
@@ -63,19 +145,10 @@ def register_view(request):
     return redirect("/login/")
 
 
-def dashboard(request):
-    if "user_id" not in request.session:
-        messages.error(request, "Você precisa estar logado para acessar essa página.")
-        return redirect("login")
-
-    user = CustomUser.objects.get(id=request.session["user_id"])
-    return render(request, "dashboard.html", {"user": user})
-
-
 def logout_view(request):
     request.session.flush()
     messages.success(request, "Você saiu da conta.")
-    return redirect("login")
+    return redirect('home')  # Redireciona para a página inicial
 
 
 def forgot_password(request):
@@ -128,3 +201,43 @@ def reset_password(request, uid, token):
 
     return render(request, "reset_password.html", {"uid": uid, "token": token})
 
+# from django.views.decorators.csrf import csrf_exempt
+# from .models import Poder, Personagem
+# import json
+
+# @require_GET
+# def listar_poderes(request):
+#     tipo = request.GET.get('tipo')
+#     if tipo:
+#         poderes = Poder.objects.filter(tipo=tipo).values('nome')
+#         return JsonResponse({'poderes': list(poderes)})
+#     return JsonResponse({'poderes': []})
+
+# @require_GET
+# def obter_descricao_poder(request):
+#     nome = request.GET.get('nome')
+#     try:
+#         poder = Poder.objects.get(nome=nome)
+#         return JsonResponse({'descricao': poder.descricao})
+#     except Poder.DoesNotExist:
+#         return JsonResponse({'descricao': 'Descrição não disponível.'})
+
+# @csrf_exempt
+# def salvar_poder(request):
+#     if request.method == 'POST' and request.user.is_authenticated:
+#         try:
+#             data = json.loads(request.body)
+#             poder = Poder.objects.get(nome=data['nome'], tipo=data['tipo'])
+            
+#             # Obtém ou cria o personagem do usuário
+#             personagem, created = Personagem.objects.get_or_create(
+#                 usuario=request.user
+#             )
+            
+#             # Adiciona o poder ao personagem
+#             personagem.poderes.add(poder)
+            
+#             return JsonResponse({'success': True})
+#         except Exception as e:
+#             return JsonResponse({'success': False, 'error': str(e)})
+#     return JsonResponse({'success': False, 'error': 'Requisição inválida ou usuário não autenticado'})

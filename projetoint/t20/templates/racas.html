@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raças</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'racas.css' %}">
+    <script src="{% static 'JS/raças.js' %}"></script>
+    <script src="{% static 'JS/header.js' %}"></script>
+
+
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'lista' %}">Personagem</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+</head>
+<body>
+    
+    <img src="{% static 'imagens/banners/background.png'%}" class="background">
+
+    <main>
+        <div class="guia">
+            <img src="{% static 'imagens/Raças/Raças.png'%}" >
+        </div>
+        <div class="container">
+            <div class="races-section">
+                <div class="races-list">
+                    <div class="races-icons">
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Anão.png' %}" id="Anão" alt="Anao">
+                            <span>Anão</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Dahllan.png' %}" id="Dahllan" alt="Dhallan">
+                            <span>Dhallan</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Elfo.png' %}" id="Elfo" alt="Elfo">
+                            <span>Elfo</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Goblin.png' %}" id="Goblin" alt="Goblin">
+                            <span>Goblin</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Golem.png' %}" id="Golem" alt="Golem">
+                            <span>Golem</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Humano.png' %}" id="Humano" alt="Humano">
+                            <span>Humano</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Hynne.png' %}" id="Hynne" alt="Hynne">
+                            <span>Hynne</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Kliren.png' %}" id="Kliren" alt="Kliren">
+                            <span>Kliren</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Lefou.png' %}" id="Lefou" alt="Lefou">
+                            <span>Lefou</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/medusa.png' %}" id="Medusa" alt="Medusa">
+                            <span>Medusa</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Minotauro.png' %}" id="Minotauro" alt="Minotauro">
+                            <span>Minotauro</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Osteon.png' %}" id="Osteon" alt="Osteon">
+                            <span>Osteon</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Qareen.png' %}" id="Qareen" alt="Qareen">
+                            <span>Qareen</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Sílfide.png' %}" id="Sílfide" alt="Sílfide">
+                            <span>Sílfide</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Suraggel.png' %}" id="Suraggel" alt="Suraggel">
+                            <span>Suraggel</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Tritão.png' %}" id="Tritão" alt="Tritão">
+                            <span>Tritão</span>
+                        </div>
+                        <div class="race">
+                            <img src="{% static 'imagens/Icons/Races/Trog.png' %}" id="Trog" alt="Trog">
+                            <span>Trog</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="race-description">
+                    <div class="basic">
+                        <img src="" id="main-race-image" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

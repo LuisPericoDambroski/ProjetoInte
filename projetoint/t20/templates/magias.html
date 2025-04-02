@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magias</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'poderes.css' %}">
+    <script src="{% static 'JS/header.js' %}"></script>
+
+    <header>
+        <div>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'imagens/icons/logo.png' %}" alt="Tormenta20" class="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'lista' %}">Personagem</a></li>
+                <li><a href="#">Regras</a></li>
+            </ul>
+        </nav>
+        <div class="header-login">
+            {% if request.session.user_id %}
+                <div class="dropdown">
+                    <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'imagens/icons/login.png' %}" alt="Login">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+</head>
+<body>
+    <img src="{% static 'imagens/banners/background.png' %}" class="background">
+
+    <main>
+
+        <div class="guia-pericias">
+            <img src="{% static 'imagens/Magias/Magias.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias1.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias2.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias3.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias4.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias5.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias6.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias7.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias8.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias9.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias10.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias11.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias12.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias13.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias14.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias15.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias16.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias17.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias18.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias19.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias20.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias21.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias22.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias23.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias24.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias25.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias26.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias27.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias28.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias29.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias30.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias31.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias32.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias33.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias34.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias35.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias36.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias37.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias38.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias39.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias40.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias41.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias42.jpg' %}">
+            <img src="{% static 'imagens/Magias/Magias43.jpg' %}">
+
+        </div>
+    </main>
+</body>
+</html>

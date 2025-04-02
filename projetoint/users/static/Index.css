@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('../static/Header.css');
 
 * {
     margin: 0;
@@ -7,10 +8,23 @@
     font-family: 'MedievalSharp', cursive;
 }
 
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção e cobre a tela */
+    z-index: -2;
+}
+
 body {
     background: #320000;
     color: #FFD700;
 }
+
+------------------------------------------------------------------------------------------------------
+*/
 
 /*
 Carrossel
@@ -26,7 +40,7 @@ Carrossel
 /* Define a altura do Swiper para ocupar toda a seção */
 .swiper {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 /* Faz as imagens preencherem toda a área do carrossel */
@@ -35,47 +49,14 @@ Carrossel
     height: auto;
 }
 
-/*
-------------------------------------------------------------------------------------------------------
-*/
-
-
-/*
-Nav e Header
-*/
-
-header {
-    position: absolute; /* Fixa sobre o carrossel */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10; /* Garante que fique acima do carrossel */
-    background: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    width: 50px;
-}
-
-nav a {
-    color: #FFD700;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 18px;
-}
-
-/* Efeito hover nos links */
-nav a:hover {
-    color: #ff4444; /* Destaque vermelho */
+.swiper-pagination {
+    z-index: -2;
 }
 
 /*
 ------------------------------------------------------------------------------------------------------
 */
+
 
 /*
 Grid principal
@@ -110,9 +91,9 @@ Grid principal
     margin-bottom: 20px;
     margin-left: 20px;
     margin-right: 20px;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
     padding: 20px;
+    gap: 15px;
     margin: center;
     border-top: 2px solid gold;
     border-radius: 20px;
@@ -140,17 +121,21 @@ Grid principal
 }
 
 .grid-item:hover {
-    background: #969696;
-    transform: scale(1);
+    background-image: url('../static/imagens/Icons/Hoverindx.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+    background-size: contain; /* ou cover, dependendo do efeito desejado */
+    text-align: center;
 }
 
 .grid-item img {
-    width: 50px;
+    width: 80px;
     display: block;
     margin: auto;
     margin-bottom: 8px;
     filter: brightness(0) saturate(100%) invert(94%) sepia(48%) saturate(2863%) hue-rotate(338deg) brightness(115%) contrast(89%);
-
 }
 
 /*
@@ -172,13 +157,14 @@ Raças e classes
 }
 
 .races-section {
-    margin-top: 30px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    padding: 20px;
+    padding: 100px;
     margin: center;
     border-radius: 5px;
+    height: 400px;
 }
 
 .races-icons {
@@ -198,8 +184,13 @@ Raças e classes
 }
 
 .race:hover {
-    background: #969696;
-    transform: scale(1);
+    background-image: url('../static/imagens/Icons/Hoverindx.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+    background-size: contain; /* ou cover, dependendo do efeito desejado */
+    text-align: center;
 }
 
 .race {
@@ -214,8 +205,26 @@ Raças e classes
     border-radius: 5px;
 }
 
-.race img{
+.caracteristicas {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Icon {
+    width: 100px;
+    height: auto;
+}
+
+.caracteristicas img {
     width: 50px;
+}
+
+.race img{
+    width: 90px;
+    height: auto;
+    display: block;
+    margin: auto;
     color: #ffffff;
     filter: invert(100%);
 }
@@ -280,8 +289,8 @@ Raça descrição
 */
 
 .classe-icons {
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 500px;
+    margin-bottom: 500px;
     margin-left: 20px;
     margin-right: 20px;
     display: grid;
@@ -327,29 +336,29 @@ bolsonaro
 */
 
 .news {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 800px;
-    margin: 30px auto;
+    text-align: center;
 }
 
-.news-img {
-    width: 150px;
-    margin-right: 20px;
-    border-radius: 5px;
+@media (min-width: 600px) {
+    .grid-nav {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.news-text h2 {
-    font-size: 20px;
+@media (min-width: 900px) {
+    .grid-nav {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
-.news-text p {
-    font-size: 14px;
-    color: #FFA500;
+@media (min-width: 500px) {
+    .races-icons, .classe-icons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .races-icons {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

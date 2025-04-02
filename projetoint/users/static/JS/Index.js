@@ -1,91 +1,97 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const raceElements = document.querySelectorAll(".race");
-    const raceIcon = document.querySelector(".race-description .Icon img");
-    const raceTitle = document.querySelector(".race-description .description h3");
-    const raceText = document.querySelector(".race-description .description p");
-
-    // Informações das raças
-    const raceInfo = {
-        "Anão": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Anão 512px.png",
-            text: "Os anões são conhecidos por sua resistência e habilidade em metalurgia e mineração."
+document.addEventListener('DOMContentLoaded', function() {
+    // Mapeamento das raças e suas características
+    const racasCaracteristicas = {
+        'Anão': {
+            movimento: '6 metros',
+            tamanho: 'Médio',
+            visao: 'Visão no Escuro',
+            atributos: 'Constituição +2, Sabedoria +1, Carisma -1'
         },
-        "Dhallan": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Dhallan 512px.png",
-            text: "Dhallans possuem uma forte conexão com a natureza e a magia elemental."
+        'Dhallan': {
+            movimento: '9 metros',
+            tamanho: 'Médio',
+            visao: 'Normal',
+            atributos: 'Sabedoria +2, Inteligência +1, Força -1'
         },
-        "Elfo": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Elfo 512px.png",
-            text: "Elfos são ágeis e sábios, conhecidos por sua longevidade e habilidades arcanas."
+        'Elfo': {
+            movimento: '9 metros',
+            tamanho: 'Médio',
+            visao: 'Visão no Escuro',
+            atributos: 'Destreza +2, Inteligência +1, Constituição -1'
         },
-        "Goblin": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Goblin 512px.png",
-            text: "Goblins são astutos e rápidos, geralmente sobrevivendo através da engenhosidade."
+        'Goblin': {
+            movimento: '9 metros',
+            tamanho: 'Pequeno',
+            visao: 'Visão no Escuro',
+            atributos: 'Destreza +2, Carisma +1, Força -1'
         },
-        "Golem": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Golem 512px.png",
-            text: "Golems são seres artificiais animados por magia, resistentes e fortes."
+        'Humano': {
+            movimento: '9 metros',
+            tamanho: 'Médio',
+            visao: 'Normal',
+            atributos: 'Qualquer atributo +2'
         },
-        "Humano": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Humano 512px.png",
-            text: "Os humanos são versáteis e adaptáveis, podendo se destacar em qualquer área."
-        },
-        "Hynne": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Hynne 512px.png",
-            text: "Hynnes são pequenos e ágeis, conhecidos por sua esperteza e habilidades sociais."
-        },
-        "Kliren": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Kliren 512px.png",
-            text: "Klirens são intelectuais e racionais, sempre em busca de conhecimento."
-        },
-        "Lefou": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Lefou 512px.png",
-            text: "Lefous são mutantes marcados pelo caos, dotados de habilidades únicas."
-        },
-        "Medusa": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/medusa 512px.png",
-            text: "Medusas possuem um olhar petrificante e uma beleza exótica e perigosa."
-        },
-        "Minotauro": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Minotauro 512px.png",
-            text: "Minotauros são guerreiros poderosos, conhecidos por sua força e bravura."
-        },
-        "Osteon": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Osteon 512px.png",
-            text: "Osteons são mortos-vivos conscientes que buscam um propósito em sua nova existência."
-        },
-        "Qareen": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Qareen 512px.png",
-            text: "Qareens são seres encantadores, descendentes de gênios e dotados de poderes mágicos."
-        },
-        "Sílfide": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Sílfide 512px.png",
-            text: "Sílfides são etéreas e graciosas, ligadas ao elemento ar e à liberdade."
-        },
-        "Suraggel": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Suraggel 512px.png",
-            text: "Suraggels possuem linhagens divinas e demoníacas, divididos entre luz e trevas."
-        },
-        "Tritão": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Tritão 512px.png",
-            text: "Tritões são habitantes dos oceanos, ágeis nadadores e dotados de grande resistência."
-        },
-        "Trog": {
-            img: "/projetoint/projetoint/templetes/imagens/Imagens/Icons/Races/Trog 512px.png",
-            text: "Trogs são reptilianos resistentes, adaptados a ambientes inóspitos e perigosos."
+        'Sílfide': {
+            movimento: '6 metros (voando 12m)',
+            tamanho: 'Minúsculo',
+            visao: 'Penumbra',
+            atributos: 'Carisma +2, Destreza +1, Força -2'
         }
+        // Adicione as outras raças seguindo o mesmo padrão...
     };
 
-    raceElements.forEach(race => {
-            race.addEventListener("click", function () {
-                const imgElement = this.querySelector("img"); // Obtém a imagem dentro do .race
-                const raceName = imgElement.id; // Pega o id da imagem
-    
-                if (raceInfo[raceName]) {
-                    raceIcon.src = raceInfo[raceName].img;
-                    raceTitle.textContent = raceName;
-                    raceText.textContent = raceInfo[raceName].text;
+    // Elementos do DOM
+    const mainRaceImage = document.querySelector('.Icon img');
+    const caracteristicasDiv = document.querySelector('.caracteristicas');
+    const spans = caracteristicasDiv.querySelectorAll('span');
+
+    // Função para atualizar características
+    function atualizarCaracteristicas(racaId) {
+        const caracteristicas = racasCaracteristicas[racaId];
+
+        if (caracteristicas) {
+            spans[0].textContent = caracteristicas.movimento;
+            spans[1].textContent = caracteristicas.tamanho.toLowerCase();
+            spans[2].textContent = caracteristicas.visao.toLowerCase();
+            spans[3].textContent = caracteristicas.atributos.toLowerCase();
+        } else {
+            // Reset para valores padrão ou vazio
+            spans[0].textContent = '9 metros';
+            spans[1].textContent = 'médio';
+            spans[2].textContent = 'normal';
+            spans[3].textContent = 'atributos padrão';
+        }
+    }
+
+    // Seleciona todas as divs .race e adiciona os event listeners
+    document.querySelectorAll('.races-icons .race').forEach(raceDiv => {
+        raceDiv.addEventListener('click', () => {
+            // Acessa a imagem dentro da div .race
+            const img = raceDiv.querySelector('img');
+            const raceId = img.id;
+            
+            // Atualiza a imagem principal
+            const fullPath = `/static/imagens/Icons/Races/${raceId}.png`;
+            mainRaceImage.src = fullPath;
+            
+            // Atualiza as características da raça
+            atualizarCaracteristicas(raceId);
+            
+            // Adicionando feedback visual ao clicar
+            raceDiv.classList.add('active');
+            
+            // Removendo a classe 'active' de outras divs
+            document.querySelectorAll('.races-icons .race').forEach(otherDiv => {
+                if (otherDiv !== raceDiv) {
+                    otherDiv.classList.remove('active');
                 }
             });
         });
+    });
+
+    // Atualiza inicialmente com a primeira raça (opcional)
+    const primeiraRace = document.querySelector('.races-icons .race');
+    if (primeiraRace) {
+        primeiraRace.click();
+    }
 });
