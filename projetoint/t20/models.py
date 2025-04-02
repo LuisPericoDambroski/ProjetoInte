@@ -950,3 +950,62 @@ class Aparencia(models.Model):
 
     def __str__(self):
         return f"{self.descricao} ({self.get_tipo_display()})"
+    
+class Deus(models.Model):
+    ORIGEM_CHOICES = [
+        ('T20', 'Tormenta 20'),
+        ('Ghanor', 'Ghanor'),
+        ('Ameacas', 'Ameaças de Arton'),
+        ('Deuses', 'Deuses e Heróis')
+    ]
+    
+    ALINHAMENTO_CHOICES = [
+        ('Bom', 'Bom'),
+        ('Neutro', 'Neutro'),
+        ('Maligno', 'Maligno'),
+        ('Caótico', 'Caótico'),
+        ('Legal', 'Legal'),
+        ('Neutro Bom', 'Neutro Bom'),
+        ('Neutro Maligno', 'Neutro Maligno'),
+        ('Qualquer', 'Qualquer')
+    ]
+    
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    img = models.CharField(max_length=100, blank=True, null=True)
+    origem = models.CharField(
+        max_length=20,
+        choices=ORIGEM_CHOICES,
+        default='Deuses'
+    )
+    alinhamento = models.CharField(
+        max_length=20,
+        choices=ALINHAMENTO_CHOICES,
+        blank=True,
+        null=True
+    )
+    
+    # Details fields
+    devotacao_descricao = models.TextField(blank=True, null=True)
+    obrigacoes = models.JSONField(default=list, blank=True)
+    referencia_fonte = models.CharField(max_length=50, blank=True, null=True)
+    referencia_pagina = models.CharField(max_length=10, blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Deus"
+        verbose_name_plural = "Deuses"
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        # If this is being imported from JSON, we might need to process the details
+        if hasattr(self, 'details'):
+            self.devotacao_descricao = self.details.get('description', '')
+            self.obrigacoes = [use['description'] for use in self.details.get('uses', [])]
+            ref = self.details.get('reference', {})
+            self.referencia_fonte = ref.get('source', '')
+            self.referencia_pagina = ref.get('page', '')
+        super().save(*args, **kwargs)

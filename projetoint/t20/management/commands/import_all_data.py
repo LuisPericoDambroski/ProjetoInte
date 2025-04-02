@@ -779,3 +779,27 @@ class Command(BaseCommand):
             )
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Erro no item {item.get('d%', 'sem identificador')}: {str(e)}"))
+    
+    def process_deuses(self, item, origem):
+        # Handle the subsections structure
+        if 'subsections' in item:
+            for subsection in item['subsections']:
+                if subsection['title'].lower() == 'deus':
+                    for deus_item in subsection['items']:
+                        self._process_single_deus(deus_item, origem)
+        else:
+            self._process_single_deus(item, origem)
+
+    def _process_single_deus(self, item, origem):
+        Deus.objects.update_or_create(
+            title=item['title'],
+            defaults={
+                'description': item.get('description', ''),
+                'img': item.get('img'),
+                'origem': origem,
+                'devotacao_descricao': item.get('details', {}).get('description', ''),
+                'obrigacoes': [use['description'] for use in item.get('details', {}).get('uses', [])],
+                'referencia_fonte': item.get('details', {}).get('reference', {}).get('source', ''),
+                'referencia_pagina': item.get('details', {}).get('reference', {}).get('page', '')
+            }
+        )

@@ -1,0 +1,431 @@
+{
+    "id": 11,
+    "title": "Deuses",
+    "subsections": [
+      {
+        "id": 1,
+        "title": "Deus",
+        "description": "O panteão de Arton é composto por vinte divindades maiores.",
+        "items": [
+          {
+            "id": 1,
+            "title": "Aharadak",
+            "description": "Deus da Tormenta",
+            "img": "octogonal-eye.svg",
+            "details": {
+              "description": "Os devotos do Deus da Tormenta creem que devem reverenciar a Tormenta, apregoar a inevitabilidade de sua chegada ao mundo. Praticar a devassidão e a perversão. Deturpar tudo que é correto, desfigurar tudo que é normal. Abraçar a agonia, crueldade e loucura.",
+              "uses": [
+                {
+                  "description": "No início de qualquer cena de ação, devotos de Aharadak rolam 1d6. Com um resultado ímpar, eles ficam fascinados na primeira rodada, perdidos em devaneios sobre a futilidade da vida (mesmo que sejam imunes a esta condição)."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "96"
+              }
+            }
+          },
+          {
+            "id": 2,
+            "title": "Allihanna",
+            "description": "Deusa da Natureza",
+            "img": "beech.svg",
+            "details": {
+              "description": "Os devotos da Deusa da Natureza creem que devem reverenciar os seres da natureza. Proteger a vida selvagem. Promover harmonia entre a natureza e a civilização. Combater monstros, mortos-vivos e outras criaturas que perturbam o equilíbrio natural.",
+              "uses": [
+                {
+                  "description": "Devotos de Allihanna não podem usar armaduras e escudos feitos de metal. Assim, eles só podem usar armadura acolchoada, de couro, gibão de peles e escudo leve, ou itens feitos de materiais especiais não metálicos."
+                },
+                {
+                  "description": "Devotos de Allihanna não podem descansar em nenhuma comunidade maior que uma aldeia (não perdem seus poderes, mas também não recuperam pontos de vida ou mana). Por isso, sempre preferem o relento a um quarto de estalagem."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "97"
+              }
+            }
+          },
+          {
+            "id": 3,
+            "title": "Arsenal",
+            "description": "Deus da Guerra",
+            "img": "thor-hammer.svg",
+            "details": {
+              "description": "Os devotos da Deus da Guerra creem que devem promover a guerra e o conflito. Vencer a qualquer custo, pela força ou estratégia. Jamais oferecer ou aceitar rendição. Eliminar as próprias fraquezas. Conhecer o inimigo como a si mesmo. Sempre encontrar condições de vitória; quando não existirem, criá-las.",
+              "uses": [
+                {
+                  "description": "Um devoto de Arsenal é proibido de ser derrotado em qualquer tipo de combate ou disputa (como um teste oposto para ver quem é mais forte). Caso seu grupo seja derrotado, isso também constitui uma violação das obrigações."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "98"
+              }
+            }
+          },
+          {
+            "id": 4,
+            "title": "Azgher",
+            "description": "Deus Sol",
+            "img": "sun.svg",
+            "details": {
+              "description": "Os devotos do Deus Sol creem que devem praticar a gratidão pela proteção e generosidade do sol. Promover a honestidade, expor embustes e mentiras. Praticar a caridade e o altruísmo. Proteger os necessitados. Oferecer clemência, perdão e redenção. Combater o mal.",
+              "uses": [
+                {
+                  "description": "O devoto de Azgher deve manter o rosto sempre coberto (com uma máscara, capuz ou trapos). Sua face pode ser revelada apenas ao sumo-sacerdote ou em seu funeral."
+                },
+                {
+                  "description": "Devotos do Sol devem doar para a igreja de Azgher 20% de qualquer tesouro obtido. Essa doação deve ser feita em ouro, seja na forma de moedas ou itens."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "98"
+              }
+            }
+          },
+          {
+            "id": 5,
+            "title": "Hyninn",
+            "description": "Deusa da Trapaça",
+            "img": "fox.svg",
+            "details": {
+              "description": "Os devotos da Deusa da Trapaça creem que devem praticar a astúcia e a esperteza. Demonstrar que honestidade e sinceridade levam ao fracasso. Desafiar a lei e a ordem. Ser vitorioso sem seguir regras. Fazer aos outros antes que façam a você. Levar vantagem em tudo.",
+              "uses": [
+                {
+                  "description": "O devoto deve fazer um ato furtivo, ousado ou proibido por dia (ou por sessão de jogo, o que demorar mais), como oferenda a Hyninn. Em termos de jogo, uma ação exigindo um teste de Enganação ou Ladinagem com CD mínima 15 + metade do seu nível."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "98"
+              }
+            }
+          },
+          {
+            "id": 6,
+            "title": "Kallyadranoch",
+            "description": "Deus dos Dragões",
+            "img": "spiked-dragon-head.svg",
+            "details": {
+              "description": "Os devotos do Deus dos Dragões creem que devem praticar a soberania. Demonstrar orgulho, superioridade, majestade. Praticar o acúmulo de riquezas. Proteger suas posses e sua dignidade. Ser implacável com seus inimigos. Reverenciar os dragões e suas crias.",
+              "uses": [
+                {
+                  "description": "Para subir de nível, além de acumular XP suficiente, o devoto de Kally deve realizar uma oferenda em tesouro. O valor é igual à 20% da diferença do dinheiro inicial do nível que vai alcançar para o nível atual."
+                },
+                {
+                  "description": "Sabe-se, também, de devotos malignos que sacrificam vítimas a Kally (não permitido para personagens jogadores)."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "99"
+              }
+            }
+          },
+          {
+            "id": 7,
+            "title": "Khalmyr",
+            "description": "Deus da Justiça",
+            "img": "scales.svg",
+            "details": {
+              "description": "Os devotos do Deus da Justiça creem que devem praticar a caridade e o altruísmo. Defender a lei, a ordem e os necessitados. Combater a mentira, o crime e o mal. Oferecer clemência, perdão e redenção. Lutar o bom combate.",
+              "uses": [
+                {
+                  "description": "Devotos de Khalmyr não podem recusar pedidos de ajuda de pessoas inocentes. Devem cumprir as ordens de superiores na hierarquia da igreja (devotos do Deus da Justiça de nível maior) e só podem usar itens mágicos permanentes criados por devotos do mesmo deus."
+                },
+                {
+                  "description": "Devotos de Khalmyr devem cumprir as ordens de superiores na hierarquia da igreja (devotos do Deus da Justiça de nível maior)."
+                },
+                {
+                  "description": "Devotos de Khalmyr só podem usar itens mágicos permanentes criados por devotos do mesmo deus."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "99"
+              }
+            }
+          },
+          {
+            "id": 8,
+            "title": "Lena",
+            "description": "Deusa da Vida",
+            "img": "moon.svg",
+            "details": {
+              "description": "Os devotos da Deusa da Vida creem que devem reverenciar e proteger a vida em todas as suas formas. Reverenciar a fertilidade, a fecundidade, a maternidade e a infância. Praticar a caridade e o altruísmo. Oferecer clemência, perdão e redenção. Aliviar a dor e o sofrimento físico, mental ou espiritual.",
+              "uses": [
+                {
+                  "description": "Devotos de Lena não podem causar dano letal ou perda de PV a criaturas vivas (fornecer bônus em dano letal também é proibido). Mas podem causar dano não letal e prejudicar seus inimigos (em termos de jogo, impondo condições)."
+                },
+                {
+                  "description": "Para um devoto de Lena, é preferível perder a própria vida a tirá-la de outros."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "99"
+              }
+            }
+          },
+          {
+            "id": 9,
+            "title": "Lin-Wu",
+            "description": "Deus Samurai",
+            "img": "sea-dragon.svg",
+            "details": {
+              "description": "Os devotos do Deus Samurai creem que devem promover a honra acima de tudo. Proteger Tamu-ra e o Reinado de Arton. Praticar honestidade, coragem, cortesia e compaixão. Demonstrar integridade e dignidade. Ser leal a seus companheiros. Buscar redenção após cometer desonra.",
+              "uses": [
+                {
+                  "description": "Devotos de Lin-Wu devem demonstrar comportamento honrado, jamais recorrendo a mentiras e subterfúgios. Em termos de jogo, são proibidos de tentar qualquer ação que exigiria um teste de Enganação, Furtividade ou Ladinagem."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "100"
+              }
+            }
+          },
+          {
+            "id": 10,
+            "title": "Marah",
+            "description": "Deusa da Paz",
+            "img": "heart-wings.svg",
+            "details": {
+              "description": "Os devotos da Deusa da Paz creem que devem praticar o amor e a gratidão pela vida e pela bondade. Promover a paz, harmonia e felicidade. Aliviar a dor e o sofrimento, trazer conforto aos aflitos. Praticar a caridade e o altruísmo. Oferecer clemência, perdão e redenção.",
+              "uses": [
+                {
+                  "description": "Devotos de Marah não podem causar dano, perda de PV e condições a criaturas, exceto enfeitiçado, fascinado e pasmo (fornecer bônus em dano também é proibido)."
+                },
+                {
+                  "description": "Em combate, só podem recorrer a ações como proteger ou curar — ou fugir, render-se ou aceitar a morte."
+                }
+                ,
+                {
+                  "description": "Um devoto de Marah jamais vai causar violência, nem mesmo para se salvar."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "101" 
+              }
+            }
+          },
+          {
+            "id": 11,
+            "title": "Megalokk",
+            "description": "Deus dos Monstros",
+            "img": "grasping-claws.svg",
+            "details": {
+              "description": "Os devotos do Deus dos Monstros creem que devem Praticar a violência, a soberania do mais forte. Jamais reprimir os próprios instintos e desejos. Jamais ser domado, desafiar qualquer forma de controle. Jamais oferecer perdão ou rendição. Eliminar os fracos. Destruir seus inimigos.",
+              "uses": [
+                {
+                  "description": "Devotos de Megalokk são proibidos de usar perícias baseadas em Inteligência ou Carisma (exceto Adestramento e Intimidação)."
+                },
+                {
+                  "description": "Devotos de Megalokk não pode preparar uma ação, escolher 10 ou 20 em testes e lançar magias sustentadas (pois são ações que exigem foco e paciência)."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "101"
+              }
+            }
+          },
+          {
+            "id": 12,
+            "title": "Nimb",
+            "description": "Deus do Caos",
+            "img": "perspective-dice-six-faces-one.svg",
+            "details": {
+              "description": "Os devotos do Deus do Caos creem que devem reverenciar o caos, a aleatoriedade, a sorte e o azar. Praticar a ousadia e a rebeldia, desafiar regras e leis. Rejeitar o bom senso. Tornar o mundo mais interessante. Ou divertido. Ou terrível. Ou não.",
+              "uses": [
+                {
+                  "description": "Por serem incapazes de seguir regras, estes devotos não têm “obrigações” verdadeiras (portanto, nunca perdem PM por descumprirem suas obrigações e restrições)."
+                },
+                {
+                  "description": "Devotos de Nimb são loucos (ou agem como se fossem), não conseguindo convencer ninguém de coisa alguma. Você sofre –5 em testes de perícias baseadas em Carisma."
+                },
+                {
+                  "description": "No início de cada cena de ação, devotos de Nimb rolam 1d6. Com um resultado 1, eles ficam confusos (mesmo que sejam imunes a esta condição)."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "102"
+              }
+            }
+          },
+          {
+            "id": 13,
+            "title": "Oceano",
+            "description": "Deus dos Mares",
+            "img": "big-wave.svg",
+            "details": {
+              "description": "Os devotos do Deus dos Mares creem que devem reverenciar os mares, o oceano e os seres que ali habitam. Promover harmonia entre o oceano e o mundo seco. Proteger os seres marinhos, mas também os seres do mundo seco que se aventuram sobre as ondas. Demandar devido respeito ao mar e seu poder.",
+              "uses": [
+                {
+                  "description": "As únicas armas permitidas para devotos do Oceano são a azagaia, a lança, o tridente e a rede."
+                },
+                {
+                  "description": "Os devotos do Oceano podem usar apenas armaduras leves."
+                },
+                {
+                  "description": "O devoto não pode se manter afastado do oceano por mais de um mês."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "102"
+              }
+            }
+          },
+          {
+            "id": 14,
+            "title": "Sszzaas",
+            "description": "Deus da Traição ",
+            "img": "cobra.svg",
+            "details": {
+              "description": "Os devotos do Deus da Traição creem que devem praticar a mentira e a trapaça. Buscar sempre a solução mais inteligente. Demonstrar que lealdade e confiança são fraquezas, devem ser eliminadas. Promover competição, rivalidade, desconfiança. Usar os recursos do inimigo para alcançar seus objetivos. Levar outros a se sacrificarem em seu lugar.",
+              "uses": [
+                {
+                  "description": "O devoto deve fazer um ato de traição, intriga ou corrupção por dia (ou por sessão de jogo, o que demorar mais) como oferenda a Sszzaas. Pouco importa se o alvo é aliado ou inimigo. Em termos de jogo, uma ação exigindo um teste de Enganação com CD mínima 15 + metade do seu nível."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "103"
+              }
+            }
+          },
+          {
+            "id": 15,
+            "title": "Tanna-Toh",
+            "description": "Deusa do Conhecimento",
+            "img": "scroll-quill.svg",
+            "details": {
+              "description": "Os devotos da Deusa do Conhecimento creem que devem reverenciar a mente racional, o conhecimento, a civilização, a verdade. Proteger o progresso, o avanço dos povos civilizados. Promover o ensino e a prática das artes e das ciências. Solucionar todos os mistérios, revelar todas as mentiras. Buscar novo conhecimento. Não tolerar a ignorância.",
+              "uses": [
+                {
+                  "description": "Devotos de Tanna-Toh jamais podem recusar uma missão que envolva a busca por um novo conhecimento ou informação; investigar rumores sobre um livro perdido, procurar uma aldeia lendária, pesquisar os hábitos de uma criatura desconhecida..."
+                },
+                {
+                  "description": "O devoto sempre deve dizer a verdade e nunca pode se recusar a responder uma pergunta direta, pouco importando as consequências. É proibido para ele esconder qualquer conhecimento."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "103"
+              }
+            }
+          },
+          {
+            "id": 16,
+            "title": "Tenebra",
+            "description": "Deusa das Trevas",
+            "img": "pentacle.svg",
+            "details": {
+              "description": "Os devotos da Deusa das Trevas creem que devem reverenciar a noite, a escuridão, a lua e as estrelas. Proteger segredos e mistérios, proteger tudo que é oculto e invisível. Reverenciar a não vida e os mortos-vivos, propagar a prática da necromancia. Rejeitar o sol e a luz.",
+              "uses": [
+                {
+                  "description": "Tenebra proíbe que seus devotos sejam tocados por Azgher, o odiado rival. O devoto deve se cobrir inteiramente durante o dia, sem expor ao sol nenhum pedaço de pele."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "104"
+              }
+            }
+          },
+          {
+            "id": 17,
+            "title": "Thwor",
+            "description": "Deus dos Goblinoides ",
+            "img": "fist.svg",
+            "details": {
+              "description": "Os devotos do Deus dos Goblinoides creem que devem reverenciar a lealdade, a força e a coragem. Promover a união entre goblins, hobgoblins, bugbears, orcs, ogros e outros povos humanoides. Reverenciar o caos, a mutação, a vida sempre em movimento. Proteger a cultura e o modo de vida goblinoide. Destruir os elfos.",
+              "uses": [
+                {
+                  "description": "Não importando sua raça, o devoto de Thwor deve ser duyshidakk — ou seja, aceito como membro do povo goblinoide."
+                },
+                {
+                  "description": "O devoto de Thwor deve se esforçar para que o “Mundo Como Deve Ser” tome o continente (T20, pág. 386)."
+                },
+                {
+                  "description": "Deve sempre procurar fazer alianças com goblinoides e só lutar contra eles em último caso."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "104"
+              }
+            }
+          },
+          {
+            "id": 18,
+            "title": "Thiatys",
+            "description": "Deus da Ressureição",
+            "img": "condor-emblem.svg",
+            "details": {
+              "description": "Os devotos do Deus da Ressureição creem que devem proteger a vida e aqueles necessitados de novas chances. Renegar a morte e a mentira. Ajudar os perdidos a encontrar seus caminhos e alcançar seus destinos. Oferecer clemência, perdão e redenção.",
+              "uses": [
+                {
+                  "description": "Devotos de Thyatis são proibidos de matar criaturas inteligentes (Inteligência –3 ou maior). Podem atacar e causar dano, mas jamais levar à morte."
+                },
+                {
+                  "description": "Por esse motivo, devotos de Thyatis preferem armas e ataques que apenas incapacitam seus oponentes ou causam dano não letal."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "104"
+              }
+            }
+          },
+          {
+            "id": 19,
+            "title": "Valkaria",
+            "description": "Deusa da Ambição",
+            "img": "atlas.svg",
+            "details": {
+              "description": "Os devotos da Deusa da Ambição creem que devem praticar o otimismo, a evolução, a rebeldia. Desafiar limites, almejar o impossível. Combater o mal, a opressão e a tirania. Proteger a liberdade. Aceitar o novo e diferente e adaptar-se a ele. Demonstrar ambição, paixão e coragem. Desfrutar e amar a vida.",
+              "uses": [
+                {
+                  "description": "Valkaria odeia o conformismo. Seus devotos são proibidos de fixar moradia em um mesmo lugar, não podendo permanecer mais de 2d10+10 dias na mesma cidade (ou vila, aldeia, povoado...) ou 1d4+2 meses no mesmo reino."
+                },
+                {
+                  "description": "Devotos de Valkaria são proibidos de se casar ou formar qualquer união estável."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "105"
+              }
+            }
+          },
+          {
+            "id": 20,
+            "title": "Wynna",
+            "description": "Deusa da Magia",
+            "img": "ring.svg",
+            "details": {
+              "description": "Os devotos da Deusa da Magia creem que devem ",
+              "uses": [
+                {
+                  "description": "Assim como a magia jamais deva ser negada para quem a busca, devotos de Wynna devem praticar a bondade e a generosidade de sua deusa, jamais recusando um pedido de ajuda de alguém inocente."
+                },
+                {
+                  "description": "Devotos de Wynna são proibidos de matar seres mágicos (elfos, qareen, sílfides e outros a critério do mestre) e conjuradores arcanos."
+                }
+              ],
+              "reference": {
+                "source": "T20",
+                "page": "105"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
