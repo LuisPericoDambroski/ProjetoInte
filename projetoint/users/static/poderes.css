@@ -1,4 +1,4 @@
-@import url("/static/Header.css");
+@import url('../static/Header.css');
 
 body {
     margin-top: 100px;

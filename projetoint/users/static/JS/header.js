@@ -1,6 +1,3 @@
-console.log(fullPath); // Deve retornar algo como "/static/imagens/Raças/Anao.png"
-
-
     // Fechar o dropdown quando clicar fora
     function handleClickOutside(e) {
         if (!e.target.matches('.dropdown-toggle')) {

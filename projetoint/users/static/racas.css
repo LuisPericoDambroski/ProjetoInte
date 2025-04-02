@@ -18,14 +18,10 @@
     z-index: -2;
 }
 
-<<<<<<< HEAD:projetoint/users/static/racas.css
-body {
-    background: #320000;
-    color: #FFD700;
-=======
 .guia {
     display: flex;
     justify-content: center;
+    height: 1000px;
 }
 
 .guia-poder{
@@ -47,7 +43,6 @@ body {
 nav {
     position: sticky;
     align-items: center;
->>>>>>> branchiv:projetoint/static/racas.css
 }
 
 /*
@@ -59,14 +54,11 @@ nav {
     padding: 5px;
 }
 
-<<<<<<< HEAD:projetoint/users/static/racas.css
-=======
 .guia img{
     align-items: center;
     text-align: center;
 }
 
->>>>>>> branchiv:projetoint/static/racas.css
 .races-section {
     margin-top: 40px;
     display: grid;
@@ -94,14 +86,30 @@ nav {
     box-shadow: 2px rgba(255, 230, 0, 0.808);
 }
 
+@media (min-width: 500px) {
+    .races-icons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .races-icons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 .race:hover {
-    background: #969696;
-    transform: scale(1);
+    background-image: url('../static/imagens/Icons/Hoverindx.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+    background-size: contain; /* ou cover, dependendo do efeito desejado */
+    text-align: center;
 }
 
 .race {
     text-align: center;
-    transition: 0.3s;
     text-decoration: none;
     color: #fce300;
     display: flex;
@@ -112,7 +120,10 @@ nav {
 }
 
 .race img{
-    width: 50px;
+    width: 90px;
+    height: auto;
+    display: block;
+    margin: auto;
     color: #ffffff;
     filter: invert(100%);
 }
@@ -124,53 +135,3 @@ nav {
 /*
 Raça descrição
 */
-<<<<<<< HEAD:projetoint/users/static/racas.css
-
-.basic{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 20px;
-    margin: center;
-    border-radius: 5px;  
-    border-top: 2px solid gold ;
-    border-radius: 20px;
-    background: radial-gradient(100% 25% at 100% 10%,
-    rgba(255, 207, 14, 0.23) 0%,
-    rgba(207, 16, 16, 0.17) 50.5%,
-    rgba(0, 0, 0, 0.24) 85%);
-    background-blend-mode: normal, color-dodge;
-    box-shadow: 2px rgba(255, 230, 0, 0.808);
-}
-
-.basic h3{
-    margin: 0px 0px 20px;
-}
-
-.Icon {
-    display: flex;
-    justify-content: center;
-}
-
-.Icon img {
-    width: 59px;
-    color: #ffffff;
-    filter: invert(100%);
-}
-
-.feature-icons {
-    margin: 6px 0px 0px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 20px;
-    margin: center;
-    border-radius: 5px;
-}
-
-.feature-icons img {
-    width: 50px;
-    flex-direction: column;
-    color: #ffffff;
-    filter: invert(100%);
-}
-=======
->>>>>>> branchiv:projetoint/static/racas.css

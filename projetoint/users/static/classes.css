@@ -1,7 +1,5 @@
 @import url('../static/Header.css');
 
-<<<<<<< HEAD:projetoint/users/static/classes.css
-=======
 body {
     margin-top: 100px;
 }
@@ -15,7 +13,6 @@ body {
     object-fit: cover; /* Mantém a proporção e cobre a tela */
     z-index: -2;
 }
->>>>>>> branchiv:projetoint/static/classes.css
 
 .classe-icons {
     margin-top: 30px;
@@ -59,8 +56,6 @@ body {
 .classe img{
     width: 50px;
 }
-<<<<<<< HEAD:projetoint/users/static/classes.css
-=======
 
 .guia {
     display: flex;
@@ -78,4 +73,3 @@ body {
     width: 100%; /* Ajusta a largura para ocupar o espaço da célula */
     height: auto; /* Mantém a proporção da imagem */
 }
->>>>>>> branchiv:projetoint/static/classes.css

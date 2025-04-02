@@ -93,8 +93,6 @@ def regras (request):
 def itens (request):
     return render(request, 'itens.html')
 
-def classes(request):
-    return render(request, 'classe.html')
 
 def login_view(request):
     if request.method == "POST":
@@ -145,16 +143,6 @@ def register_view(request):
         return redirect("/login/?modal=register")
 
     return redirect("/login/")
-
-
-
-def dashboard(request):
-    if "user_id" not in request.session:
-        messages.error(request, "Você precisa estar logado para acessar essa página.")
-        return redirect("login")
-
-    user = CustomUser.objects.get(id=request.session["user_id"])
-    return render(request, "dashboard.html", {"user": user})
 
 
 def logout_view(request):

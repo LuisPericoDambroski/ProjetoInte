@@ -111,6 +111,7 @@ Grid principal
     padding: 15px;
     border-radius: 8px;
     text-align: center;
+    transition: 0.3s;
     text-decoration: none;
     color: #ffffff;
     display: center;
@@ -183,8 +184,13 @@ Raças e classes
 }
 
 .race:hover {
-    background: #969696;
-    transform: scale(1);
+    background-image: url('../static/imagens/Icons/Hoverindx.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+    background-size: contain; /* ou cover, dependendo do efeito desejado */
+    text-align: center;
 }
 
 .race {
@@ -199,8 +205,39 @@ Raças e classes
     border-radius: 5px;
 }
 
-.race img{
+.caracteristicas {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.caracteristicas img {
     width: 50px;
+}
+
+.Icon {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Adicionado para centralizar verticalmente */
+    height: 100%; /* Garante que o container ocupe toda a altura */
+}
+
+.Icon img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+    max-height: 200px; /* Define uma altura máxima adequada */
+    width: auto; /* Mantém a proporção original */
+    height: auto; /* Mantém a proporção original */
+    object-fit: contain; /* Garante que a imagem inteira seja visível */
+    filter: invert(100%);
+    margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+.race img{
+    width: 90px;
+    height: auto;
+    display: block;
+    margin: auto;
     color: #ffffff;
     filter: invert(100%);
 }

@@ -1,17 +1,14 @@
-
-// Caminho base das imagens processado pelo Django
-const STATIC_BASE = "{% static 'imagens/Raças/' %}";
-
 document.addEventListener('DOMContentLoaded', () => {
     const mainRaceImage = document.getElementById('main-race-image');
-    
 
-    document.querySelectorAll('.races-icons img').forEach(img => {
-        img.addEventListener('click', () => {
+    // Altere o seletor para a div .race (em vez da img)
+    document.querySelectorAll('.races-icons .race').forEach(raceDiv => {
+        raceDiv.addEventListener('click', () => {
+            // Acessa a imagem dentro da div .race
+            const img = raceDiv.querySelector('img');
             const raceId = img.id;
-            const fileName = raceId;
-            const fullPath = `/static/imagens/Raças/${fileName}.png`;
-                        
+            const fullPath = `/static/imagens/Raças/${raceId}.png`;
+            
             console.log('Caminho real:', fullPath);
             mainRaceImage.src = fullPath;
         });

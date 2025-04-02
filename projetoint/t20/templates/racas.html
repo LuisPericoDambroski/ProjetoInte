@@ -7,6 +7,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'racas.css' %}">
     <script src="{% static 'JS/raças.js' %}"></script>
+    <script src="{% static 'JS/header.js' %}"></script>
+
 
 
     <header>
@@ -26,7 +28,6 @@
                 <div class="dropdown">
                     <img src="{% static 'imagens/icons/perfil.png' %}" alt="Minha Conta" class="dropdown-toggle" id="dropdownMenuButton">
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{% url 'dashboard' %}">Minha Conta</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
                     </div>
                 </div>
@@ -55,67 +56,67 @@
                             <span>Anão</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Dhallan 512px.png' %}" id="Dhallan" alt="Dhallan">
+                            <img src="{% static 'imagens/Icons/Races/Dahllan.png' %}" id="Dahllan" alt="Dhallan">
                             <span>Dhallan</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Elfo 512px.png' %}" id="Elfo" alt="Elfo">
+                            <img src="{% static 'imagens/Icons/Races/Elfo.png' %}" id="Elfo" alt="Elfo">
                             <span>Elfo</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Goblin 512px.png' %}" id="Goblin" alt="Goblin">
+                            <img src="{% static 'imagens/Icons/Races/Goblin.png' %}" id="Goblin" alt="Goblin">
                             <span>Goblin</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Golem 512px.png' %}" id="Golem" alt="Golem">
+                            <img src="{% static 'imagens/Icons/Races/Golem.png' %}" id="Golem" alt="Golem">
                             <span>Golem</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Humano.png' %}" id="Humano" alt="Humano" data-race="Humano">
+                            <img src="{% static 'imagens/Icons/Races/Humano.png' %}" id="Humano" alt="Humano">
                             <span>Humano</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Hynne 512px.png' %}" id="Hynne" alt="Hynne">
+                            <img src="{% static 'imagens/Icons/Races/Hynne.png' %}" id="Hynne" alt="Hynne">
                             <span>Hynne</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Kliren 512px.png' %}" id="Kliren" alt="Kliren">
+                            <img src="{% static 'imagens/Icons/Races/Kliren.png' %}" id="Kliren" alt="Kliren">
                             <span>Kliren</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Lefou 512px.png' %}" id="Lefou" alt="Lefou">
+                            <img src="{% static 'imagens/Icons/Races/Lefou.png' %}" id="Lefou" alt="Lefou">
                             <span>Lefou</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/medusa 512px.png' %}" id="Medusa" alt="Medusa">
+                            <img src="{% static 'imagens/Icons/Races/medusa.png' %}" id="Medusa" alt="Medusa">
                             <span>Medusa</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Minotauro 512px.png' %}" id="Minotauro" alt="Minotauro">
+                            <img src="{% static 'imagens/Icons/Races/Minotauro.png' %}" id="Minotauro" alt="Minotauro">
                             <span>Minotauro</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Osteon 512px.png' %}" id="Osteon" alt="Osteon">
+                            <img src="{% static 'imagens/Icons/Races/Osteon.png' %}" id="Osteon" alt="Osteon">
                             <span>Osteon</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Qareen 512px.png' %}" id="Qareen" alt="Qareen">
+                            <img src="{% static 'imagens/Icons/Races/Qareen.png' %}" id="Qareen" alt="Qareen">
                             <span>Qareen</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Sílfide 512px.png' %}" id="Sílfide" alt="Sílfide">
+                            <img src="{% static 'imagens/Icons/Races/Sílfide.png' %}" id="Sílfide" alt="Sílfide">
                             <span>Sílfide</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Suraggel 512px.png' %}" id="Suraggel" alt="Suraggel">
+                            <img src="{% static 'imagens/Icons/Races/Suraggel.png' %}" id="Suraggel" alt="Suraggel">
                             <span>Suraggel</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Tritão 512px.png' %}" id="Tritão" alt="Tritão">
+                            <img src="{% static 'imagens/Icons/Races/Tritão.png' %}" id="Tritão" alt="Tritão">
                             <span>Tritão</span>
                         </div>
                         <div class="race">
-                            <img src="{% static 'imagens/Icons/Races/Trog 512px.png' %}" id="Trog" alt="Trog">
+                            <img src="{% static 'imagens/Icons/Races/Trog.png' %}" id="Trog" alt="Trog">
                             <span>Trog</span>
                         </div>
                     </div>

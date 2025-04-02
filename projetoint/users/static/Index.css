@@ -91,9 +91,9 @@ Grid principal
     margin-bottom: 20px;
     margin-left: 20px;
     margin-right: 20px;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    padding: 100px;
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 15px;
     margin: center;
     border-top: 2px solid gold;
     border-radius: 20px;
@@ -124,12 +124,14 @@ Grid principal
     background-image: url('../static/imagens/Icons/Hoverindx.png');
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
     background-size: contain; /* ou cover, dependendo do efeito desejado */
     text-align: center;
 }
 
 .grid-item img {
-    width: 100px;
+    width: 80px;
     display: block;
     margin: auto;
     margin-bottom: 8px;
@@ -182,8 +184,13 @@ Raças e classes
 }
 
 .race:hover {
-    background: #969696;
-    transform: scale(1);
+    background-image: url('../static/imagens/Icons/Hoverindx.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+    background-size: contain; /* ou cover, dependendo do efeito desejado */
+    text-align: center;
 }
 
 .race {
@@ -198,8 +205,26 @@ Raças e classes
     border-radius: 5px;
 }
 
-.race img{
+.caracteristicas {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Icon {
+    width: 100px;
+    height: auto;
+}
+
+.caracteristicas img {
     width: 50px;
+}
+
+.race img{
+    width: 90px;
+    height: auto;
+    display: block;
+    margin: auto;
     color: #ffffff;
     filter: invert(100%);
 }
@@ -312,4 +337,28 @@ bolsonaro
 
 .news {
     text-align: center;
+}
+
+@media (min-width: 600px) {
+    .grid-nav {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .grid-nav {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 500px) {
+    .races-icons, .classe-icons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .races-icons {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

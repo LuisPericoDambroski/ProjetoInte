@@ -324,4 +324,67 @@ main {
     box-shadow: 2px rgba(255, 230, 0, 0.808);
 }
 
-  
+.custom-file-label {
+    display: none;
+
+}
+
+.top-nav {
+    flex-direction: column;
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    .top-nav {
+        flex-direction: row;
+        padding: 15px 30px;
+    }
+}
+
+.top-nav nav ul {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.character-list {
+    flex-direction: column;
+}
+
+@media (min-width: 600px) {
+    .character-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 480px) {
+    .personagem {
+        height: 350px;
+    }
+    
+    .nome {
+        font-size: 16px;
+    }
+    
+    .char-ca {
+        font-size: 14px;
+    }
+    
+    .stats {
+        bottom: 40px;
+    }
+    
+    .Origem, .Raça, .Atributos, .classes, .Pericias, .Poderes, .Deus {
+        padding: 20px;
+    }
+    
+    .Origem img, .classes img {
+        width: 150px;
+    }
+    
+    .raca-imagem img {
+        width: 120px;
+    }
+}

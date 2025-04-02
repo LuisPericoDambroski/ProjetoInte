@@ -140,4 +140,15 @@ a:hover {
     background-color: #dc3545; /* vermelho erro */
     margin-bottom: 5px;
   }
+
+  .modal-content, .container {
+    width: 90%;
+    max-width: 320px;
+    margin-top: 150px;
+}
   
+  @media (min-width: 768px) {
+    .modal-content, .container {
+        margin-top: 250px;
+    }
+}
