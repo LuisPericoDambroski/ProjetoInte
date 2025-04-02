@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('../static/Header.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'MedievalSharp', cursive;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção e cobre a tela */
+    z-index: -2;
+}
+
+<<<<<<< HEAD:projetoint/static/racas.css
+.guia {
+    display: flex;
+    justify-content: center;
+}
+
+.guia-poder{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    margin-top: 60px;
+}
+
+body {
+    background: #320000;
+    color: #FFD700;
+    margin-top: 90px;
+}
+
+nav {
+    position: sticky;
+    align-items: center;
+=======
+body {
+    background: #320000;
+    color: #FFD700;
+>>>>>>> develop:projetoint/users/static/racas.css
+}
+
+/*
+é para mexer daqui para baixo
+*/
+
+.media-nav {
+    text-align: center;
+    padding: 5px;
+}
+
+<<<<<<< HEAD:projetoint/static/racas.css
+.guia img{
+    align-items: center;
+    text-align: center;
+}
+
+=======
+>>>>>>> develop:projetoint/users/static/racas.css
+.races-section {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 100px;
+    margin: center;
+    border-radius: 5px;
+    height: 400px;
+}
+
+.races-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    margin: center;
+    background: radial-gradient(100% 25% at 50% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.7) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.race:hover {
+    background: #969696;
+    transform: scale(1);
+}
+
+.race {
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #fce300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.race img{
+    width: 50px;
+    color: #ffffff;
+    filter: invert(100%);
+}
+
+/*
+------------------------------------------------------------------------------------------------------
+*/
+
+/*
+Raça descrição
+*/
+<<<<<<< HEAD:projetoint/static/racas.css
+=======
+
+.basic{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;  
+    border-top: 2px solid gold ;
+    border-radius: 20px;
+    background: radial-gradient(100% 25% at 100% 10%,
+    rgba(255, 207, 14, 0.23) 0%,
+    rgba(207, 16, 16, 0.17) 50.5%,
+    rgba(0, 0, 0, 0.24) 85%);
+    background-blend-mode: normal, color-dodge;
+    box-shadow: 2px rgba(255, 230, 0, 0.808);
+}
+
+.basic h3{
+    margin: 0px 0px 20px;
+}
+
+.Icon {
+    display: flex;
+    justify-content: center;
+}
+
+.Icon img {
+    width: 59px;
+    color: #ffffff;
+    filter: invert(100%);
+}
+
+.feature-icons {
+    margin: 6px 0px 0px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    margin: center;
+    border-radius: 5px;
+}
+
+.feature-icons img {
+    width: 50px;
+    flex-direction: column;
+    color: #ffffff;
+    filter: invert(100%);
+}
+>>>>>>> develop:projetoint/users/static/racas.css

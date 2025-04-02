@@ -93,6 +93,9 @@ def regras (request):
 def itens (request):
     return render(request, 'itens.html')
 
+def classes(request):
+    return render(request, 'classe.html')
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -142,6 +145,7 @@ def register_view(request):
         return redirect("/login/?modal=register")
 
     return redirect("/login/")
+
 
 
 def dashboard(request):
