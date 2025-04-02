@@ -8,7 +8,9 @@ urlpatterns = [
     path('', include('users.urls')),  # 🔥 As URLs do login
     path('', include('t20.urls')),
     path('characters/', include('characters.urls')),  # ✅ já tá certo!
-#  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

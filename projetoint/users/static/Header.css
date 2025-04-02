@@ -55,6 +55,7 @@ nav a {
 .dropdown-item {
     width: 75px;
     height: auto;
+    color: yellow;
 }
 
 .dropdown-menu a {
@@ -88,10 +89,124 @@ nav a::before {
     text-align: center;
 }
 
+/* FOOTER RESPONSIVO COM BACKGROUND */
+.footer {
+    position: relative;
+    width: 100%;
+    background-color: #320000; /* Cor de fallback */
+    color: #F2E0C8;
+    padding: 40px 0;
+    overflow: hidden;
+    border-top: 2px solid gold;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../static/imagens/Banners/Banner20.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3; /* Ajuste a opacidade conforme necessário */
+    z-index: 0;
+}
+
+.footer-container {
+    position: relative;
+    max-width: 1200px;
+    height: 250px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+}
+
+.footer-container img {
+    display: none; /* A imagem agora é background */
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFD700;
+    text-decoration: none;
+    font-family: 'MedievalSharp', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.footer-email, .footer-container a:not(.footer-logo) {
+    color: #F2E0C8;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.footer-email:hover, .footer-container a:not(.footer-logo):hover {
+    color: #FFD700;
+    transform: translateY(-2px);
+}
+
+/* Ícones (opcional) */
+.footer-email::before {
+    content: "✉";
+    font-size: 1.2em;
+}
+
+.footer-container a[href*="insta"]::before {
+    content: "📷";
+    font-size: 1.2em;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .footer {
+        padding: 30px 0;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .footer-logo {
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+    
+    .footer::before {
+        background-position: top center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 25px 0;
+    }
+    
+    .footer-container {
+        gap: 12px;
+    }
+    
+    .footer-email, .footer-container a:not(.footer-logo) {
+        font-size: 14px;
+    }
+}
+
 @media (min-width: 768px) {
     header {
         flex-direction: row;
-        padding: 0 20px;
+        padding-right: 0 20px;
     }
 }
 
