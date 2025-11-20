@@ -91,18 +91,9 @@ SGI_APPLICATION = 'projetoint.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'RPGTormenta',  # Nome do seu banco de dados
-        'USER': 'app_user',  # Usuário do MySQL
-        'PASSWORD': 'Xv4P16u3!O@+Bz',  # Senha do MySQL
-        'HOST': '3.131.37.27',  # Servidor do banco (ou IP se for remoto)
-        'PORT': '3306',  # Porta padrão do MySQL
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    }
+    'default': env.db("DATABASE_URL")
 }
+
 
 
 # Password validation
